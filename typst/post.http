@@ -1,0 +1,9 @@
+POST https://api.github.com/repos/charokoukuu/line-bot-award-osaka2024/dispatches HTTP/2.0
+Accept: application/vnd.github+json
+Authorization: Bearer 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
+X-GitHub-Api-Version: 2022-11-28
+
+{
+  "event_type":"test_result",
+  "client_payload":{"message":"Hello!"}
+}
