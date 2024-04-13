@@ -1,35 +1,17 @@
 import { LinePush } from "../api/app.api";
 import { Request, Response } from "express";
 import { SetTeam, SetTeamInfo } from "../repository/set.repository";
-import { Player, TeamInfo } from "../types/app.type";
-import { createTeam } from "../domain/create.model";
-import { GetTeamFindOne } from "../repository/get.repository";
+import { Player, Status, Team, TeamInfo } from "../types/app.type";
+import { GetTeamFindOneId } from "../repository/get.repository";
+import { play } from "./play.usecase";
 
 export const webhook = async (req: Request, res: Response) => {
   const event = req.body.events[0];
   console.log("event");
   if (event.type === "message") {
     switch (event.message.text) {
-      case "あ":
-        //user取得
-        const team = await GetTeamFindOne(event.source.userId);
-        const shuffledArray = team.players.sort(() => Math.random() - 0.5);
-        const selectedItems = shuffledArray.slice(0, team.info.ownerCount);
-        selectedItems.forEach((item) => {
-          item.gameType = "owner";
-        });
-        const remainingItems = shuffledArray.slice(team.info.ownerCount);
-        remainingItems.forEach((item) => {
-          item.gameType = "seeker";
-        });
-        const newTeam = createTeam({
-          id: team.id,
-          info: team.info,
-          players: [...selectedItems, ...remainingItems],
-        });
-
-        console.log(newTeam.players);
-        // await LinePush(reply(event.replyToken, host));
+      case "プレイする":
+        play(event.source.userId);
         break;
     }
   }
@@ -55,9 +37,15 @@ export const scheduler = async (req: any, res: any) => {
 };
 
 export const TeamBuilding = async (req: Request, res: Response) => {
-  const data = req.body.data as TeamInfo;
+  const teamInfo = req.body.data.teamInfo as TeamInfo;
+  const player = req.body.data.team as Player;
   try {
-    await SetTeamInfo(data);
+    await SetTeamInfo(teamInfo);
+    await SetTeam({
+      id: teamInfo.id,
+      info: teamInfo,
+      players: [player],
+    });
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
@@ -69,12 +57,17 @@ export const TeamJoining = async (req: Request, res: Response) => {
   const id = req.query.id as string;
   const player = req.body.data as Player;
   try {
-    const currentTeam = await GetTeamFindOne(id);
-    if (currentTeam.players.length > currentTeam.info.playerCount) {
-      res.sendStatus(400);
+    const currentTeam = await GetTeamFindOneId(id);
+
+    if (currentTeam.players.length < currentTeam.info.playerCount) {
+      const players = currentTeam.players;
+      player.user.status = Status.GUEST;
+      players.push(player);
+      const newTeam = { ...currentTeam, players };
+      await SetTeam(newTeam);
+      res.sendStatus(200);
       return;
     }
-
     if (currentTeam.players.length === currentTeam.info.playerCount) {
       console.log("チームが満員です");
       const dataString = JSON.stringify({
@@ -87,15 +80,11 @@ export const TeamJoining = async (req: Request, res: Response) => {
         ],
       });
       await LinePush(dataString);
+      res.sendStatus(200);
       return;
     }
-
-    if (currentTeam.players.length < currentTeam.info.playerCount) {
-      const players = currentTeam.players;
-      players.push(player);
-      const newTeam = { ...currentTeam, players };
-      await SetTeam(newTeam);
-
+    if (currentTeam.players.length > currentTeam.info.playerCount) {
+      res.sendStatus(400);
       return;
     }
   } catch (err) {

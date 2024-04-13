@@ -12,6 +12,7 @@ mongoose.connect("mongodb://username:password@localhost:27017/");
 app.use(express.json());
 
 app.post("/webhook", webhook);
+
 app.get("/scheduler", scheduler);
 app.get("/team-building", TeamBuilding);
 
