@@ -1,9 +1,17 @@
-POST https://api.github.com/repos/charokoukuu/line-bot-award-osaka2024/dispatches HTTP/2.0
-Accept: application/vnd.github+json
-Authorization: Bearer {{$dotenv GIT_HUB_ACCESS_TOKEN}}
-X-GitHub-Api-Version: 2022-11-28
+# POST https://api.github.com/repos/charokoukuu/line-bot-award-osaka2024/dispatches HTTP/2.0
+# Accept: application/vnd.github+json
+# Authorization: Bearer {{$dotenv GIT_HUB_ACCESS_TOKEN}}
+# X-GitHub-Api-Version: 2022-11-28
+
+# {
+#   "event_type":"test_result",
+#   "client_payload":{"message":"Hello!"}
+# }
+
+
+POST https://localhost:8787/firestorage HTTP/2.0
+Content-Type: application/json
 
 {
-  "event_type":"test_result",
-  "client_payload":{"message":"Hello!"}
+  "imageData":"5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB"
 }

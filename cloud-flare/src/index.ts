@@ -1,16 +1,35 @@
 import { Hono } from "hono";
+import { env } from 'hono/adapter';
+import { db } from "./firebase/config";
+import { getStorage, ref, uploadString } from "firebase/storage";
 
+import * as Firestore from 'fireworkers';
 const app = new Hono();
 
 app.get("/", (c) => {
   return c.text("Hello Hono2");
 });
 
+app.get("/firebase", async (c) => {
+  const testData = await Firestore.get(db, 'test', 'UaopzTz1eNy0aCxLwqws');
+  return c.json(testData);
+});
+
+app.post("/firestorage", async (c) => {
+  const storage = getStorage();
+  const storageRef = ref(storage, 'actions/hint');
+  const data = await c.req.json();
+  const { imageData } = data;
+  const file = await uploadString(storageRef, imageData, 'base64');
+  return c.json(file);
+});
+
 app.post("/webhook", async (c) => {
   const data = await c.req.json();
   const events = data.events;
-  const TOKEN =
-    "Q3hlVC6gp5nUVTrImu2DtL3OUYNfqnERD7gQaM8PNg+vE974TO+zcBC7jeV0iUsN2Kg4S6dqjYWy6trfb1V8tym2zjWMhXeQw7YpT4LHtU4AR2JpNU5sjwdFPVTt0ht/llK/OCC2h3nofQoNSwTHzQdB04t89/1O/w1cDnyilFU=";
+  const { LINE_TOKEN } = env<{ LINE_TOKEN: string; }>(c);
+  const TOKEN = LINE_TOKEN;
+
   if (events[0].type === "message") {
     const dataString = JSON.stringify({
       replyToken: events[0].replyToken,
