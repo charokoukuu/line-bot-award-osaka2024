@@ -1,5 +1,6 @@
 import { PlayerModel, TeamInfoModel, TeamModel } from "../domain/create.model";
-import { Player, Status, Team, TeamInfo } from "../types/user.type";
+import { mockPlayer, mockTeam, mockTeamInfo } from "../mock/data.mock";
+import { Player, Status, Team, TeamInfo } from "../types/app.type";
 
 export const SetTeamInfo = async (teamInfo: TeamInfo) => {
   try {
@@ -34,18 +35,3 @@ export const SetPlayer = async (player: Player) => {
     return err;
   }
 };
-
-const mockUser = {
-  userId: "123456",
-  name: "John Doe",
-  status: Status.HOST,
-};
-
-const mockPlayer: Player = {
-  sessionId: "abcdef",
-  role: "host",
-  gameType: "owner",
-  user: mockUser,
-};
-
-SetPlayer(mockPlayer);

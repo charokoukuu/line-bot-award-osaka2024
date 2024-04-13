@@ -1,7 +1,7 @@
 import { LinePush } from "../api/app.api";
 import { Request, Response } from "express";
 import { SetTeam, SetTeamInfo } from "../repository/set.repository";
-import { Player, TeamInfo } from "../types/user.type";
+import { Player, TeamInfo } from "../types/app.type";
 import { createTeam } from "../domain/create.model";
 import { GetTeamFindOne } from "../repository/get.repository";
 

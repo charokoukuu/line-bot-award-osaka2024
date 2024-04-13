@@ -1,4 +1,4 @@
-import { Status } from "../types/user.type";
+import { Status } from "../types/app.type";
 
 export class Data {
   static status: Status = Status.NULL;

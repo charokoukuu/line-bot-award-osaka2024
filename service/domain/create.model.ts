@@ -5,7 +5,7 @@ import {
   TeamInfo,
   TeamInfoSchema,
   TeamSchema,
-} from "../types/user.type";
+} from "../types/app.type";
 import mongoose from "mongoose";
 
 export const createTeam = (team: Team) => {

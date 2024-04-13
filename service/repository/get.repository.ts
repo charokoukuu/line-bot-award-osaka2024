@@ -1,5 +1,5 @@
 import { PlayerModel, TeamInfoModel, TeamModel } from "../domain/create.model";
-import { Player, Team, TeamInfo } from "../types/user.type";
+import { Player, Team, TeamInfo } from "../types/app.type";
 
 export const GetTeamInfoFindOne = async (id: string): Promise<TeamInfo> => {
   const newTeamInfo = await TeamInfoModel.findOne({ id: id });

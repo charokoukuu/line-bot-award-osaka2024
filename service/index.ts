@@ -1,12 +1,9 @@
 const express = require("express");
-import { Status, TeamInfo, TeamInfoSchema } from "./types/user.type";
+import { Status, TeamInfo, TeamInfoSchema } from "./types/app.type";
 import { TeamBuilding, scheduler, webhook } from "./usecase/app.usecase";
 const app = express();
 const port = 8080;
-const message = [];
 import mongoose from "mongoose";
-import { Request, Response } from "express";
-import { SetTeamInfo } from "./repository/set.repository";
 import { test } from "./test/app.test";
 const status: Status = Status.NULL;
 
