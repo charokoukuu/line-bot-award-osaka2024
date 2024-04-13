@@ -9,7 +9,7 @@ export const mockUser: User = {
 
 // プレイヤーモックデータ
 export const mockPlayer: Player = {
-  sessionId: "456",
+  teamId: "456",
   role: "guest",
   gameType: "null",
   user: mockUser,
@@ -30,3 +30,10 @@ export const mockTeam: Team = {
   info: mockTeamInfo,
   players: [mockPlayer],
 };
+
+/*
+以下コピペして使う
+SetPlayer(mockPlayer).then((res) => console.log(res));
+SetTeam(mockTeam).then((res) => console.log(res));
+SetTeamInfo(mockTeamInfo).then((res) => console.log(res));
+*/

@@ -7,8 +7,8 @@ export const GetTeamInfoFindOneId = async (id: string): Promise<TeamInfo> => {
   return newTeamInfo as TeamInfo;
 };
 
-export const GetTeamFindOneId = async (sessionId: string): Promise<Team> => {
-  const newTeam = await TeamModel.findOne({ id: sessionId });
+export const GetTeamFindOneId = async (teamId: string): Promise<Team> => {
+  const newTeam = await TeamModel.findOne({ id: teamId });
   console.log(newTeam);
   return newTeam as Team;
 };

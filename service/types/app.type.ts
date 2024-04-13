@@ -16,17 +16,17 @@ export const UserSchema = new mongoose.Schema<User>({
 });
 
 /**
- * DB Schema /player/{sessionId}
+ * DB Schema /player/{teamId}
  */
 export interface Player {
-  sessionId: string;
+  teamId: string;
   role: Role;
   gameType: GameType;
   user: User;
 }
 
 export const PlayerSchema = new mongoose.Schema<Player>({
-  sessionId: { type: String, required: true },
+  teamId: { type: String, required: true },
   role: { type: String, required: true },
   gameType: { type: String, required: true },
   user: { type: UserSchema, required: true },
