@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@line/liff": "2.23.2",
+    "clsx": "^2.1.0",
     "next": "14.2.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.3",
+    "react-material-symbols": "^4.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
