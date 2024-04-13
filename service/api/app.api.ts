@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { LINE_ENDPOINT, headers } from "../config/app.config";
 
-export const LineReply = async (body: string) => {
+export const LinePush = async (body: string) => {
   await fetch(LINE_ENDPOINT, {
     method: "POST",
     headers: headers,

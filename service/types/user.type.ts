@@ -2,12 +2,27 @@ export interface User {
   uuid: string;
   name: string;
   replayToken: string;
+  gameType: GameType;
   status: Status;
 }
 
 export interface Player {
   role: Role;
   user: User;
+}
+
+export interface TeamInfo {
+  id: string;
+  name: string;
+  playerCount: number;
+  ownerCount: number;
+  keyword: string;
+}
+
+export interface Team {
+  id: string;
+  info: TeamInfo;
+  players: Player[];
 }
 
 export enum Status {
@@ -24,4 +39,6 @@ export enum Status {
   PLA,
 }
 
-export type Role = "hunter" | "treasure";
+export type Role = "host" | "guest";
+
+export type GameType = "null" | "owner" | "seeker";
