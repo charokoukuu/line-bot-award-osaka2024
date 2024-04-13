@@ -10,17 +10,18 @@ export interface Player {
   user: User;
 }
 
-export type Status =
-  | "null"
-  | "host1"
-  | "host2"
-  | "host3"
-  | "host4"
-  | "host5"
-  | "host6"
-  | "guest1"
-  | "guest2"
-  | "guest3"
-  | "play";
+export enum Status {
+  NULL,
+  HOST1,
+  HOST2,
+  HOST3,
+  HOST4,
+  HOST5,
+  HOST6,
+  GUEST1,
+  GUEST2,
+  GUEST3,
+  PLA,
+}
 
 export type Role = "hunter" | "treasure";
