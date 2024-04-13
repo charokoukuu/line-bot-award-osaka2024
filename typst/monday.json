@@ -1,9 +1,0 @@
-{
-  "weather": "sunny",
-  "temperature": 25,
-  "unit": "C",
-  "nest": {
-    "bird": "robin",
-    "eggs": 3
-  }
-}
