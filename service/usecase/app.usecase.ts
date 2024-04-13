@@ -41,6 +41,7 @@ export const TeamBuilding = async (req: Request, res: Response) => {
   const player = req.body.data.team as Player;
   try {
     await SetTeamInfo(teamInfo);
+    player.user.status = Status.HOST;
     await SetTeam({
       id: teamInfo.id,
       info: teamInfo,
