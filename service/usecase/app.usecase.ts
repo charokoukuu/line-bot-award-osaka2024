@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { SetTeam, SetTeamInfo } from "../repository/set.repository";
 import { Player, TeamInfo } from "../types/user.type";
 import { createTeam } from "../domain/create.model";
-import { GetTeam } from "../repository/get.repository";
+import { GetTeamFindOne } from "../repository/get.repository";
 
 export const webhook = async (req: Request, res: Response) => {
   const event = req.body.events[0];
@@ -12,7 +12,7 @@ export const webhook = async (req: Request, res: Response) => {
     switch (event.message.text) {
       case "あ":
         //user取得
-        const team = await GetTeam(event.source.userId);
+        const team = await GetTeamFindOne(event.source.userId);
         const shuffledArray = team.players.sort(() => Math.random() - 0.5);
         const selectedItems = shuffledArray.slice(0, team.info.ownerCount);
         selectedItems.forEach((item) => {
@@ -69,7 +69,7 @@ export const TeamJoining = async (req: Request, res: Response) => {
   const id = req.query.id as string;
   const player = req.body.data as Player;
   try {
-    const currentTeam = await GetTeam(id);
+    const currentTeam = await GetTeamFindOne(id);
     if (currentTeam.players.length > currentTeam.info.playerCount) {
       res.sendStatus(400);
       return;

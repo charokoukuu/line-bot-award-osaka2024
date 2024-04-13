@@ -1,3 +1,8 @@
+import mongoose from "mongoose";
+
+/**
+ * DB Schema /user/{uuid}
+ */
 export interface User {
   uuid: string;
   name: string;
@@ -10,7 +15,13 @@ export interface Player {
   role: Role;
   user: User;
 }
-
+export const PlayerSchema = new mongoose.Schema<Player>({
+  role: { type: String, required: true },
+  user: { type: Object, required: true },
+});
+/**
+ * DB Schema /team_info/{id}
+ */
 export interface TeamInfo {
   id: string;
   name: string;
@@ -18,12 +29,28 @@ export interface TeamInfo {
   ownerCount: number;
   keyword: string;
 }
+export const TeamInfoSchema = new mongoose.Schema<TeamInfo>({
+  id: { type: String, required: true },
+  name: { type: String, required: true },
+  playerCount: { type: Number, required: true },
+  ownerCount: { type: Number, required: true },
+  keyword: { type: String, required: true },
+});
 
+/**
+ * DB Schema /team/{id}
+ */
 export interface Team {
   id: string;
   info: TeamInfo;
   players: Player[];
 }
+
+export const TeamSchema = new mongoose.Schema<Team>({
+  id: { type: String, required: true },
+  info: { type: TeamInfoSchema, required: true },
+  players: { type: [PlayerSchema], required: true },
+});
 
 export enum Status {
   NULL,
