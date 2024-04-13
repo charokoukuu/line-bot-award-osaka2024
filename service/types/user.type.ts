@@ -1,24 +1,37 @@
 import mongoose from "mongoose";
 
 /**
- * DB Schema /user/{uuid}
+ * DB Schema /user/{userId}
  */
 export interface User {
-  uuid: string;
+  userId: string;
   name: string;
-  replayToken: string;
-  gameType: GameType;
   status: Status;
 }
 
+export const UserSchema = new mongoose.Schema<User>({
+  userId: { type: String, required: true },
+  name: { type: String, required: true },
+  status: { type: String, required: true },
+});
+
+/**
+ * DB Schema /player/{sessionId}
+ */
 export interface Player {
+  sessionId: string;
   role: Role;
+  gameType: GameType;
   user: User;
 }
+
 export const PlayerSchema = new mongoose.Schema<Player>({
+  sessionId: { type: String, required: true },
   role: { type: String, required: true },
-  user: { type: Object, required: true },
+  gameType: { type: String, required: true },
+  user: { type: UserSchema, required: true },
 });
+
 /**
  * DB Schema /team_info/{id}
  */
@@ -53,17 +66,11 @@ export const TeamSchema = new mongoose.Schema<Team>({
 });
 
 export enum Status {
-  NULL,
-  HOST1,
-  HOST2,
-  HOST3,
-  HOST4,
-  HOST5,
-  HOST6,
-  GUEST1,
-  GUEST2,
-  GUEST3,
-  PLA,
+  NULL = "null",
+  HOST = "host",
+  GUEST = "guest",
+  OWNER = "owner",
+  SEEKER = "seeker",
 }
 
 export type Role = "host" | "guest";

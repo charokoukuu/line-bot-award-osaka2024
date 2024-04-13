@@ -16,11 +16,11 @@ export const webhook = async (req: Request, res: Response) => {
         const shuffledArray = team.players.sort(() => Math.random() - 0.5);
         const selectedItems = shuffledArray.slice(0, team.info.ownerCount);
         selectedItems.forEach((item) => {
-          item.user.gameType = "owner";
+          item.gameType = "owner";
         });
         const remainingItems = shuffledArray.slice(team.info.ownerCount);
         remainingItems.forEach((item) => {
-          item.user.gameType = "seeker";
+          item.gameType = "seeker";
         });
         const newTeam = createTeam({
           id: team.id,

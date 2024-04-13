@@ -1,4 +1,11 @@
-import { Team, TeamInfo, TeamInfoSchema, TeamSchema } from "../types/user.type";
+import {
+  Player,
+  PlayerSchema,
+  Team,
+  TeamInfo,
+  TeamInfoSchema,
+  TeamSchema,
+} from "../types/user.type";
 import mongoose from "mongoose";
 
 export const createTeam = (team: Team) => {
@@ -14,3 +21,4 @@ export const TeamInfoModel = mongoose.model<TeamInfo>(
   TeamInfoSchema
 );
 export const TeamModel = mongoose.model<Team>("team", TeamSchema);
+export const PlayerModel = mongoose.model<Player>("player", PlayerSchema);
