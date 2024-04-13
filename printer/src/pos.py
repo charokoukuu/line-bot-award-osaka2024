@@ -16,12 +16,11 @@ import numpy as np
 dt_now = datetime.datetime.now()
 printer = escpos.printer.Serial("/dev/ttyACM0")
 
-width = 418
-height = 970
-fontSize = float(50)
-fontPath = "/home/kiosk/RunTicket/printer/src/font/clamp-1m-w4-regular.ttf"
-data = sys.argv
 
+fontSize = float(50)
+fontPath = "/home/kiosk/line-bot-award-osaka2024/printer/src/font/clamp-1m-w4-regular.ttf"
+data = sys.argv
+imageId = data[1]
 
 class Mode(Enum):
     UP = 0
@@ -37,22 +36,60 @@ def DrawText(mode, title, size):
             fontPath, int(round(size)), encoding='unic'), fill=0)
 
 fontSize = float(50)
-image = Image.new('1', (width, height), 255)
-draw = ImageDraw.Draw(image)
 
-img_path = f"./image/Hint.png"
-try:
-    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
 
-    img = cv2.resize(img, (420, 990))
-    threshold = 110
-    _, img = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
-    img_pil = Image.fromarray(img)
-    image.paste(img_pil, (-10, 0))
+img_path = f"./image/{imageId}.png"
 
-    image.save('pillow_imagedraw.jpg', quality=95)
-except FileNotFoundError:
-    print(f"エラー：{img_path}に画像が見つかりませんでした。")
+if '_treasure' in imageId:
+    width = 418
+    height = 418
+    image = Image.new('1', (width, height), 255)
+    draw = ImageDraw.Draw(image)
+
+    treasure_img_path = "./image/{imageId}.png"
+    try:
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+        img = cv2.resize(img, (420, 420))
+        threshold = 110
+        _, img = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
+        img_pil = Image.fromarray(img)
+        image.paste(img_pil, (-10, 0))
+
+        #image.save('pillow_imagedraw.jpg', quality=95)
+    except FileNotFoundError:
+        print(f"エラー：{img_path}に画像が見つかりませんでした。")
+
+elif '_hint' in imageId:
+    width = 418
+    height = 970
+    image = Image.new('1', (width, height), 255)
+    draw = ImageDraw.Draw(image)
+
+    hint_img_path = f"./image/{imageId}.png"
+    try:
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+        img = cv2.resize(img, (420, 990))
+        threshold = 110
+        _, img = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
+        img_pil = Image.fromarray(img)
+        image.paste(img_pil, (-10, 0))
+
+        #image.save('pillow_imagedraw.jpg', quality=95)
+    except FileNotFoundError:
+        print(f"エラー：{img_path}に画像が見つかりませんでした。")
+# img_path = f"./image/{imageId}.png"
+# try:
+#     img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+
+#     img = cv2.resize(img, (420, 990))
+#     threshold = 110
+#     _, img = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
+#     img_pil = Image.fromarray(img)
+#     image.paste(img_pil, (-10, 0))
+
+#     #image.save('pillow_imagedraw.jpg', quality=95)
+# except FileNotFoundError:
+#     print(f"エラー：{img_path}に画像が見つかりませんでした。")
 
 p = escpos.printer.Serial("/dev/ttyACM0")
 p.image(image)
