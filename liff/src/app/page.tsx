@@ -25,12 +25,11 @@ export default function Home() {
           </button>
         </a>
       </div>
-
-      {/* <a href="/scan">
+      <a href="/scan">
         <button className="bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           QRコード読み取り
         </button>
-      </a> */}
+      </a>
     </main>
   );
 }
