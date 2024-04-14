@@ -30,3 +30,31 @@ export const hintPrint = (id: string, hint: string): Promise<void> => {
       });
   });
 };
+
+export const encodePNGToBase64 = (fileName: string): string | null => {
+  try {
+    const fileData = fs.readFileSync(`typst/hint/${fileName}.png`);
+    const base64Data = fileData.toString("base64");
+    const dataURL = `data:image/png;base64,${base64Data}`;
+    return dataURL;
+  } catch (error) {
+    console.error("Error encoding PNG to Base64:", error);
+    return null;
+  }
+};
+
+export const decodeBase64ToPNG = (
+  base64String: string,
+  outputPath: string
+): boolean => {
+  try {
+    const base64Data = base64String.replace(/^data:image\/png;base64,/, "");
+    const buffer = Buffer.from(base64Data, "base64");
+    fs.writeFileSync(outputPath, buffer);
+    console.log("PNG image decoded successfully.");
+    return true;
+  } catch (error) {
+    console.error("Error decoding Base64 to PNG:", error);
+    return false;
+  }
+};
