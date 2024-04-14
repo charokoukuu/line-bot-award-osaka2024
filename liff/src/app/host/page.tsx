@@ -14,21 +14,30 @@ export default function Host() {
     handleSubmit,
     formState: { errors: formatError, isValid, isSubmitting },
   } = useForm<HostData>();
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    fetch("https://local-line.run-ticket.com/team-building", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  });
   const [players, setPlayers] = useState(1);
-  const [owners, setOwners] = useState(0);
+  const [owners, setOwners] = useState(1);
   const [seekers, setSeekers] = useState(0);
 
+  register("teamInfo.ownerCount", { value: owners });
+  register("player.role", { value: "host" });
+  register("player.gameType", { value: "null" });
+  register("player.user.name", { value: "" });
+  register("player.user.status", { value: "null" });
+  register("teamInfo.playerCount", { value: 1 });
   if (liff && liff.id) {
-    register("player.role", { value: "host" });
-    register("player.gameType", { value: "null" });
-    register("player.user.name", { value: "" });
-    register("player.user.status", { value: "null" });
     register("player.user.userId", { value: liff.id });
     register("player.teamId", { value: liff.id });
     register("teamInfo.id", { value: liff.id });
-    register("teamInfo.playerCount", { value: players });
-    register("teamInfo.ownerCount", { value: owners });
   }
   return (
     <main className="m-4">
@@ -39,8 +48,13 @@ export default function Host() {
           <div className="flex justify-center items-end gap-2">
             <MaterialSymbol icon="groups" size={100} />
             <select
+              typeof="number"
               className="text-3xl mb-3"
-              {...register("teamInfo.playerCount", { required: true, min: 2 })}
+              {...register("teamInfo.playerCount", {
+                value: Number(players),
+                required: true,
+                min: 2,
+              })}
               defaultValue={1}
               onChange={(e) => {
                 const selectedValue = parseInt(e.target.value, 10);
@@ -63,8 +77,9 @@ export default function Host() {
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="person" size={100} />
               <select
+                typeof="number"
                 className="text-3xl mb-3"
-                {...register("teamInfo.ownerCount")}
+                {...register("teamInfo.ownerCount", { value: Number(owners) })}
                 value={owners}
                 onChange={(e) => {
                   const selectedValue = parseInt(e.target.value, 10);
@@ -85,6 +100,7 @@ export default function Host() {
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="group" size={100} />
               <select
+                typeof="number"
                 className="text-3xl mb-3"
                 value={seekers}
                 onChange={(e) => {
