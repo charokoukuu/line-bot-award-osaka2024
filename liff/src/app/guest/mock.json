@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "チーム友達",
+      "members": ["user1", "user2"]
+    },
+    {
+      "name": "group1",
+      "members": ["user3", "user4"]
+    },
+    {
+      "name": "group2",
+      "members": ["user1", "user2"]
+    },
+    {
+      "name": "group3",
+      "members": ["user3", "user4"]
+    },
+    {
+      "name": "group4",
+      "members": ["user1", "user2"]
+    },
+    {
+      "name": "group5",
+      "members": ["user3", "user4"]
+    }
+  ]
+}
