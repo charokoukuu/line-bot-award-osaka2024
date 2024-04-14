@@ -10,7 +10,10 @@ const port = 8080;
 import mongoose from "mongoose";
 import { test } from "./test/app.test";
 import { hintPrint } from "./helper/print";
-import { HintPrintService, QrcodeService } from "./usecase/print.usecase";
+import {
+  HintPrintService,
+  QRCodeService as QRGenerateService,
+} from "./usecase/print.usecase";
 const status: Status = Status.NULL;
 
 mongoose.connect("mongodb://username:password@localhost:27017/");
@@ -22,7 +25,7 @@ app.post("/webhook", webhookService);
 app.get("/scheduler", schedulerService);
 app.get("/team-building", TeamBuildingService);
 
-app.get("/qr-code", QrcodeService);
+app.get("/qr-generate", QRGenerateService);
 app.get("/hint-print", HintPrintService);
 
 app.get("/test", test);
