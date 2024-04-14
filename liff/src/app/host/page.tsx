@@ -4,27 +4,41 @@ import { useForm } from "react-hook-form";
 import { MaterialSymbol } from "react-material-symbols";
 import { clsx } from "clsx";
 import "react-material-symbols/rounded";
-
-type FormData = {
-  peoples: number;
-  owners: number;
-  seekers: number;
-  teamName: string;
-  keyword: string;
-};
+import { Host as HostData } from "@/type";
+import { useLiff } from "@/components/LiffProvider";
 
 export default function Host() {
+  const { liff } = useLiff();
   const {
     register,
     handleSubmit,
     formState: { errors: formatError, isValid, isSubmitting },
-  } = useForm<FormData>();
-  const onSubmit = handleSubmit((data) => console.log(data));
-  const [players, setPlayers] = useState(10);
+  } = useForm<HostData>();
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    fetch("https://local-line.run-ticket.com/team-building", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  });
+  const [players, setPlayers] = useState(1);
   const [owners, setOwners] = useState(1);
-  const [seekers, setSeekers] = useState(1);
+  const [seekers, setSeekers] = useState(0);
 
-  console.log("render");
+  register("teamInfo.ownerCount", { value: owners });
+  register("player.role", { value: "host" });
+  register("player.gameType", { value: "null" });
+  register("player.user.name", { value: "" });
+  register("player.user.status", { value: "null" });
+  register("teamInfo.playerCount", { value: 1 });
+  if (liff && liff.id) {
+    register("player.user.userId", { value: liff.id });
+    register("player.teamId", { value: liff.id });
+    register("teamInfo.id", { value: liff.id });
+  }
   return (
     <main className="m-4">
       <h1 className="text-center text-3xl font-semibold">チーム作成</h1>
@@ -34,8 +48,13 @@ export default function Host() {
           <div className="flex justify-center items-end gap-2">
             <MaterialSymbol icon="groups" size={100} />
             <select
+              typeof="number"
               className="text-3xl mb-3"
-              {...register("peoples", { required: true })}
+              {...register("teamInfo.playerCount", {
+                value: Number(players),
+                required: true,
+                min: 2,
+              })}
               defaultValue={1}
               onChange={(e) => {
                 const selectedValue = parseInt(e.target.value, 10);
@@ -58,8 +77,9 @@ export default function Host() {
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="person" size={100} />
               <select
+                typeof="number"
                 className="text-3xl mb-3"
-                {...register("owners", { required: true })}
+                {...register("teamInfo.ownerCount", { value: Number(owners) })}
                 value={owners}
                 onChange={(e) => {
                   const selectedValue = parseInt(e.target.value, 10);
@@ -80,9 +100,9 @@ export default function Host() {
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="group" size={100} />
               <select
+                typeof="number"
                 className="text-3xl mb-3"
                 value={seekers}
-                {...register("seekers", { required: true })}
                 onChange={(e) => {
                   const selectedValue = parseInt(e.target.value, 10);
                   setSeekers(selectedValue);
@@ -103,16 +123,20 @@ export default function Host() {
           <div className="flex justify-center items-end gap-2">
             <MaterialSymbol icon="account_circle" size={100} />
             <div>
-              {formatError.teamName && (
+              {formatError.teamInfo?.name && (
                 <div className="text-red-500 pl-1 pt-1 text-xs">
-                  {formatError.teamName.type === "required" && "必須項目です"}
-                  {formatError.teamName.type === "maxLength" &&
+                  {formatError.teamInfo.name.type === "required" &&
+                    "必須項目です"}
+                  {formatError.teamInfo.name.type === "maxLength" &&
                     "10文字以内で入力してください"}
                 </div>
               )}
               <input
                 className="border-2 text-2xl w-full"
-                {...register("teamName", { required: true, maxLength: 10 })}
+                {...register("teamInfo.name", {
+                  required: true,
+                  maxLength: 10,
+                })}
                 placeholder="例）チーム友達"
               />
             </div>
@@ -123,14 +147,15 @@ export default function Host() {
           <div className="flex justify-center items-end gap-2">
             <MaterialSymbol icon="lock" size={100} />
             <div>
-              {formatError.keyword && (
+              {formatError.teamInfo?.keyword && (
                 <div className="text-red-500 pl-1 pt-1 text-xs">
-                  {formatError.keyword.type === "required" && "必須項目です"}
+                  {formatError.teamInfo.keyword.type === "required" &&
+                    "必須項目です"}
                 </div>
               )}
               <input
                 className="border-2 text-2xl w-full"
-                {...register("keyword", { required: true })}
+                {...register("teamInfo.keyword", { required: true })}
                 placeholder="例）お好み焼き"
               />
             </div>
