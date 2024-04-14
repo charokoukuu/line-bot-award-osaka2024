@@ -12,7 +12,7 @@
   "dependencies": {
     "beebotte": "^1.7.0",
     "dotenv": "^16.1.4",
-    "express": "^4.18.1",
+    "express": "^4.19.2",
     "firebase-admin": "^11.11.1",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",

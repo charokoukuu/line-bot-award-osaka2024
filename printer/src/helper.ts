@@ -1,7 +1,7 @@
-import { db } from "./app";
-
 const { exec } = require("child_process");
 const path = "/home/kiosk/line-bot-award-osaka2024/printer/src";
+
+const fs = require("fs");
 // const path = ".";
 export const ticketing = (
   id: string,
@@ -13,14 +13,8 @@ export const ticketing = (
     `python3 ${path}/pos.py ${id}`,
     async (err: any, _: any, stderr: any) => {
       if (err) {
-        const ticketSubscriber = db.collection("system").doc("subscriber");
-        await ticketSubscriber.update({ status: "failed" });
         throw new Error(`stderr: ${stderr}`);
       } else {
-        const order = db.collection("order").doc(id);
-        await order.update({ isStatus: "complete" });
-        const ticketSubscriber = db.collection("system").doc("subscriber");
-        await ticketSubscriber.update({ status: "success" });
         console.log(`success`);
       }
     }
@@ -34,4 +28,20 @@ export const cut = () => {
     }
     console.log(`stdout: ${stdout}`);
   });
+};
+
+export const decodeBase64ToPNG = (
+  base64String: string,
+  outputPath: string
+): boolean => {
+  try {
+    const base64Data = base64String.replace(/^data:image\/png;base64,/, "");
+    const buffer = Buffer.from(base64Data, "base64");
+    fs.writeFileSync(outputPath, buffer);
+    console.log("PNG image decoded successfully.");
+    return true;
+  } catch (error) {
+    console.error("Error decoding Base64 to PNG:", error);
+    return false;
+  }
 };
