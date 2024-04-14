@@ -5,4 +5,5 @@ export const headers = {
   Authorization: "Bearer " + TOKEN,
 };
 
-export const LINE_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
+export const LINE_REPLY_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
+export const LINE_PUSH_ENDPOINT = "https://api.line.me/v2/bot/message/push";

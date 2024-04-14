@@ -1,4 +1,4 @@
-import { LinePush } from "../api/app.api";
+import { LineReply } from "../api/app.api";
 import { Request, Response } from "express";
 import { SetTeam, SetTeamInfo } from "../repository/set.repository";
 import { Player, Status, Team, TeamInfo } from "../types/app.type";
@@ -80,7 +80,7 @@ export const TeamJoining = async (req: Request, res: Response) => {
           },
         ],
       });
-      await LinePush(dataString);
+      await LineReply(dataString);
       res.sendStatus(200);
       return;
     }
