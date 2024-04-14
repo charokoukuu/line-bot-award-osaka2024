@@ -5,7 +5,7 @@ export default function Scan() {
   const [keyword, setKeyword] = useState("");
   const [isSaned, setIsSaned] = useState(false);
   const { liff } = useLiff();
-  if (!isSaned) {
+  if (!isSaned && keyword === "") {
     liff?.scanCodeV2().then(async (result) => {
       console.log(result.value);
       setKeyword(result.value ?? "");
@@ -26,7 +26,7 @@ export default function Scan() {
         {isSaned ? (
           <>
             <p className="text-center text-2xl">スキャンが完了しました</p>
-            <div className="flex justify-center items-end gap-2">
+            <div className="flex flex-col justify-center items-end gap-2">
               <h2 className="text-xl">あいことば</h2>
               <p className="text-center text-2xl">{keyword}</p>
             </div>
