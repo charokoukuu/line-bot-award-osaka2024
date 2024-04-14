@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { LiffProvider } from "@/components/LiffProvider";
 import { Noto_Sans_JP } from "next/font/google";
+import clsx from "clsx";
 
-// 使用したいフォントの設定
 const noto = Noto_Sans_JP({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-noto-sans-jp",
 });
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="ja" className={clsx(noto.className, "font-sans")}>
+      <body>
         <LiffProvider liffId={process.env.NEXT_PUBLIC_LIFF_ID || ""}>
           {children}
         </LiffProvider>
