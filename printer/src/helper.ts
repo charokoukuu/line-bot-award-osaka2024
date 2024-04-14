@@ -1,7 +1,7 @@
 import { db } from "./app";
 
 const { exec } = require("child_process");
-const path = "/home/kiosk/RunTicket/printer/src";
+const path = "/home/kiosk/line-bot-award-osaka2024/printer/src";
 // const path = ".";
 export const ticketing = (
   id: string,
@@ -10,7 +10,7 @@ export const ticketing = (
   time: string
 ) => {
   exec(
-    `python3 ${path}/pos.py "${title}" ${date} ${time} ${id}`,
+    `python3 ${path}/pos.py ${id}`,
     async (err: any, _: any, stderr: any) => {
       if (err) {
         const ticketSubscriber = db.collection("system").doc("subscriber");
