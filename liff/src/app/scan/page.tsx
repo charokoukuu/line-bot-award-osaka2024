@@ -5,7 +5,7 @@ export default function Scan() {
   const [keyword, setKeyword] = useState("");
   const [isSaned, setIsSaned] = useState(false);
   const { liff } = useLiff();
-  if (isSaned && keyword !== "") {
+  if (!isSaned && keyword !== "") {
     liff?.scanCodeV2().then(async (result) => {
       console.log(result.value);
       setKeyword(result.value ?? "");
