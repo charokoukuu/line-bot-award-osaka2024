@@ -4,8 +4,6 @@ import { Player, Team, TeamInfo, User } from "../types/app.type";
 /**
  * DB Schema /user/{userId}
  */
-
-
 export const UserSchema = new mongoose.Schema<User>({
     userId: { type: String, required: true },
     name: { type: String, required: true },
@@ -25,7 +23,6 @@ export const PlayerSchema = new mongoose.Schema<Player>({
 /**
  * DB Schema /team_info/{id}
  */
-
 export const TeamInfoSchema = new mongoose.Schema<TeamInfo>({
     id: { type: String, required: true },
     name: { type: String, required: true },
