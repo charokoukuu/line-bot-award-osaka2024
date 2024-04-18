@@ -1,9 +1,10 @@
 const express = require("express");
-import { Status, TeamInfo, TeamInfoSchema } from "./types/app.type";
+import { Status } from "./types/app.type";
 import {
-  TeamBuilding as TeamBuildingService,
-  scheduler as schedulerService,
-  webhook as webhookService,
+  TeamBuildingService as TeamBuildingService,
+  SchedulerService as SchedulerService,
+  WebhookService as WebhookService,
+  TeamJoiningService,
 } from "./usecase/app.usecase";
 const app = express();
 const port = 8080;
@@ -20,16 +21,23 @@ mongoose.connect("mongodb://username:password@localhost:27017/");
 
 app.use(express.json());
 
-app.post("/webhook", webhookService);
+//Messaging API
+app.post("/webhook", WebhookService);
 
-app.get("/scheduler", schedulerService);
-app.get("/team-building", TeamBuildingService);
+//スケジューラ
+app.get("/scheduler", SchedulerService);
 
+//チーム登録
+app.post("/team-building", TeamBuildingService);
+app.post("/team-joining", TeamJoiningService);
+
+//プリントサービス
 app.get("/qr-generate", QRGenerateService);
 app.get("/hint-print", HintPrintService);
 
+// テスト用
 app.get("/test", test);
-console.log("status", status);
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

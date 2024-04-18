@@ -5,7 +5,7 @@ import { Player, Status, Team, TeamInfo } from "../types/app.type";
 import { GetTeamFindOneId } from "../repository/get.repository";
 import { play } from "./play.usecase";
 
-export const webhook = async (req: Request, res: Response) => {
+export const WebhookService = async (req: Request, res: Response) => {
   const event = req.body.events[0];
   console.log("event");
   if (event.type === "message") {
@@ -18,7 +18,7 @@ export const webhook = async (req: Request, res: Response) => {
   res.sendStatus(200);
 };
 
-export const scheduler = async (req: any, res: any) => {
+export const SchedulerService = async (req: any, res: any) => {
   const delays = [5, 10, 15];
   console.log("スタート");
   res.sendStatus(200);
@@ -36,7 +36,7 @@ export const scheduler = async (req: any, res: any) => {
   );
 };
 
-export const TeamBuilding = async (req: Request, res: Response) => {
+export const TeamBuildingService = async (req: Request, res: Response) => {
   const teamInfo = req.body.data.teamInfo as TeamInfo;
   const player = req.body.data.team as Player;
   try {
@@ -54,9 +54,11 @@ export const TeamBuilding = async (req: Request, res: Response) => {
   res.sendStatus(200);
 };
 
-export const TeamJoining = async (req: Request, res: Response) => {
+export const TeamJoiningService = async (req: Request, res: Response) => {
   const id = req.query.id as string;
   const player = req.body.data as Player;
+  const replyToken = req.body.events[0].replyToken;
+  const userId = req.body.events[0].source.userId;
   try {
     const currentTeam = await GetTeamFindOneId(id);
 
@@ -71,16 +73,12 @@ export const TeamJoining = async (req: Request, res: Response) => {
     }
     if (currentTeam.players.length === currentTeam.info.playerCount) {
       console.log("チームが満員です");
-      const dataString = JSON.stringify({
-        replyToken: req.body.events[0].replyToken,
-        messages: [
-          {
-            type: "text",
-            text: "ゲームを開始しますか？",
-          },
-        ],
-      });
-      await LineReply(dataString);
+      await LineReply(replyToken, [
+        {
+          type: "text",
+          text: "ゲームを開始しますか？",
+        },
+      ]);
       res.sendStatus(200);
       return;
     }

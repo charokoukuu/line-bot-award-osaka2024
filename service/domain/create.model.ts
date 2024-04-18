@@ -1,10 +1,8 @@
+import { PlayerSchema, TeamInfoSchema, TeamSchema } from "../schema/db.schema";
 import {
   Player,
-  PlayerSchema,
   Team,
   TeamInfo,
-  TeamInfoSchema,
-  TeamSchema,
 } from "../types/app.type";
 import mongoose from "mongoose";
 
