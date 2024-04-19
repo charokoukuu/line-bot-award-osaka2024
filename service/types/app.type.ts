@@ -8,7 +8,7 @@ export interface User {
 export interface Player {
   teamId: string;
   role: Role;
-  gameType: GameType;
+  gameType: Game;
   user: User;
 }
 
@@ -26,8 +26,12 @@ export interface Team {
   players: Player[];
 }
 
+export interface Schedule {
+  id: string
+  date: Date;
+}
 export enum Status {
-  NULL = "null",
+  NONE = "none",
   HOST = "host",
   GUEST = "guest",
   OWNER = "owner",
@@ -36,4 +40,4 @@ export enum Status {
 
 export type Role = "host" | "guest";
 
-export type GameType = "null" | "owner" | "seeker";
+export type Game = "none" | "owner" | "seeker";

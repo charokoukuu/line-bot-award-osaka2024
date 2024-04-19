@@ -19,9 +19,9 @@ export const LineReply = async (replyToken: string, content: object[]) => {
   });
 };
 
-export const LinePush = async (replyToken: string, content: object) => {
+export const LinePush = async (userId: string, content: object) => {
   const payload = {
-    to: replyToken,
+    to: userId,
     messages: content,
   }
   await fetch(LINE_PUSH_ENDPOINT, {

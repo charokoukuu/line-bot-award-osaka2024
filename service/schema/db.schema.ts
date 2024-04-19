@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Player, Team, TeamInfo, User } from "../types/app.type";
 
 /**
- * DB Schema /user/{userId}
+ * DB Schema /api/user/{userId}
  */
 export const UserSchema = new mongoose.Schema<User>({
     userId: { type: String, required: true },
@@ -11,7 +11,7 @@ export const UserSchema = new mongoose.Schema<User>({
 });
 
 /**
- * DB Schema /player/{teamId}
+ * DB Schema /api/player/{teamId}
  */
 export const PlayerSchema = new mongoose.Schema<Player>({
     teamId: { type: String, required: true },
@@ -21,7 +21,7 @@ export const PlayerSchema = new mongoose.Schema<Player>({
 });
 
 /**
- * DB Schema /team_info/{id}
+ * DB Schema /api/team_info/{id}
  */
 export const TeamInfoSchema = new mongoose.Schema<TeamInfo>({
     id: { type: String, required: true },
@@ -32,7 +32,7 @@ export const TeamInfoSchema = new mongoose.Schema<TeamInfo>({
 });
 
 /**
- * DB Schema /team/{id}
+ * DB Schema /api/team/{id}
  */
 export const TeamSchema = new mongoose.Schema<Team>({
     id: { type: String, required: true },

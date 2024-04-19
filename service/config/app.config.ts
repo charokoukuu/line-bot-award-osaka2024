@@ -7,3 +7,5 @@ export const headers = {
 
 export const LINE_REPLY_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
 export const LINE_PUSH_ENDPOINT = "https://api.line.me/v2/bot/message/push";
+
+export const EXAMPLE_USER_ID = "U70cf21cbf9a12773b140cf16d05d181e";

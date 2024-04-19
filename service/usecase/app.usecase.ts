@@ -4,14 +4,18 @@ import { SetTeam, SetTeamInfo } from "../repository/set.repository";
 import { Player, Status, Team, TeamInfo } from "../types/app.type";
 import { GetTeamFindOneId } from "../repository/get.repository";
 import { play } from "./play.usecase";
+import { TestService } from "../test/app.test";
 
 export const WebhookService = async (req: Request, res: Response) => {
   const event = req.body.events[0];
-  console.log("event");
+  console.log("event", event.source.userId);
   if (event.type === "message") {
     switch (event.message.text) {
       case "プレイする":
         play(event.source.userId);
+        break;
+      case "テスト":
+        TestService();
         break;
     }
   }
