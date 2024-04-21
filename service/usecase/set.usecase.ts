@@ -41,9 +41,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
   await SetUser({
     userId: data.userId,
     name: data.userName,
-    status: Status.HOST,
     teamId,
-    role: "host",
   });
   await SetTeam({
     teamId,
@@ -74,9 +72,7 @@ export const TeamJoiningService = async (data: TeamJoining) => {
   await SetUser({
     userId: data.userId,
     name: data.userName,
-    status: Status.GUEST,
     teamId: data.teamId,
-    role: "guest",
   });
   if (teamLength == data.playerCount) {
     await LinePush(data.hostId, [

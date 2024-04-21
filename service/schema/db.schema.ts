@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Status, Team, User } from "../types/app.type";
+import { Game, Status, Team, User } from "../types/app.type";
 
 /**
  * DB Schema /api/user/{userId}
@@ -7,10 +7,7 @@ import { Status, Team, User } from "../types/app.type";
 export const UserSchema = new Schema<User>({
     userId: { type: String, required: true },
     name: { type: String, required: true },
-    status: { type: String, enum: Object.values(Status) },
     teamId: { type: String },
-    role: { type: String, enum: ['host', 'guest'] },
-    gameType: { type: String, enum: ['owner', 'seeker'] }
 });
 
 /**
@@ -23,5 +20,17 @@ export const TeamSchema = new Schema<Team>({
     playerCount: { type: Number, required: true },
     ownerCount: { type: Number, required: true },
     keyword: { type: String, required: true }
+});
+
+/**
+ * DB Schema /api/game/{id}
+ */
+export const GameSchema = new Schema<Game>({
+    team: { type: TeamSchema, required: true },
+    owners: { type: [UserSchema], required: true },
+    seekers: { type: [UserSchema], required: true },
+    hints: { type: [String], required: true },
+    treasures: { type: [String], required: true },
+    status: { type: String, enum: Object.values(Status) }
 });
 

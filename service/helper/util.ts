@@ -8,14 +8,15 @@ export const reply = (token: string, content: any) => {
 };
 
 export const gameAction = async (
-  user: User,
-  callback: { owner: () => void; seeker: () => void }
+  user: User[],
+  callback: (user: User) => Promise<void>
 ) => {
-  if (user.gameType === "owner") {
-    await callback.owner();
-  } else if (user.gameType === "seeker") {
-    callback.seeker();
-  }
+  return Promise.all(user.map((user) => {
+    return new Promise(async (resolve) => {
+      await callback(user);
+      resolve("done");
+    });
+  }));
 };
 
 export const createRandomString = () => {

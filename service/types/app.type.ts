@@ -2,10 +2,7 @@
 export interface User {
   userId: string;
   name: string;
-  status?: Status;
   teamId?: string;
-  role?: Role;
-  gameType?: Game;
 }
 
 export interface Team {
@@ -21,13 +18,21 @@ export interface Schedule {
   id: string
   date: Date;
 }
-export enum Status {
-  HOST = "host",
-  GUEST = "guest",
-  OWNER = "owner",
-  SEEKER = "seeker",
+
+
+export interface Game {
+  team: Team;
+  allUsers: User[];
+  owners: User[];
+  seekers: User[];
+  hints: string[];
+  treasures: string[];
+  status: Status;
 }
-
-export type Role = "host" | "guest";
-
-export type Game = "owner" | "seeker";
+export enum Status {
+  CREATE = "create",
+  PLAY = "play",
+  PREPARE = "prepare",
+  INTERACTIVE = "interactive",
+  END = "end",
+}
