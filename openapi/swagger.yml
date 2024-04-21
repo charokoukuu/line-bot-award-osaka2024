@@ -65,6 +65,8 @@ paths:
                   type: string
                 teamId:
                   type: string
+                teamName:
+                  type: string
                 playerCount:
                   type: integer
                   format: int32
@@ -79,6 +81,7 @@ paths:
                 - userId
                 - userName
                 - teamId
+                - teamName
                 - playerCount
                 - ownerCount
                 - treasureCount

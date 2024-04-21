@@ -12,6 +12,7 @@ export interface TeamJoining {
     userId: string;
     userName: string;
     teamId: string;
+    teamName: string;
     playerCount: number;
     ownerCount: number;
     treasureCount: number;
