@@ -19,6 +19,7 @@ export const TeamSchema = new Schema<Team>({
     name: { type: String, required: true },
     playerCount: { type: Number, required: true },
     ownerCount: { type: Number, required: true },
+    treasureCount: { type: Number, required: true },
     keyword: { type: String, required: true }
 });
 
@@ -27,6 +28,7 @@ export const TeamSchema = new Schema<Team>({
  */
 export const GameSchema = new Schema<Game>({
     team: { type: TeamSchema, required: true },
+    allUsers: { type: [UserSchema], required: true },
     owners: { type: [UserSchema], required: true },
     seekers: { type: [UserSchema], required: true },
     hints: { type: [String], required: true },

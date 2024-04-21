@@ -1,31 +1,34 @@
 import { displayJob, gameAction } from "../helper/util";
 import {
-  GetTeamFindOneId,
-  GetUsersFindTeamId,
+  GetGameFindOneByTeam,
+  GetTeamFindOneByTeamId,
+  GetUsersFindByTeamId,
 } from "../repository/get.repository";
 import { Game, Status } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush } from "../api/app.api";
 
 export const play = async (id: string) => {
-  const users = await GetUsersFindTeamId(id);
-  const team = await GetTeamFindOneId(id);
+  const users = await GetUsersFindByTeamId(id);
+  const team = await GetTeamFindOneByTeamId(id);
+  const game = await GetGameFindOneByTeam(team);
   if (!team) throw new Error("該当するチームが存在しません");
+  if (game) throw new Error("既にゲームが開始されています");
 
   const shuffledArray = users.sort(() => Math.random() - 0.5);
   const owners = shuffledArray.slice(0, team.ownerCount);
   const seekers = shuffledArray.slice(team.ownerCount);
-  const game: Game = {
+  const newGame: Game = {
     team: team,
     allUsers: users,
     owners: owners,
     seekers: seekers,
-    hints: ["jkj", "kjndkfsj"],
+    hints: [],
     treasures: [],
-    status: Status.PLAY,
+    status: Status.PREPARE,
   }
-  console.log(game);
-  await SetGame(game);
+  console.log(newGame);
+  await SetGame(newGame);
   await gameAction([...owners, ...seekers], async (user) => {
     await LinePush(user.userId, [
       {

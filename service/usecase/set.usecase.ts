@@ -1,17 +1,29 @@
 import { LinePush } from "../api/app.api";
 import { SetTeam, SetUser } from "../repository/set.repository";
-import { Status, Team, User } from "../types/app.type";
-import { GetTeamFindOneId, GetUserFindOneId, GetUsersFindTeamId } from "../repository/get.repository";
+import { Status, User } from "../types/app.type";
+import { GetGameFindOneByTeam, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUsersFindByTeamId } from "../repository/get.repository";
 import { play } from "./play.usecase";
-import { TestService } from "../test/app.test";
-import { resolve } from "path";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
 
 export const WebhookService = async (userId: string, message: string) => {
+  const game = await GetGameFindOneByUserId(userId);
+  console.log(game);
+
   if (message.includes("プレイする")) {
     const teamId = message.split("\n")[1];
     await play(teamId);
+  }
+  if (!game) return;
+  switch (game.status) {
+    case Status.PREPARE:
+      LinePush(userId, [
+        {
+          type: "text",
+          text: "ヒント入力中",
+        },
+      ]);
+      break;
   }
 
 };
@@ -66,7 +78,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
 };
 
 export const TeamJoiningService = async (data: TeamJoining) => {
-  const teamLength = await (await GetUsersFindTeamId(data.teamId)).length + 1;
+  const teamLength = await (await GetUsersFindByTeamId(data.teamId)).length + 1;
   if (teamLength > data.playerCount) {
     throw new Error("チームが満員です");
   }
