@@ -1,19 +1,20 @@
 import { app } from "..";
-import { PrintQRController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/app.controller";
+import { CreateUserController, PrintQRController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
 import { PrintHintService } from "../usecase/print.usecase";
 
 export const PostMethods = () => {
     //Messaging API
     app.post("/webhook", WebhookController);
 
+    app.post("/api/user", CreateUserController);
     //スケジューラ
-    app.post("/scheduler", SchedulerController);
+    app.post("/api/scheduler", SchedulerController);
 
     //チーム登録
-    app.post("/team-building", TeamBuildingController);
-    app.post("/team-joining", TeamJoiningController);
+    app.post("/api/team-building", TeamBuildingController);
+    app.post("/api/team-joining", TeamJoiningController);
 
     //プリントサービス
-    app.post("/create-qr", PrintQRController);
-    app.post("/hint-print", PrintHintService);
+    app.post("/api/create-qr", PrintQRController);
+    app.post("/api/hint-print", PrintHintService);
 }

@@ -4,6 +4,79 @@ info:
   description: BoTreasureに関するAPI仕様書です。
   version: 1.0.0
 paths:
+  /api/team-building:
+    post:
+      tags:
+          - チーム作成
+      summary: Create a team building request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                userName:
+                  type: string
+                teamName:
+                  type: string
+                playerCount:
+                  type: integer
+                  format: int32
+                ownerCount:
+                  type: integer
+                  format: int32
+                keyword:
+                  type: string
+              required:
+                - userId
+                - userName
+                - teamName
+                - playerCount
+                - ownerCount
+                - keyword
+      responses:
+        '201':
+          description: Team building request created successfully
+
+  /api/team-joining:
+    post:
+      tags:
+          - チーム参加
+      summary: Join a team request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostId:
+                  type: string
+                userId:
+                  type: string
+                userName:
+                  type: string
+                teamId:
+                  type: string
+                playerCount:
+                  type: integer
+                  format: int32
+                ownerCount:
+                  type: integer
+                  format: int32
+              required:
+                - hostId
+                - userId
+                - userName
+                - teamId
+                - playerCount
+                - ownerCount
+      responses:
+        '201':
+          description: Successfully joined the team
   /api/user/{userId}:
     get:
       tags:
@@ -18,23 +91,6 @@ paths:
       responses:
         '200':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-    post:
-      tags:
-          - User
-      summary: Create a new user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: User created successfully
           content:
             application/json:
               schema:
@@ -66,23 +122,6 @@ paths:
       responses:
         '200':
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Team'
-    post:
-      tags:
-          - Team
-      summary: Create a new team
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Team'
-      responses:
-        '201':
-          description: Team created successfully
           content:
             application/json:
               schema:
@@ -125,6 +164,8 @@ paths:
                 $ref: '#/components/schemas/Team'
   /api/teams:
       get:
+        tags:
+          - Teams
         summary: Get all teams
         responses:
           '200':

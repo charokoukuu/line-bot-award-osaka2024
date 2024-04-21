@@ -1,16 +1,28 @@
 import { Request, Response } from "express";
-import { SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/app.usecase";
+import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
-import { Team } from "../types/app.type";
+import { Team, User } from "../types/app.type";
+import { TeamBuilding, TeamJoining } from "../types/api.type";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
     const userId = event.source.userId;
     const message = event.message.text;
     try {
-        if (message.type === 'text') {
+        if (event.type === "message") {
             await WebhookService(userId, message);
         }
+        res.sendStatus(200);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+export const CreateUserController = async (req: Request, res: Response) => {
+    const user = req.body as User;
+    console.log(user);
+    try {
+        await CreateUserService(user);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -30,9 +42,9 @@ export const SchedulerController = async (req: Request, res: Response) => {
 }
 
 export const TeamBuildingController = async (req: Request, res: Response) => {
-    const team = req.body.data.teamInfo as Team;
+    const teamBuildingData = req.body as TeamBuilding;
     try {
-        await TeamBuildingService(team)
+        await TeamBuildingService(teamBuildingData)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -41,9 +53,9 @@ export const TeamBuildingController = async (req: Request, res: Response) => {
 }
 
 export const TeamJoiningController = async (req: Request, res: Response) => {
-    const id = req.query.id as string;
+    const teamJoiningData = req.body as TeamJoining;
     try {
-        await TeamJoiningService(id)
+        await TeamJoiningService(teamJoiningData)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

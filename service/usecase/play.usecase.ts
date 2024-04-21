@@ -1,41 +1,46 @@
 import { gameAction } from "../helper/util";
 import {
-  GetPlayerFindOneId,
   GetTeamFindOneId,
+  GetUsersFindTeamId,
 } from "../repository/get.repository";
 import { Status } from "../types/app.type";
 import { createTeam } from "../domain/create.model";
-import { SetTeam } from "../repository/set.repository";
+import { SetTeam, SetUser } from "../repository/set.repository";
+import { LinePush } from "../api/app.api";
 
 export const play = async (id: string) => {
+  const users = await GetUsersFindTeamId(id);
   const team = await GetTeamFindOneId(id);
-  const shuffledArray = team.players.sort(() => Math.random() - 0.5);
-  const selectedItems = shuffledArray.slice(0, team.info.ownerCount);
-  selectedItems.forEach((item) => {
+  const shuffledArray = users.sort(() => Math.random() - 0.5);
+  const owners = shuffledArray.slice(0, team.ownerCount);
+
+  owners.forEach((item) => {
     item.gameType = "owner";
+    item.status = Status.OWNER;
   });
-  const remainingItems = shuffledArray.slice(team.info.ownerCount);
-  remainingItems.forEach((item) => {
+  const seekers = shuffledArray.slice(team.ownerCount);
+  seekers.forEach((item) => {
     item.gameType = "seeker";
-  });
-  const newTeam = await createTeam({
-    id: team.id,
-    info: team.info,
-    players: [...selectedItems, ...remainingItems],
+    item.status = Status.SEEKER;
   });
 
-  newTeam.players.forEach((player) => {
-    console.log("ゲームを開始します");
-    gameAction(player, {
-      owner: () => {
-        player.user.status = Status.OWNER;
-        console.log("オーナーの処理");
+  const newTeam = [...owners, ...seekers]
+  await Promise.all(
+    newTeam.map(async (user) => {
+      await SetUser(user);
+    })
+  );
+
+  newTeam.forEach((user) => {
+    LinePush(user.userId, [
+      {
+        type: "text",
+        text: `ゲームが始まりました`,
       },
-      seeker: () => {
-        player.user.status = Status.SEEKER;
-        console.log("シーカーの処理");
+      {
+        type: "text",
+        text: `あなたは${user.gameType}です`,
       },
-    });
+    ]);
   });
-  await SetTeam(newTeam);
 };

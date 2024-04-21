@@ -1,4 +1,4 @@
-import { Player } from "../types/app.type";
+import { User } from "../types/app.type";
 
 export const reply = (token: string, content: any) => {
   return JSON.stringify({
@@ -8,12 +8,12 @@ export const reply = (token: string, content: any) => {
 };
 
 export const gameAction = (
-  player: Player,
+  user: User,
   callback: { owner: () => void; seeker: () => void }
 ) => {
-  if (player.gameType === "owner") {
+  if (user.gameType === "owner") {
     callback.owner();
-  } else if (player.gameType === "seeker") {
+  } else if (user.gameType === "seeker") {
     callback.seeker();
   }
 };

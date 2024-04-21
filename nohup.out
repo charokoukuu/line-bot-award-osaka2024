@@ -17,3 +17,51 @@
 2024-04-21T07:04:03Z INF Starting metrics server on 127.0.0.1:58280/metrics
 2024-04-21T07:04:04Z ERR update check failed error="no release found"
 2024-04-21T07:04:04Z INF Registered tunnel connection connIndex=0 connection=9eafd4af-f511-4172-adf0-aa9f2184f28b event=0 ip=198.41.192.27 location=kix03 protocol=quic
+2024-04-21T11:25:41Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:41Z ERR Failed to serve quic connection error="context canceled" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:41Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:42Z ERR Connection terminated error="context canceled" connIndex=0
+2024-04-21T11:25:54Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:54Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:54Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:25:55Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:26:02Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:26:02Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:26:02Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:26:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:27:11Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:27:11Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:27:11Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:27:25Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:27:47Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:27:47Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:27:47Z INF Retrying connection in up to 32s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:28:07Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:28:54Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:28:54Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:28:54Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:29:00Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:30:19Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:30:19Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:30:19Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:30:28Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:35:31Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:35:31Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:35:31Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:35:50Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:37:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:37:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:37:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:38:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:41:25Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:41:25Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:41:25Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:41:42Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:44:00Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:00Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:00Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:06Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-21T11:44:46Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:46Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:46Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-21T11:44:50Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
