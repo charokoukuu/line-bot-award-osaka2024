@@ -6,6 +6,8 @@ info:
 paths:
   /api/user/{userId}:
     get:
+      tags:
+          - User
       summary: Get user by ID
       parameters:
         - in: path
@@ -21,6 +23,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
     post:
+      tags:
+          - User
       summary: Create a new user
       requestBody:
         required: true
@@ -36,6 +40,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
     delete:
+      tags:
+          - User
       summary: Delete user by ID
       parameters:
         - in: path
@@ -48,6 +54,8 @@ paths:
           description: User deleted successfully
   /api/team/{teamId}:
     get:
+      tags:
+          - Team
       summary: Get team by ID
       parameters:
         - in: path
@@ -63,6 +71,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
     post:
+      tags:
+          - Team
       summary: Create a new team
       requestBody:
         required: true
@@ -78,6 +88,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
     delete:
+      tags:
+          - Team
       summary: Delete team by ID
       parameters:
         - in: path
@@ -89,6 +101,8 @@ paths:
         '204':
           description: Team deleted successfully
     patch:
+      tags:
+          - Team
       summary: Update team by ID
       parameters:
         - in: path
@@ -109,6 +123,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
+  /api/teams:
+      get:
+        summary: Get all teams
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Team'
 components:
   schemas:
     User:
