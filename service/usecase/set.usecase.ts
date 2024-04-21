@@ -79,7 +79,8 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
 
 export const TeamJoiningService = async (data: TeamJoining) => {
   const teamLength = await (await GetUsersFindByTeamId(data.teamId)).length + 1;
-  if (teamLength > data.playerCount) {
+  const team = await GetTeamFindOneByTeamId(data.teamId);
+  if (teamLength > team.playerCount) {
     throw new Error("チームが満員です");
   }
   const user: any = await SetUser({
@@ -96,8 +97,8 @@ export const TeamJoiningService = async (data: TeamJoining) => {
     ]);
     return;
   }
-  if (teamLength == data.playerCount) {
-    await LinePush(data.hostId, [
+  if (teamLength == team.playerCount) {
+    await LinePush(team.hostId, [
       {
         "type": "flex",
         "altText": "this is a flex message",
@@ -146,7 +147,7 @@ export const TeamJoiningService = async (data: TeamJoining) => {
                   },
                   {
                     "type": "text",
-                    "text": `${data.teamName}`,
+                    "text": `${team.name}`,
                     "offsetStart": "15px",
                     "contents": []
                   }
@@ -222,7 +223,7 @@ export const TeamJoiningService = async (data: TeamJoining) => {
                   },
                   {
                     "type": "text",
-                    "text": `${data.treasureCount}`,
+                    "text": `${team.treasureCount}`,
                     "offsetStart": "15px",
                     "contents": []
                   }

@@ -8,12 +8,7 @@ export interface TeamBuilding {
     keyword: string;
 }
 export interface TeamJoining {
-    hostId: string;
     userId: string;
     userName: string;
     teamId: string;
-    teamName: string;
-    playerCount: number;
-    ownerCount: number;
-    treasureCount: number;
 }

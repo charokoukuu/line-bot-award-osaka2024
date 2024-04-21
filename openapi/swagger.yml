@@ -57,34 +57,16 @@ paths:
             schema:
               type: object
               properties:
-                hostId:
-                  type: string
                 userId:
                   type: string
                 userName:
                   type: string
                 teamId:
                   type: string
-                teamName:
-                  type: string
-                playerCount:
-                  type: integer
-                  format: int32
-                ownerCount:
-                  type: integer
-                  format: int32
-                treasureCount:
-                  type: integer
-                  format: int32
               required:
-                - hostId
                 - userId
                 - userName
                 - teamId
-                - teamName
-                - playerCount
-                - ownerCount
-                - treasureCount
       responses:
         '201':
           description: Successfully joined the team
