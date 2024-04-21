@@ -3,18 +3,25 @@ import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningSe
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { Team, User } from "../types/app.type";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
+import { LinePush, LineReply } from "../api/app.api";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
     const userId = event.source.userId;
     const message = event.message.text;
+    const replyToken = event.replyToken;
     try {
         if (event.type === "message") {
             await WebhookService(userId, message);
         }
         res.sendStatus(200);
-    } catch (err) {
-        console.error(err);
+    } catch (err: any) {
+        await LineReply(replyToken, [
+            {
+                type: "text",
+                text: err.message,
+            },
+        ]);
         res.sendStatus(500);
     }
 }

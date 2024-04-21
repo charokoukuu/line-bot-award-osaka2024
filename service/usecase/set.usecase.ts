@@ -11,8 +11,9 @@ import { randomUUID } from "crypto";
 export const WebhookService = async (userId: string, message: string) => {
   if (message.includes("プレイする")) {
     const teamId = message.split("\n")[1];
-    play(teamId);
+    await play(teamId);
   }
+
 };
 
 export const SchedulerService = async (delays: number[]) => {
