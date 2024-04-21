@@ -15,10 +15,10 @@ export const SetTeam = async (team: Team) => {
 };
 export const SetUser = async (user: User) => {
   try {
-    await UserModel.updateOne({ userId: user.userId }, user, {
+    const result = await UserModel.updateOne({ userId: user.userId }, user, {
       upsert: true,
     });
-    return "success";
+    return result;
   } catch (err) {
     console.error(err);
     return err;

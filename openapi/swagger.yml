@@ -28,6 +28,9 @@ paths:
                 ownerCount:
                   type: integer
                   format: int32
+                treasureCount:
+                  type: integer
+                  format: int32
                 keyword:
                   type: string
               required:
@@ -36,6 +39,7 @@ paths:
                 - teamName
                 - playerCount
                 - ownerCount
+                - treasureCount
                 - keyword
       responses:
         '201':
@@ -67,6 +71,9 @@ paths:
                 ownerCount:
                   type: integer
                   format: int32
+                treasureCount:
+                  type: integer
+                  format: int32
               required:
                 - hostId
                 - userId
@@ -74,6 +81,7 @@ paths:
                 - teamId
                 - playerCount
                 - ownerCount
+                - treasureCount
       responses:
         '201':
           description: Successfully joined the team
@@ -176,6 +184,25 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/Team'
+  /api/games/{teamId}:
+    get:
+      tags:
+        - Games
+      summary: Get all games by team ID
+      responses:
+        '200':
+          description: A list of games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+    delete:
+      tags:
+        - Games
+      summary: Delete games by team ID
+      responses:
+        '204':
+          description: Games deleted successfully
 components:
   schemas:
     User:
@@ -185,20 +212,8 @@ components:
           type: string
         name:
           type: string
-        status:
-          type: string
-          enum: [host, guest, owner, seeker]
-          nullable: true
         teamId:
           type: string
-          nullable: true
-        role:
-          type: string
-          enum: [host, guest]
-          nullable: true
-        gameType:
-          type: string
-          enum: [owner, seeker]
           nullable: true
     Team:
       type: object
@@ -215,6 +230,52 @@ components:
         ownerCount:
           type: integer
           nullable: true
+        treasureCount:
+          type: integer
+          nullable: true
         keyword:
           type: string
           nullable: true
+    Game:
+      type: object
+      properties:
+        team:
+          $ref: '#/components/schemas/Team'
+        allUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        seekers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        hints:
+          type: array
+          items:
+            type: string
+        treasures:
+          type: array
+          items:
+            type: string
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+        - team
+        - allUsers
+        - owners
+        - seekers
+        - hints
+        - treasures
+        - status
+    Status:
+      type: string
+      enum:
+        - create
+        - play
+        - prepare
+        - interactive
+        - end

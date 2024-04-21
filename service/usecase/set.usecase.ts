@@ -49,6 +49,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
     name: data.teamName,
     playerCount: data.playerCount,
     ownerCount: data.ownerCount,
+    treasureCount: data.treasureCount,
     keyword: data.keyword,
   });
 
@@ -69,11 +70,20 @@ export const TeamJoiningService = async (data: TeamJoining) => {
   if (teamLength > data.playerCount) {
     throw new Error("チームが満員です");
   }
-  await SetUser({
+  const user: any = await SetUser({
     userId: data.userId,
     name: data.userName,
     teamId: data.teamId,
   });
+  if (user.upsertedCount == 0) {
+    await LinePush(data.userId, [
+      {
+        type: "text",
+        text: "すでにチームに参加しています",
+      },
+    ]);
+    return;
+  }
   if (teamLength == data.playerCount) {
     await LinePush(data.hostId, [
       {

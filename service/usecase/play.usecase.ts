@@ -27,7 +27,7 @@ export const play = async (id: string) => {
   console.log(game);
   await SetGame(game);
   await gameAction([...owners, ...seekers], async (user) => {
-    LinePush(user.userId, [
+    await LinePush(user.userId, [
       {
         type: "text",
         text: "ゲームが開始されました！",
@@ -35,7 +35,7 @@ export const play = async (id: string) => {
     ]);
   })
   await gameAction(owners, async (user) => {
-    LinePush(user.userId, [
+    await LinePush(user.userId, [
       {
         type: "text",
         text: "あなたの役割はオーナーです",
@@ -48,7 +48,7 @@ export const play = async (id: string) => {
   })
 
   await gameAction(seekers, async (user) => {
-    LinePush(user.userId, [
+    await LinePush(user.userId, [
       {
         type: "text",
         text: "あなたの役割はシーカーです",

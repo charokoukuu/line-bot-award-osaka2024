@@ -11,6 +11,7 @@ export interface Team {
   name: string;
   playerCount: number;
   ownerCount: number;
+  treasureCount: number;
   keyword: string;
 }
 
@@ -29,6 +30,7 @@ export interface Game {
   treasures: string[];
   status: Status;
 }
+
 export enum Status {
   CREATE = "create",
   PLAY = "play",

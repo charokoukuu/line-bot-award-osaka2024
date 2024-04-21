@@ -4,6 +4,7 @@ export interface TeamBuilding {
     teamName: string;
     playerCount: number;
     ownerCount: number;
+    treasureCount: number;
     keyword: string;
 }
 export interface TeamJoining {
@@ -13,4 +14,5 @@ export interface TeamJoining {
     teamId: string;
     playerCount: number;
     ownerCount: number;
+    treasureCount: number;
 }
