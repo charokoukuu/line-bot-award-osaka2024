@@ -4,12 +4,10 @@ const app = express();
 const port = 8080;
 import mongoose from "mongoose";
 import { test } from "./test/app.test";
-import { hintPrint } from "./helper/print";
 import {
   PrintHintService,
 } from "./usecase/print.usecase";
 import { PrintQRController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "./controller/app.controller";
-const status: Status = Status.NONE;
 
 mongoose.connect("mongodb://username:password@localhost:27017/");
 

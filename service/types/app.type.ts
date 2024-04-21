@@ -2,28 +2,19 @@
 export interface User {
   userId: string;
   name: string;
-  status: Status;
+  status?: Status;
+  teamId?: string;
+  role?: Role;
+  gameType?: Game;
 }
 
-export interface Player {
+export interface Team {
   teamId: string;
-  role: Role;
-  gameType: Game;
-  user: User;
-}
-
-export interface TeamInfo {
-  id: string;
+  hostId: string;
   name: string;
   playerCount: number;
   ownerCount: number;
   keyword: string;
-}
-
-export interface Team {
-  id: string;
-  info: TeamInfo;
-  players: Player[];
 }
 
 export interface Schedule {
@@ -31,7 +22,6 @@ export interface Schedule {
   date: Date;
 }
 export enum Status {
-  NONE = "none",
   HOST = "host",
   GUEST = "guest",
   OWNER = "owner",
@@ -40,4 +30,4 @@ export enum Status {
 
 export type Role = "host" | "guest";
 
-export type Game = "none" | "owner" | "seeker";
+export type Game = "owner" | "seeker";

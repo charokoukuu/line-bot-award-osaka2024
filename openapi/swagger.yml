@@ -1,28 +1,27 @@
 openapi: 3.0.0
 info:
   title: BoTreasure API
+  description: BoTreasureに関するAPI仕様書です。
   version: 1.0.0
-servers:
-  - url: 'https://api.example.com/v1'
 paths:
-  /users/{userId}:
+  /api/user/{userId}:
     get:
-      summary: Get a user by user ID
+      summary: Get user by ID
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: userId
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Successful response
+          description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
     post:
-      summary: Create a user
+      summary: Create a new user
       requestBody:
         required: true
         content:
@@ -31,21 +30,40 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '201':
-          description: User created
-  /teams:
-    get:
-      summary: Get a team
-      responses:
-        '200':
-          description: Successful response
+          description: User created successfully
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted successfully
+  /api/team/{teamId}:
+    get:
+      summary: Get team by ID
+      parameters:
+        - in: path
+          name: teamId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
     post:
-      summary: Create a team
+      summary: Create a new team
       requestBody:
         required: true
         content:
@@ -54,28 +72,27 @@ paths:
               $ref: '#/components/schemas/Team'
       responses:
         '201':
-          description: Team created
-  /teams/{teamId}:
-    get:
-      summary: Get a team by team ID
-      parameters:
-        - name: teamId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
+          description: Team created successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-    put:
-      summary: Update a team by team ID
+    delete:
+      summary: Delete team by ID
       parameters:
-        - name: teamId
-          in: path
+        - in: path
+          name: teamId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Team deleted successfully
+    patch:
+      summary: Update team by ID
+      parameters:
+        - in: path
+          name: teamId
           required: true
           schema:
             type: string
@@ -87,30 +104,11 @@ paths:
               $ref: '#/components/schemas/Team'
       responses:
         '200':
-          description: Team updated
-    delete:
-      summary: Delete a team by team ID
-      parameters:
-        - name: teamId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Team deleted
-  /schedules:
-    get:
-      summary: List all schedules
-      responses:
-        '200':
-          description: A list of schedules
+          description: Team updated successfully
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Schedule'
+                $ref: '#/components/schemas/Team'
 components:
   schemas:
     User:
@@ -121,66 +119,35 @@ components:
         name:
           type: string
         status:
-          $ref: '#/components/schemas/Status'
-    Player:
+          type: string
+          enum: [host, guest, owner, seeker]
+          nullable: true
+        teamId:
+          type: string
+          nullable: true
+        role:
+          type: string
+          enum: [host, guest]
+          nullable: true
+        gameType:
+          type: string
+          enum: [owner, seeker]
+          nullable: true
+    Team:
       type: object
       properties:
         teamId:
           type: string
-        role:
-          $ref: '#/components/schemas/Role'
-        gameType:
-          $ref: '#/components/schemas/Game'
-        user:
-          $ref: '#/components/schemas/User'
-    TeamInfo:
-      type: object
-      properties:
-        id:
+        hostId:
           type: string
         name:
           type: string
         playerCount:
           type: integer
+          nullable: true
         ownerCount:
           type: integer
+          nullable: true
         keyword:
           type: string
-    Team:
-      type: object
-      properties:
-        id:
-          type: string
-        info:
-          $ref: '#/components/schemas/TeamInfo'
-        players:
-          type: array
-          items:
-            $ref: '#/components/schemas/Player'
-    Schedule:
-      type: object
-      properties:
-        id:
-          type: string
-        date:
-          type: string
-          format: date-time
-    Status:
-      type: string
-      enum:
-        - none
-        - host
-        - guest
-        - owner
-        - seeker
-    Role:
-      type: string
-      enum:
-        - host
-        - guest
-    Game:
-      type: string
-      enum:
-        - none
-        - owner
-        - seeker
+          nullable: true

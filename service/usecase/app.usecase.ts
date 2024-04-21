@@ -1,7 +1,6 @@
-import { LinePush, LineReply } from "../api/app.api";
-import { Request, Response } from "express";
-import { SetTeam, SetTeamInfo } from "../repository/set.repository";
-import { Player, Status, Team, TeamInfo } from "../types/app.type";
+import { LinePush } from "../api/app.api";
+import { SetTeam } from "../repository/set.repository";
+import { Status, Team } from "../types/app.type";
 import { GetTeamFindOneId } from "../repository/get.repository";
 import { play } from "./play.usecase";
 import { TestService } from "../test/app.test";
@@ -36,28 +35,28 @@ export const SchedulerService = async (delays: number[]) => {
 };
 
 
-export const TeamBuildingService = async (teamInfo: TeamInfo, player: Player) => {
-  await SetTeamInfo(teamInfo);
-  player.user.status = Status.HOST;
-  await SetTeam({
-    id: teamInfo.id,
-    info: teamInfo,
-    players: [player],
-  });
+export const TeamBuildingService = async (team: Team) => {
+  // await SetTeamInfo(teamInfo);
+  // player.user.status = Status.HOST;
+  // await SetTeam({
+  //   teamId: teamInfo.id,
+  //   info: teamInfo,
+  //   players: [player],
+  // });
 };
 
-export const TeamJoiningService = async (id: string, player: Player) => {
+export const TeamJoiningService = async (id: string) => {
   const currentTeam = await GetTeamFindOneId(id);
-  if (currentTeam.players.length < currentTeam.info.playerCount) {
-    const players = currentTeam.players;
-    player.user.status = Status.GUEST;
-    players.push(player);
+  const teamLength = 10;
+  if (teamLength < currentTeam.playerCount) {
+    const players = teamLength;
+    // players.push(player);
     const newTeam = { ...currentTeam, players };
     await SetTeam(newTeam);
     return;
   }
-  if (currentTeam.players.length === currentTeam.info.playerCount) {
-    await LinePush(currentTeam.id, [
+  if (teamLength === currentTeam.playerCount) {
+    await LinePush(currentTeam.teamId, [
       {
         type: "text",
         text: "ゲームを開始しますか？",
@@ -65,7 +64,7 @@ export const TeamJoiningService = async (id: string, player: Player) => {
     ]);
     return;
   }
-  if (currentTeam.players.length > currentTeam.info.playerCount) {
+  if (teamLength > currentTeam.playerCount) {
     throw new Error("チームが満員です");
   }
 };

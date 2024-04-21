@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/app.usecase";
-import { Player, TeamInfo } from "../types/app.type";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
+import { Team } from "../types/app.type";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -30,10 +30,9 @@ export const SchedulerController = async (req: Request, res: Response) => {
 }
 
 export const TeamBuildingController = async (req: Request, res: Response) => {
-    const teamInfo = req.body.data.teamInfo as TeamInfo;
-    const player = req.body.data.team as Player;
+    const team = req.body.data.teamInfo as Team;
     try {
-        await TeamBuildingService(teamInfo, player)
+        await TeamBuildingService(team)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -43,9 +42,8 @@ export const TeamBuildingController = async (req: Request, res: Response) => {
 
 export const TeamJoiningController = async (req: Request, res: Response) => {
     const id = req.query.id as string;
-    const player = req.body.data as Player;
     try {
-        await TeamJoiningService(id, player)
+        await TeamJoiningService(id)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
