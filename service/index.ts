@@ -1,39 +1,36 @@
 const express = require("express");
 import { Status } from "./types/app.type";
-import {
-  TeamBuildingService as TeamBuildingService,
-  SchedulerService as SchedulerService,
-  WebhookService as WebhookService,
-  TeamJoiningService,
-} from "./usecase/app.usecase";
 const app = express();
 const port = 8080;
 import mongoose from "mongoose";
 import { test } from "./test/app.test";
 import { hintPrint } from "./helper/print";
 import {
-  HintPrintService,
-  QRCodeService as QRGenerateService,
+  PrintHintService,
 } from "./usecase/print.usecase";
-const status: Status = Status.NULL;
+import { PrintQRController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "./controller/app.controller";
+const status: Status = Status.NONE;
 
 mongoose.connect("mongodb://username:password@localhost:27017/");
 
 app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 //Messaging API
-app.post("/webhook", WebhookService);
+app.post("/webhook", WebhookController);
 
 //スケジューラ
-app.get("/scheduler", SchedulerService);
+app.post("/scheduler", SchedulerController);
 
 //チーム登録
-app.post("/team-building", TeamBuildingService);
-app.post("/team-joining", TeamJoiningService);
+app.post("/team-building", TeamBuildingController);
+app.post("/team-joining", TeamJoiningController);
 
 //プリントサービス
-app.get("/qr-generate", QRGenerateService);
-app.get("/hint-print", HintPrintService);
+app.get("/create-qr", PrintQRController);
+app.get("/hint-print", PrintHintService);
 
 // テスト用
 app.get("/test", test);

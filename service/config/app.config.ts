@@ -5,7 +5,11 @@ export const headers = {
   Authorization: "Bearer " + TOKEN,
 };
 
+// LINE Messaging API
 export const LINE_REPLY_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
 export const LINE_PUSH_ENDPOINT = "https://api.line.me/v2/bot/message/push";
-
 export const EXAMPLE_USER_ID = "U70cf21cbf9a12773b140cf16d05d181e";
+
+// Printer API
+export const POS_QR_ENDPOINT = "https://pos.run-ticket.com/qr";
+export const POS_HINT_ENDPOINT = "https://pos.run-ticket.com/hint";

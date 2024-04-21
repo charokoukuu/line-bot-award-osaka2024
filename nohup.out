@@ -1,0 +1,19 @@
+2024-04-21T07:03:57Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2024-04-21T07:03:57Z INF Requesting new quick Tunnel on trycloudflare.com...
+2024-04-21T07:04:03Z INF +--------------------------------------------------------------------------------------------+
+2024-04-21T07:04:03Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2024-04-21T07:04:03Z INF |  https://kids-disabled-online-regardless.trycloudflare.com                                 |
+2024-04-21T07:04:03Z INF +--------------------------------------------------------------------------------------------+
+2024-04-21T07:04:03Z INF Version 2024.2.1
+2024-04-21T07:04:03Z INF GOOS: darwin, GOVersion: go1.21.5-devel-cf, GoArch: arm64
+2024-04-21T07:04:03Z INF Settings: map[cred-file:/Users/charokoukuu/.cloudflared/d002b36d-585e-4876-899a-55ec99790903.json credentials-file:/Users/charokoukuu/.cloudflared/d002b36d-585e-4876-899a-55ec99790903.json ha-connections:1 protocol:quic url:http://localhost:8080]
+2024-04-21T07:04:03Z INF cloudflared will not automatically update if installed by a package manager.
+2024-04-21T07:04:03Z INF Generated Connector ID: 6979d8c8-b0a2-46e1-95ed-8ddd66663884
+2024-04-21T07:04:03Z INF Initial protocol quic
+2024-04-21T07:04:03Z INF ICMP proxy will use 192.168.0.106 as source for IPv4
+2024-04-21T07:04:03Z INF ICMP proxy will use fe80::ef:5225:d647:f262 in zone en0 as source for IPv6
+2024-04-21T07:04:03Z INF Created ICMP proxy listening on 192.168.0.106:0
+2024-04-21T07:04:03Z INF Created ICMP proxy listening on [fe80::ef:5225:d647:f262%en0]:0
+2024-04-21T07:04:03Z INF Starting metrics server on 127.0.0.1:58280/metrics
+2024-04-21T07:04:04Z ERR update check failed error="no release found"
+2024-04-21T07:04:04Z INF Registered tunnel connection connIndex=0 connection=9eafd4af-f511-4172-adf0-aa9f2184f28b event=0 ip=198.41.192.27 location=kix03 protocol=quic
