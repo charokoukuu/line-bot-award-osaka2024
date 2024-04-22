@@ -26,10 +26,10 @@ export const SetUser = async (user: User) => {
 };
 export const SetGame = async (game: Game) => {
   try {
-    await GameModel.updateOne({ team: game.team }, game, {
+    const result = await GameModel.updateOne({ team: game.team }, game, {
       upsert: true,
     });
-    return "success";
+    return result;
   } catch (err) {
     console.error(err);
     return err;

@@ -98,18 +98,18 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         },
       ]);
     })
-    game.status = Status.INTERACTIVE;
+    game.status = Status.CHAT;
   }
   await SetGame(game);
 }
 
-export const interactive = async (message: string, game: Game, user: User) => {
+export const chat = async (message: string, game: Game, user: User) => {
   const isSeeker = game.seekers.find((seeker) => seeker.userId === user.userId);
   const publishUsers = isSeeker ? game.seekers : game
     .owners;
   const otherUsers = publishUsers.filter((publishUser) => publishUser.userId !== user.userId);
-  gameAction(otherUsers, async (user) => {
-    await LinePush(user.userId, [
+  gameAction(otherUsers, async (otherUser) => {
+    await LinePush(otherUser.userId, [
       {
         type: "text",
         text: `(${user.name})${message}`,

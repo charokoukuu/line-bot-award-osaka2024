@@ -1,8 +1,8 @@
 import { LinePush } from "../api/app.api";
-import { SetTeam, SetUser } from "../repository/set.repository";
+import { SetGame, SetTeam, SetUser } from "../repository/set.repository";
 import { Status, User } from "../types/app.type";
-import { GetGameFindOneByTeam, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
-import { hint, interactive, play } from "./play.usecase";
+import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
+import { hint, chat, play } from "./play.usecase";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
 import { gameAction } from "../helper/util";
@@ -21,8 +21,8 @@ export const WebhookService = async (userId: string, message: string) => {
     case Status.PREPARE:
       hint(userId, message, game);
       break;
-    case Status.INTERACTIVE:
-      interactive(message, game, user);
+    case Status.CHAT:
+      chat(message, game, user);
       break;
   }
 
@@ -273,3 +273,23 @@ export const TeamJoiningService = async (data: TeamJoining) => {
   }
 
 };
+
+
+
+export const ScanService = async (userName: string, treasureId: string) => {
+  const game = await GetGameFindOneByTreasureId(treasureId);
+  game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
+  const result: any = await SetGame(game);
+  if (result.modifiedCount == 0) {
+    console.log("既にスキャン済み");
+    return;
+  }
+  await gameAction(game.allUsers, async (user) => {
+    await LinePush(user.userId, [
+      {
+        type: "text",
+        text: `${userName}さんが宝を見つけました`,
+      },
+    ]);
+  });
+}

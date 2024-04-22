@@ -32,3 +32,7 @@ export const GetGameFindOneByUserId = async (userId: string): Promise<Game> => {
   const getGame = await GameModel.findOne({ "allUsers.userId": userId });
   return getGame as Game;
 };
+export const GetGameFindOneByTreasureId = async (id: string): Promise<Game> => {
+  const getGame = await GameModel.findOne({ "treasures.id": id });
+  return getGame as Game;
+};

@@ -39,8 +39,8 @@ export interface Game {
 
 export enum Status {
   CREATE = "create",
-  PLAY = "play",
   PREPARE = "prepare",
-  INTERACTIVE = "interactive",
+  CHAT = "chat",
+  PLAY = "play",
   END = "end",
 }

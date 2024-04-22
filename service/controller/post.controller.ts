@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, ScanService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { Team, User } from "../types/app.type";
-import { TeamBuilding, TeamJoining } from "../types/api.type";
+import { Scan, TeamBuilding, TeamJoining } from "../types/api.type";
 import { LinePush, LineReply, getUserProfile } from "../api/app.api";
 
 export const WebhookController = async (req: Request, res: Response) => {
@@ -66,6 +66,16 @@ export const TeamJoiningController = async (req: Request, res: Response) => {
     const teamJoiningData = req.body as TeamJoining;
     try {
         await TeamJoiningService(teamJoiningData)
+        res.sendStatus(200);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+export const ScanController = async (req: Request, res: Response) => {
+    const scanData = req.body as Scan;
+    try {
+        await ScanService(scanData.userName, scanData.treasureId);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

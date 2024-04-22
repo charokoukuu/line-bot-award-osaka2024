@@ -12,3 +12,7 @@ export interface TeamJoining {
     userName: string;
     teamId: string;
 }
+export interface Scan {
+    userName: string;
+    treasureId: string;
+}
