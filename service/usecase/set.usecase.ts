@@ -5,7 +5,10 @@ import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserI
 import { hint, chat, play } from "./game.usecase";
 import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
-import { gameAction, convertTimestamp } from "../helper/util";
+import { gameAction } from "../helper/util";
+import schedule from 'node-schedule';
+import { DeleteSchedule } from "../repository/delete.repository";
+import { CronMethods } from "../method";
 
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
@@ -32,19 +35,20 @@ export const WebhookService = async (userId: string, message: string) => {
 
 };
 
-export const ScheduleService = async (schedule: CreateSchedule) => {
+export const ScheduleService = async (scheduleItem: CreateSchedule) => {
   const currentDate = new Date();
-  const futureDate = new Date(currentDate.getTime() + schedule.timeAfterMinutes * 60000);
+  const futureDate = new Date(currentDate.getTime() + scheduleItem.timeAfterMinutes * 60000);
   const newSchedule: Schedule = {
     id: randomUUID(),
-    teamId: schedule.teamId,
-    users: schedule.users,
-    messages: schedule.messages,
-    date: convertTimestamp(futureDate),
-    hintId: schedule.hintId,
-    enableOwner: schedule.enableOwner,
+    teamId: scheduleItem.teamId,
+    users: scheduleItem.users,
+    messages: scheduleItem.messages,
+    date: futureDate,
+    hintId: scheduleItem.hintId,
+    enableOwner: scheduleItem.enableOwner,
   };
   await SetSchedule(newSchedule);
+  await CronMethods();
 };
 
 

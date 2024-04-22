@@ -20,7 +20,7 @@ export interface Schedule {
   teamId: string
   users: User[];
   messages: object[];
-  date: string;
+  date: Date;
   hintId?: string;
   enableOwner?: User;
 }

@@ -42,3 +42,8 @@ export const GetScheduleFindOneByDate = async (date: string): Promise<Schedule> 
   const getSchedule = await ScheduleModel.findOne({ date: date });
   return getSchedule as Schedule;
 };
+
+export const GetScheduleFind = async (): Promise<Schedule[]> => {
+  const getSchedule = await ScheduleModel.find();
+  return getSchedule as Schedule[];
+};
