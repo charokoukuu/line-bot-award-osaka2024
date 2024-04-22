@@ -1,6 +1,7 @@
 import { displayJob, gameAction } from "../helper/util";
 import {
   GetGameFindOneByTeam,
+  GetGameFindOneByTreasureId,
   GetTeamFindOneByTeamId,
   GetUsersFindByTeamId,
 } from "../repository/get.repository";
@@ -117,8 +118,51 @@ export const chat = async (message: string, game: Game, user: User) => {
     ]);
 
   })
+}
 
 
+export const ScanService = async (userName: string, treasureId: string) => {
+  const game = await GetGameFindOneByTreasureId(treasureId);
+  game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
+  const result: any = await SetGame(game);
+  if (result.modifiedCount == 0) {
+    console.log("既にスキャン済み");
+    return;
+  }
 
+  const notScanTreasures = game.treasures.filter((treasure) => !treasure.isScanned).length;
+  const messages = [
+    {
+      type: "text",
+      text: `${userName}が宝を見つけました`,
+    }
+  ]
+  if (notScanTreasures > 0) messages.push({
+    type: "text",
+    text: `残りの宝の数: ${notScanTreasures}`,
+  })
+  await gameAction(game.allUsers, async (user) => {
+    await LinePush(user.userId, messages);
+  });
+  if (notScanTreasures == 0) {
+    await gameAction(game.allUsers, async (user) => {
+      await LinePush(user.userId, [
+        {
+          type: "text",
+          text: "全ての宝が見つかりました！",
+        },
+        {
+          type: "text",
+          text: "シーカーの勝利です！",
+        }
+      ]);
+      game.status = Status.END;
+      await SetGame(game);
+      await gameAction(game.allUsers, async (user) => {
+        user.teamId = "";
+        await SetUser(user);
+      });
+    });
+  }
 }
 

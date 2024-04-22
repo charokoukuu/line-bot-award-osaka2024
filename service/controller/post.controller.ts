@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { CreateUserService, ScanService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { Team, User } from "../types/app.type";
 import { Scan, TeamBuilding, TeamJoining } from "../types/api.type";
 import { LinePush, LineReply, getUserProfile } from "../api/app.api";
+import { ScanService } from "../usecase/game.usecase";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];

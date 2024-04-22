@@ -25,7 +25,7 @@ export const GetAllTeams = async (): Promise<Team[]> => {
   return getTeams as Team[];
 }
 export const GetGameFindOneByTeam = async (team: Team): Promise<Game> => {
-  const getGame = await GameModel.findOne({ team: team });
+  const getGame = await GameModel.findOne({ team: team, status: { $ne: "end" } });
   return getGame as Game;
 };
 export const GetGameFindOneByUserId = async (userId: string): Promise<Game> => {
