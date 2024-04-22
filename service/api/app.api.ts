@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import {
+  LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
   LINE_REPLY_ENDPOINT,
   headers,
@@ -32,3 +33,18 @@ export const LinePush = async (userId: string, content: object) => {
     console.error(err);
   });
 };
+
+interface UserProfile {
+  userId: string,
+  displayName: string,
+  pictureUrl: string,
+  statusMessage: string,
+  language: string,
+}
+export const getUserProfile = async (userId: string): Promise<UserProfile> => {
+  const response = await fetch(LINE_PROFILE_ENDPOINT + userId, {
+    method: "GET",
+    headers: headers,
+  });
+  return response.json() as Promise<UserProfile>;
+}

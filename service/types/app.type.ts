@@ -26,8 +26,14 @@ export interface Game {
   allUsers: User[];
   owners: User[];
   seekers: User[];
-  hints: string[];
-  treasures: string[];
+  hints: {
+    hint: string;
+    isPrinted: boolean;
+  }[];
+  treasures: {
+    id: string;
+    isScanned: boolean;
+  }[];
   status: Status;
 }
 

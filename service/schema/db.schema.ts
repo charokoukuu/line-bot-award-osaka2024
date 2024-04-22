@@ -31,8 +31,8 @@ export const GameSchema = new Schema<Game>({
     allUsers: { type: [UserSchema], required: true },
     owners: { type: [UserSchema], required: true },
     seekers: { type: [UserSchema], required: true },
-    hints: { type: [String], required: true },
-    treasures: { type: [String], required: true },
+    hints: { type: [{ hint: String, isPrinted: Boolean }], required: true },
+    treasures: { type: [{ id: String, isScanned: Boolean }], required: true },
     status: { type: String, enum: Object.values(Status) }
 });
 

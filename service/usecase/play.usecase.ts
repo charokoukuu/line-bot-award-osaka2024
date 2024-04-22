@@ -4,13 +4,14 @@ import {
   GetTeamFindOneByTeamId,
   GetUsersFindByTeamId,
 } from "../repository/get.repository";
-import { Game, Status } from "../types/app.type";
+import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush } from "../api/app.api";
+import { randomUUID } from "crypto";
 
-export const play = async (id: string) => {
-  const users = await GetUsersFindByTeamId(id);
-  const team = await GetTeamFindOneByTeamId(id);
+export const play = async (teamId: string) => {
+  const users = await GetUsersFindByTeamId(teamId);
+  const team = await GetTeamFindOneByTeamId(teamId);
   const game = await GetGameFindOneByTeam(team);
   if (!team) throw new Error("該当するチームが存在しません");
   if (game) throw new Error("既にゲームが開始されています");
@@ -24,10 +25,12 @@ export const play = async (id: string) => {
     owners: owners,
     seekers: seekers,
     hints: [],
-    treasures: [],
+    treasures: [...new Array(team.treasureCount)].map((_, i) => ({
+      id: randomUUID(),
+      isScanned: false,
+    })),
     status: Status.PREPARE,
   }
-  console.log(newGame);
   await SetGame(newGame);
   await gameAction([...owners, ...seekers], async (user) => {
     await LinePush(user.userId, [
@@ -63,3 +66,59 @@ export const play = async (id: string) => {
     ]);
   })
 };
+
+export const hint = async (userId: string, hint: string, game: Game) => {
+  if (game.seekers.find((seeker) => seeker.userId === userId)) {
+    await LinePush(userId, [
+      {
+        type: "text",
+        text: "オーナーがヒントを入力中です。しばらくお待ちください",
+      },
+    ]);
+    return;
+  }
+  game.hints.push({
+    hint: hint,
+    isPrinted: false,
+  });
+  await gameAction(game.allUsers, async (user) => {
+    await LinePush(user.userId, [
+      {
+        type: "text",
+        text: `ヒントが入力されました${game.hints.length}/${game.team.treasureCount}`,
+      },
+    ]);
+  })
+  if (game.hints.length === game.team.treasureCount) {
+    await gameAction(game.allUsers, async (user) => {
+      await LinePush(user.userId, [
+        {
+          type: "text",
+          text: "全てのヒントが入力されました。ゲームを開始します",
+        },
+      ]);
+    })
+    game.status = Status.INTERACTIVE;
+  }
+  await SetGame(game);
+}
+
+export const interactive = async (message: string, game: Game, user: User) => {
+  const isSeeker = game.seekers.find((seeker) => seeker.userId === user.userId);
+  const publishUsers = isSeeker ? game.seekers : game
+    .owners;
+  const otherUsers = publishUsers.filter((publishUser) => publishUser.userId !== user.userId);
+  gameAction(otherUsers, async (user) => {
+    await LinePush(user.userId, [
+      {
+        type: "text",
+        text: `(${user.name})${message}`,
+      },
+    ]);
+
+  })
+
+
+
+}
+

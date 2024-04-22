@@ -241,11 +241,21 @@ components:
         hints:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              hint:
+                type: string
+              isPrinted:
+                type: boolean
         treasures:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              id:
+                type: string
+              isScanned:
+                type: boolean
         status:
           $ref: '#/components/schemas/Status'
       required:

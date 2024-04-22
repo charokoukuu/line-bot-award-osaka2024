@@ -1,28 +1,26 @@
 import { LinePush } from "../api/app.api";
 import { SetTeam, SetUser } from "../repository/set.repository";
 import { Status, User } from "../types/app.type";
-import { GetGameFindOneByTeam, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUsersFindByTeamId } from "../repository/get.repository";
-import { play } from "./play.usecase";
+import { GetGameFindOneByTeam, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
+import { hint, interactive, play } from "./play.usecase";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
 
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
-  console.log(game);
+  const user = await GetUserFindOneByUserId(userId);
 
-  if (message.includes("プレイする")) {
-    const teamId = message.split("\n")[1];
+  if (message.includes("プレイする") && user.teamId) {
+    const teamId = user.teamId;
     await play(teamId);
   }
   if (!game) return;
   switch (game.status) {
     case Status.PREPARE:
-      LinePush(userId, [
-        {
-          type: "text",
-          text: "ヒント入力中",
-        },
-      ]);
+      hint(userId, message, game);
+      break;
+    case Status.INTERACTIVE:
+      interactive(message, game, user);
       break;
   }
 
@@ -250,7 +248,7 @@ export const TeamJoiningService = async (data: TeamJoining) => {
                 "action": {
                   "type": "message",
                   "label": "プレイする！",
-                  "text": `プレイする\n${data.teamId}`
+                  "text": `プレイする`
                 },
                 "color": "#905C44",
                 "style": "primary"

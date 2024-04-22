@@ -3,13 +3,17 @@ import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningSe
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { Team, User } from "../types/app.type";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
-import { LinePush, LineReply } from "../api/app.api";
+import { LinePush, LineReply, getUserProfile } from "../api/app.api";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
     const userId = event.source.userId;
     const message = event.message.text;
     const replyToken = event.replyToken;
+    const user = await getUserProfile(userId);
+
+    console.log(user.displayName, message);
+
     try {
         if (event.type === "message") {
             await WebhookService(userId, message);
@@ -27,7 +31,6 @@ export const WebhookController = async (req: Request, res: Response) => {
 }
 export const CreateUserController = async (req: Request, res: Response) => {
     const user = req.body as User;
-    console.log(user);
     try {
         await CreateUserService(user);
         res.sendStatus(200);
