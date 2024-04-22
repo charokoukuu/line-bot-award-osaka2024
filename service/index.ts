@@ -1,32 +1,19 @@
 const express = require("express");
-import { Status, TeamInfo, TeamInfoSchema } from "./types/app.type";
-import {
-  TeamBuilding as TeamBuildingService,
-  scheduler as schedulerService,
-  webhook as webhookService,
-} from "./usecase/app.usecase";
-const app = express();
-const port = 8080;
 import mongoose from "mongoose";
-import { test } from "./test/app.test";
-import { hintPrint } from "./helper/print";
-import { HintPrintService, QrcodeService } from "./usecase/print.usecase";
-const status: Status = Status.NULL;
-
-mongoose.connect("mongodb://username:password@localhost:27017/");
+import { MONGODB_URI } from "./config/app.config";
+import { GetMethods, PostMethods } from "./method";
+export const app = express();
+mongoose.connect(MONGODB_URI);
 
 app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
-app.post("/webhook", webhookService);
+GetMethods();
+PostMethods();
 
-app.get("/scheduler", schedulerService);
-app.get("/team-building", TeamBuildingService);
-
-app.get("/qr-code", QrcodeService);
-app.get("/hint-print", HintPrintService);
-
-app.get("/test", test);
-console.log("status", status);
+const port = 8080;
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

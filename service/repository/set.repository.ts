@@ -1,21 +1,10 @@
-import { PlayerModel, TeamInfoModel, TeamModel } from "../domain/create.model";
-import { mockPlayer, mockTeam, mockTeamInfo } from "../mock/data.mock";
-import { Player, Status, Team, TeamInfo } from "../types/app.type";
+import { GameModel, TeamModel, UserModel } from "../domain/create.model";
+import { Game, Team, User } from "../types/app.type";
 
-export const SetTeamInfo = async (teamInfo: TeamInfo) => {
-  try {
-    await TeamInfoModel.updateOne({ id: teamInfo.id }, teamInfo, {
-      upsert: true,
-    });
-    return "success";
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
-};
+
 export const SetTeam = async (team: Team) => {
   try {
-    await TeamModel.updateOne({ id: team.id }, team, {
+    await TeamModel.updateOne({ teamId: team.teamId }, team, {
       upsert: true,
     });
     return "success";
@@ -24,12 +13,23 @@ export const SetTeam = async (team: Team) => {
     return err;
   }
 };
-export const SetPlayer = async (player: Player) => {
+export const SetUser = async (user: User) => {
   try {
-    await PlayerModel.updateOne({ user: player.user }, player, {
+    const result = await UserModel.updateOne({ userId: user.userId }, user, {
       upsert: true,
     });
-    return "success";
+    return result;
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+};
+export const SetGame = async (game: Game) => {
+  try {
+    const result = await GameModel.updateOne({ team: game.team }, game, {
+      upsert: true,
+    });
+    return result;
   } catch (err) {
     console.error(err);
     return err;

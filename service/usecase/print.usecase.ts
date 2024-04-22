@@ -1,20 +1,32 @@
-import { Request, Response } from "express";
+import { POS_HINT_ENDPOINT, POS_QR_ENDPOINT } from "../config/app.config";
 import { encodePNGToBase64, hintPrint } from "../helper/print";
 
-export const HintPrintService = async (req: Request, res: Response) => {
-  const id = req.query.id as string;
-  await hintPrint(id, req.query.text as string);
-  const base64 = encodePNGToBase64(id) as string;
-  console.log(base64);
-  // アップロードする処理
-  res.status(200).send("HintPrintService");
+
+export const PrintQRService = async (id: string, qrList: string[]) => {
+  const base64 = encodePNGToBase64("1", "qr") as string;
+  await fetch(POS_QR_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+      base64: base64,
+    }),
+  });
 };
 
-export const QrcodeService = async (req: Request, res: Response) => {
-  const id = req.query.id as string;
-  await hintPrint(id, req.query.text as string);
-  const base64 = encodePNGToBase64(id) as string;
-  console.log(base64);
-  // アップロードする処理
-  res.status(200).send("HintPrintService");
+export const PrintHintService = async (id: string, text: string) => {
+  await hintPrint(id, text);
+  const base64 = encodePNGToBase64(id, "hint") as string;
+  await fetch(POS_HINT_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+      base64: base64,
+    }),
+  });
 };

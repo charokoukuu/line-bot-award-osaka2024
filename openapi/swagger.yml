@@ -1,0 +1,303 @@
+openapi: 3.0.0
+info:
+  title: BoTreasure API
+  description: BoTreasureに関するAPI仕様書です。
+  version: 1.0.0
+servers:
+  - url: https://local-line.run-ticket.com/
+    description: Production server (uses live data)
+  - url: http://localhost:8080/
+    description: Local server (uses test data)
+paths:
+  /api/team-building:
+    post:
+      tags:
+          - チーム作成
+      summary: Create a team building request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                userName:
+                  type: string
+                teamName:
+                  type: string
+                playerCount:
+                  type: integer
+                  format: int32
+                ownerCount:
+                  type: integer
+                  format: int32
+                treasureCount:
+                  type: integer
+                  format: int32
+                keyword:
+                  type: string
+              required:
+                - userId
+                - userName
+                - teamName
+                - playerCount
+                - ownerCount
+                - treasureCount
+                - keyword
+      responses:
+        '201':
+          description: Team building request created successfully
+
+  /api/team-joining:
+    post:
+      tags:
+          - チーム参加
+      summary: Join a team request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                userName:
+                  type: string
+                teamId:
+                  type: string
+              required:
+                - userId
+                - userName
+                - teamId
+      responses:
+        '201':
+          description: Successfully joined the team
+  /api/qr-scan:
+    post:
+      tags:
+          - QRスキャン
+      summary: Scan a QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                treasureId:
+                  type: string
+              required:
+                - userName
+                - treasureId
+      responses:
+        '200':
+          description: QR code scanned successfully
+  /api/user/{userId}:
+    get:
+      tags:
+          - User
+      summary: Get user by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags:
+          - User
+      summary: Delete user by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted successfully
+  /api/team/{teamId}:
+    get:
+      tags:
+          - Team
+      summary: Get team by ID
+      parameters:
+        - in: path
+          name: teamId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+    delete:
+      tags:
+          - Team
+      summary: Delete team by ID
+      parameters:
+        - in: path
+          name: teamId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Team deleted successfully
+    patch:
+      tags:
+          - Team
+      summary: Update team by ID
+      parameters:
+        - in: path
+          name: teamId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '200':
+          description: Team updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+  /api/teams:
+      get:
+        tags:
+          - Teams
+        summary: Get all teams
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Team'
+  /api/games/{teamId}:
+    get:
+      tags:
+        - Games
+      summary: Get all games by team ID
+      responses:
+        '200':
+          description: A list of games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+    delete:
+      tags:
+        - Games
+      summary: Delete games by team ID
+      responses:
+        '204':
+          description: Games deleted successfully
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+        name:
+          type: string
+        teamId:
+          type: string
+          nullable: true
+    Team:
+      type: object
+      properties:
+        teamId:
+          type: string
+        hostId:
+          type: string
+        name:
+          type: string
+        playerCount:
+          type: integer
+          nullable: true
+        ownerCount:
+          type: integer
+          nullable: true
+        treasureCount:
+          type: integer
+          nullable: true
+        keyword:
+          type: string
+          nullable: true
+    Game:
+      type: object
+      properties:
+        team:
+          $ref: '#/components/schemas/Team'
+        allUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        seekers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        hints:
+          type: array
+          items:
+            type: object
+            properties:
+              hint:
+                type: string
+              isPrinted:
+                type: boolean
+        treasures:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              isScanned:
+                type: boolean
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+        - team
+        - allUsers
+        - owners
+        - seekers
+        - hints
+        - treasures
+        - status
+    Status:
+      type: string
+      enum:
+        - create
+        - prepare
+        - chat
+        - play
+        - end

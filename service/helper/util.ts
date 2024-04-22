@@ -1,4 +1,4 @@
-import { Player } from "../types/app.type";
+import { User } from "../types/app.type";
 
 export const reply = (token: string, content: any) => {
   return JSON.stringify({
@@ -7,17 +7,28 @@ export const reply = (token: string, content: any) => {
   });
 };
 
-export const gameAction = (
-  player: Player,
-  callback: { owner: () => void; seeker: () => void }
+export const gameAction = async (
+  user: User[],
+  callback: (user: User) => Promise<void>
 ) => {
-  if (player.gameType === "owner") {
-    callback.owner();
-  } else if (player.gameType === "seeker") {
-    callback.seeker();
-  }
+  return Promise.all(user.map((user) => {
+    return new Promise(async (resolve) => {
+      await callback(user);
+      resolve("done");
+    });
+  }));
 };
 
 export const createRandomString = () => {
   return Math.random().toString(32).substring(2);
 };
+
+
+export const displayJob = (job: string) => {
+  switch (job) {
+    case "owner":
+      return "オーナー";
+    case "seeker":
+      return "シーカー";
+  }
+}
