@@ -215,6 +215,24 @@ paths:
       responses:
         '204':
           description: Games deleted successfully
+  /api/schedule:
+    post:
+      tags:
+        - スケジュール作成
+      summary: Create a new schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
 components:
   schemas:
     User:
@@ -301,3 +319,30 @@ components:
         - chat
         - play
         - end
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+        teamId:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        messages:
+          type: array
+          items:
+            type: object
+        date:
+          type: string
+        hintId:
+          type: string
+        enableOwner:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - teamId
+        - users
+        - messages
+        - date

@@ -7,3 +7,4 @@ export const GetMethods = () => {
     app.get("/test", test);
     app.get("/api/teams", GetAllTeamsController);
 }
+

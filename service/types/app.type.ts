@@ -17,7 +17,12 @@ export interface Team {
 
 export interface Schedule {
   id: string
+  teamId: string
+  users: User[];
+  messages: object[];
   date: Date;
+  hintId?: string;
+  enableOwner?: User;
 }
 
 
