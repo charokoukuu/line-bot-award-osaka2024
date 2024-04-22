@@ -1,4 +1,4 @@
-import { displayJob, gameAction } from "../helper/util";
+import { gameAction } from "../helper/util";
 import {
   GetGameFindOneByTeam,
   GetGameFindOneByTreasureId,

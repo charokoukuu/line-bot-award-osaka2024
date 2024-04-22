@@ -1,13 +1,10 @@
 import { LinePush } from "../api/app.api";
-import { SetGame, SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { Schedule, Status, User } from "../types/app.type";
-import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
+import { GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
 import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
-import { gameAction } from "../helper/util";
-import schedule from 'node-schedule';
-import { DeleteSchedule } from "../repository/delete.repository";
 import { CronMethods } from "../method";
 
 export const WebhookService = async (userId: string, message: string) => {
