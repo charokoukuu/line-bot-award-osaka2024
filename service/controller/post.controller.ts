@@ -12,7 +12,7 @@ export const WebhookController = async (req: Request, res: Response) => {
     const replyToken = event.replyToken;
     const user = await getUserProfile(userId);
 
-    console.log(user.displayName, message);
+    console.log(user.displayName, userId, message);
 
     try {
         if (event.type === "message") {

@@ -3,6 +3,11 @@ info:
   title: BoTreasure API
   description: BoTreasureに関するAPI仕様書です。
   version: 1.0.0
+servers:
+  - url: https://local-line.run-ticket.com/
+    description: Production server (uses live data)
+  - url: http://localhost:8080/
+    description: Local server (uses test data)
 paths:
   /api/team-building:
     post:

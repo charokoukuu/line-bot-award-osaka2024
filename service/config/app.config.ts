@@ -9,9 +9,10 @@ export const headers = {
 
 // LINE Messaging API
 export const LINE_REPLY_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
-export const LINE_PUSH_ENDPOINT = "https://api.line.me/v2/bot/message/push";
+export const LINE_PUSH_ENDPOINT = "https://api.line.me/v2/bot/message/push/";
 export const LINE_PROFILE_ENDPOINT = "https://api.line.me/v2/bot/profile/";
 export const EXAMPLE_USER_ID = "U13c50130aec615fa42b514f8676589b9";
+export const EXAMPLE_USER2_ID = "U4682039522d6b4e97b4c383c76b702e4";
 
 // Printer API
 export const POS_QR_ENDPOINT = "https://pos.run-ticket.com/qr";

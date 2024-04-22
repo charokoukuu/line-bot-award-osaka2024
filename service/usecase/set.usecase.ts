@@ -5,12 +5,14 @@ import { GetGameFindOneByTeam, GetGameFindOneByUserId, GetTeamFindOneByTeamId, G
 import { hint, interactive, play } from "./play.usecase";
 import { TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
+import { gameAction } from "../helper/util";
 
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
   const user = await GetUserFindOneByUserId(userId);
+  console.log(user);
 
-  if (message.includes("プレイする") && user.teamId) {
+  if (message == "プレイする" && user.teamId) {
     const teamId = user.teamId;
     await play(teamId);
   }
@@ -95,6 +97,14 @@ export const TeamJoiningService = async (data: TeamJoining) => {
     ]);
     return;
   }
+
+  await LinePush(team.hostId, [
+    {
+      type: "text",
+      text: `${data.userName}さんがチームに参加しました`,
+    },
+  ]);
+
   if (teamLength == team.playerCount) {
     await LinePush(team.hostId, [
       {
