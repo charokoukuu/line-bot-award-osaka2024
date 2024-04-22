@@ -1,9 +1,9 @@
 import { LinePush } from "../api/app.api";
-import { SetGame, SetTeam, SetUser } from "../repository/set.repository";
-import { Status, User } from "../types/app.type";
+import { SetGame, SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { Schedule, Status, User } from "../types/app.type";
 import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
-import { TeamBuilding, TeamJoining } from "../types/api.type";
+import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
 import { gameAction } from "../helper/util";
 
@@ -32,20 +32,19 @@ export const WebhookService = async (userId: string, message: string) => {
 
 };
 
-export const SchedulerService = async (delays: number[]) => {
-  console.log("スタート");
-  await Promise.all(
-    delays.map(
-      (delay) =>
-        new Promise((resolve) =>
-          setTimeout(async () => {
-            console.log("時間だよ");
-            resolve("done");
-          }, delay * 1000)
-        )
-    )
-  );
-  console.log("終わり");
+export const SchedulerService = async (schedule: CreateSchedule) => {
+  const currentDate = new Date();
+  const futureDate = new Date(currentDate.getTime() + schedule.timeAfterMinutes * 60000);
+  const newSchedule: Schedule = {
+    id: randomUUID(),
+    teamId: schedule.teamId,
+    users: schedule.users,
+    messages: schedule.messages,
+    date: futureDate,
+    hintId: schedule.hintId,
+    enableOwner: schedule.enableOwner,
+  };
+  await SetSchedule(newSchedule);
 };
 
 

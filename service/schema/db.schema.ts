@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Game, Status, Team, User } from "../types/app.type";
+import { Game, Schedule, Status, Team, User } from "../types/app.type";
 
 /**
  * DB Schema /api/user/{userId}
@@ -36,3 +36,16 @@ export const GameSchema = new Schema<Game>({
     status: { type: String, enum: Object.values(Status) }
 });
 
+
+/**
+ * DB Schema /api/schedule
+ */
+export const ScheduleSchema = new Schema<Schedule>({
+    id: { type: String, required: true },
+    teamId: { type: String, required: true },
+    users: [{ type: UserSchema, required: true }],
+    messages: [{ type: Object, required: true }],
+    date: { type: Date, required: true },
+    hintId: { type: String },
+    enableOwner: { type: UserSchema }
+});

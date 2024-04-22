@@ -228,11 +228,8 @@ paths:
               $ref: '#/components/schemas/Schedule'
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
+          description: Schedule created successfully
+    
 components:
   schemas:
     User:
@@ -322,8 +319,6 @@ components:
     Schedule:
       type: object
       properties:
-        id:
-          type: string
         teamId:
           type: string
         users:
@@ -334,8 +329,8 @@ components:
           type: array
           items:
             type: object
-        date:
-          type: string
+        timeAfterMinutes:
+          type: number
         hintId:
           type: string
         enableOwner:
@@ -345,4 +340,4 @@ components:
         - teamId
         - users
         - messages
-        - date
+        - timeAfterMinutes
