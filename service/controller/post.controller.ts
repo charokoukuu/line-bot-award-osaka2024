@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { Team, User } from "../types/app.type";
 import { CreateSchedule, Scan, TeamBuilding, TeamJoining } from "../types/api.type";
@@ -44,7 +44,7 @@ export const CreateUserController = async (req: Request, res: Response) => {
 export const SchedulerController = async (req: Request, res: Response) => {
     const schedule = req.body as CreateSchedule;
     try {
-        SchedulerService(schedule);
+        await ScheduleService(schedule);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

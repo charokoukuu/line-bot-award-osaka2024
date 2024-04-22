@@ -229,6 +229,20 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/schedule/{id}:
+    delete:
+      tags:
+        - スケジュール削除
+      summary: Delete schedule by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Schedule deleted successfully
     
 components:
   schemas:

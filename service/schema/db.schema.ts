@@ -45,7 +45,7 @@ export const ScheduleSchema = new Schema<Schedule>({
     teamId: { type: String, required: true },
     users: [{ type: UserSchema, required: true }],
     messages: [{ type: Object, required: true }],
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     hintId: { type: String },
     enableOwner: { type: UserSchema }
 });

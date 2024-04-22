@@ -8,7 +8,7 @@ export const PostMethods = () => {
 
     app.post("/api/user", CreateUserController);
     //スケジューラ
-    app.post("/api/scheduler", SchedulerController);
+    app.post("/api/schedule", SchedulerController);
 
     //チーム登録
     app.post("/api/team-building", TeamBuildingController);

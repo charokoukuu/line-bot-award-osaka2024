@@ -5,7 +5,7 @@ import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserI
 import { hint, chat, play } from "./game.usecase";
 import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
-import { gameAction } from "../helper/util";
+import { gameAction, convertTimestamp } from "../helper/util";
 
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
@@ -32,7 +32,7 @@ export const WebhookService = async (userId: string, message: string) => {
 
 };
 
-export const SchedulerService = async (schedule: CreateSchedule) => {
+export const ScheduleService = async (schedule: CreateSchedule) => {
   const currentDate = new Date();
   const futureDate = new Date(currentDate.getTime() + schedule.timeAfterMinutes * 60000);
   const newSchedule: Schedule = {
@@ -40,7 +40,7 @@ export const SchedulerService = async (schedule: CreateSchedule) => {
     teamId: schedule.teamId,
     users: schedule.users,
     messages: schedule.messages,
-    date: futureDate,
+    date: convertTimestamp(futureDate),
     hintId: schedule.hintId,
     enableOwner: schedule.enableOwner,
   };
