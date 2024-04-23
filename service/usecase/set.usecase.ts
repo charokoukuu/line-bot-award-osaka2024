@@ -60,7 +60,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
     name: data.userName,
     teamId,
   });
-  await SetTeam({
+  const id = await SetTeam({
     teamId,
     hostId: data.userId,
     name: data.teamName,
@@ -70,7 +70,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
     keyword: data.keyword,
   });
 
-  LinePush(data.userId, [
+  await LinePush(data.userId, [
     {
       type: "text",
       text: "チームが作成されました",
@@ -80,6 +80,8 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
       text: "チーム名: " + data.teamName,
     },
   ]);
+
+  return id;
 };
 
 export const TeamJoiningService = async (data: TeamJoining) => {

@@ -55,8 +55,8 @@ export const SchedulerController = async (req: Request, res: Response) => {
 export const TeamBuildingController = async (req: Request, res: Response) => {
     const teamBuildingData = req.body as TeamBuilding;
     try {
-        await TeamBuildingService(teamBuildingData)
-        res.sendStatus(200);
+        const id = await TeamBuildingService(teamBuildingData)
+        res.send(id);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);

@@ -7,7 +7,7 @@ export const SetTeam = async (team: Team) => {
     await TeamModel.updateOne({ teamId: team.teamId }, team, {
       upsert: true,
     });
-    return "success";
+    return team.teamId;
   } catch (err) {
     console.error(err);
     return err;

@@ -11,6 +11,7 @@ import { LinePush } from "../api/app.api";
 import { randomUUID } from "crypto";
 import { chatMessage } from "../messages/chatMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
+import { findTreasureMessage } from "../messages/findTreasureMessage";
 
 export const play = async (teamId: string) => {
   const users = await GetUsersFindByTeamId(teamId);
@@ -104,10 +105,10 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         },
       ]);
     })
-    game.status = Status.CHAT;
 
+    game.status = Status.CHAT;
     await gameAction(game.allUsers, async (user) => {
-      await LinePush(user.userId, [chatMessage]);
+      await LinePush(user.userId, [chatMessage()]);
     });
   }
   await SetGame(game);
@@ -140,18 +141,8 @@ export const ScanService = async (userName: string, treasureId: string) => {
   }
 
   const notScanTreasures = game.treasures.filter((treasure) => !treasure.isScanned).length;
-  const messages = [
-    {
-      type: "text",
-      text: `${userName}が宝を見つけました`,
-    }
-  ]
-  if (notScanTreasures > 0) messages.push({
-    type: "text",
-    text: `残りの宝の数: ${notScanTreasures}`,
-  })
   await gameAction(game.allUsers, async (user) => {
-    await LinePush(user.userId, messages);
+    await LinePush(user.userId, [findTreasureMessage(userName, notScanTreasures)]);
   });
   if (notScanTreasures == 0) {
     await gameAction(game.allUsers, async (user) => {
