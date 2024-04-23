@@ -294,12 +294,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
+        arrestedMembers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        disabledScanMembers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
         hints:
           type: array
           items:
             type: object
             properties:
-              hint:
+              id:
+                type: string
+              content:
                 type: string
               isPrinted:
                 type: boolean

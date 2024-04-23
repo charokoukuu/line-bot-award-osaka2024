@@ -26,6 +26,8 @@ export const play = async (teamId: string) => {
     owners: owners,
     seekers: seekers,
     hints: [],
+    arrestedMembers: [],
+    disabledScanMembers: [],
     treasures: [...new Array(team.treasureCount)].map((_, i) => ({
       id: randomUUID(),
       isScanned: false,
@@ -79,7 +81,8 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     return;
   }
   game.hints.push({
-    hint: hint,
+    id: randomUUID(),
+    content: hint,
     isPrinted: false,
   });
   await gameAction(game.allUsers, async (user) => {
