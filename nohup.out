@@ -3054,3 +3054,987 @@
 2024-04-23T03:10:39Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
 2024-04-23T03:10:39Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
 2024-04-23T03:10:52Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T03:13:35Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:13:35Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:13:35Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:13:50Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T03:14:30Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:14:30Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:14:30Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T03:14:56Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T03:15:49Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:15:49Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:15:49Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:16:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T03:16:13Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:16:13Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:16:13Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T03:16:43Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T05:17:44Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:44Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:44Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:44Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:44Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:44Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:44Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:44Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:44Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:44Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:44Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:44Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:44Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:44Z ERR Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:44Z ERR Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:44Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:45Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T05:17:45Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:45Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:45Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:45Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:45Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:45Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:45Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:45Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:45Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:45Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:45Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:45Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:45Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:45Z ERR Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:45Z ERR Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:45Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:45Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T05:17:46Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T05:17:46Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T05:17:46Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T05:17:46Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T05:17:46Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T05:17:46Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:46Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:46Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:46Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:46Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.47
+2024-04-23T05:17:46Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T05:17:46Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T05:17:46Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T05:17:46Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T05:17:46Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T05:17:47Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T05:17:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:50Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.192.57
+2024-04-23T05:17:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:50Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T05:17:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:50Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.200.73
+2024-04-23T05:17:50Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T05:17:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T05:17:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T05:17:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T05:17:52Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T05:17:53Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T05:17:53Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T06:18:48Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.113:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T06:18:48Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T06:18:48Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T06:18:48Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T06:18:48Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T06:18:48Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T06:18:48Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T06:18:48Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T06:18:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.113:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T06:18:51Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T07:19:45Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T07:19:46Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T08:20:44Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.107:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T08:20:44Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T08:20:44Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T08:20:44Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.63
+2024-04-23T08:20:44Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T08:20:44Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.200.63
+2024-04-23T08:20:44Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T08:20:44Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T08:20:44Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T08:20:45Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.107:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T08:20:47Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T08:20:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T09:09:52Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.63
+2024-04-23T09:09:52Z INF Retrying connection in up to 16s connIndex=2 event=0 ip=198.41.200.63
+2024-04-23T09:09:52Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:09:52Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:09:52Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T09:09:52Z INF Retrying connection in up to 16s connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T09:09:52Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.7
+2024-04-23T09:09:52Z INF Retrying connection in up to 16s connIndex=3 event=0 ip=198.41.192.7
+2024-04-23T09:09:57Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T09:10:01Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T09:10:04Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T09:10:04Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T09:10:11Z INF Registered tunnel connection connIndex=2 connection=d5dc5301-a766-4c5c-9ef3-7090a14981ac event=0 ip=198.41.192.37 location=nrt05 protocol=quic
+2024-04-23T09:10:11Z INF Registered tunnel connection connIndex=1 connection=53196e6b-9e03-4a6a-b987-aab6dceec806 event=0 ip=198.41.200.33 location=nrt07 protocol=quic
+2024-04-23T09:10:11Z INF Registered tunnel connection connIndex=3 connection=4a69d504-b7f9-4974-b951-8bcc4ae7cb87 event=0 ip=198.41.200.53 location=nrt07 protocol=quic
+2024-04-23T09:10:11Z INF Registered tunnel connection connIndex=0 connection=1026a720-5453-445a-a263-7be79b9abde9 event=0 ip=198.41.192.227 location=nrt05 protocol=quic
+2024-04-23T09:10:49Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:10:49Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:10:49Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:10:51Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:10:51Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:10:51Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:11:08Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:11:15Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:11:35Z INF Registered tunnel connection connIndex=0 connection=0e613a12-817b-46e8-9fd2-56033aea7a60 event=0 ip=198.41.192.57 location=nrt01 protocol=quic
+2024-04-23T09:11:35Z INF Registered tunnel connection connIndex=2 connection=8ca3f525-67fb-4203-ab4c-15ba5a9887cf event=0 ip=198.41.200.23 location=nrt07 protocol=quic
+2024-04-23T09:11:35Z INF Registered tunnel connection connIndex=3 connection=72cd7de3-4030-420d-b60a-bc0f8d895b15 event=0 ip=198.41.192.107 location=nrt01 protocol=quic
+2024-04-23T09:11:35Z INF Registered tunnel connection connIndex=1 connection=53f7c20f-47ca-445c-8def-ed7254577305 event=0 ip=198.41.200.63 location=nrt07 protocol=quic
+2024-04-23T09:13:47Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:13:47Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:13:47Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:14:03Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:14:44Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:14:44Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:14:44Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:14:53Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:15:24Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:15:24Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:15:24Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:15:36Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:17:15Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:17:15Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:17:15Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:17:27Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:18:13Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:18:13Z ERR writing call: timeout: no recent network activity
+2024-04-23T09:18:13Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:18:13Z ERR writing finish: timeout: no recent network activity
+2024-04-23T09:18:13Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:18:13Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:18:15Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:18:16Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:18:16Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:18:16Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:18:16Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:18:16Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:18:17Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.57
+2024-04-23T09:18:17Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.57
+2024-04-23T09:18:17Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.57
+2024-04-23T09:18:17Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.57
+2024-04-23T09:18:17Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:18:20Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:18:20Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:18:20Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:18:20Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:18:21Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.33
+2024-04-23T09:18:21Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2024-04-23T09:18:21Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2024-04-23T09:18:21Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.33
+2024-04-23T09:18:21Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T09:18:22Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:18:25Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T09:18:25Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T09:18:25Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T09:18:25Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T09:18:25Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:18:33Z INF Registered tunnel connection connIndex=1 connection=e3123f5c-cb78-43bf-9d6b-a929520d4e30 event=0 ip=198.41.200.63 location=nrt07 protocol=quic
+2024-04-23T09:18:35Z INF Registered tunnel connection connIndex=0 connection=ec6ceaf6-ac9d-4e5f-b12d-aa33c6403b76 event=0 ip=198.41.192.67 location=nrt01 protocol=quic
+2024-04-23T09:18:36Z INF Registered tunnel connection connIndex=3 connection=89a20dc9-9c0d-42d4-ab2d-62420b2b4810 event=0 ip=198.41.200.73 location=nrt08 protocol=quic
+2024-04-23T09:18:41Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:18:41Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:18:41Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:18:42Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:20:16Z WRN Failed to serve quic connection error="already connected to this server, trying another address" connIndex=2 event=0 ip=198.41.200.33
+2024-04-23T09:20:16Z WRN Unable to establish connection. error="already connected to this server, trying another address" connIndex=2 event=0 ip=198.41.200.33
+2024-04-23T09:20:16Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.200.33
+2024-04-23T09:20:16Z INF Registered tunnel connection connIndex=3 connection=db1a0a3a-8434-4002-ab31-62c4d0a7ffc5 event=0 ip=198.41.192.67 location=nrt01 protocol=quic
+2024-04-23T09:20:17Z WRN Connection terminated error="already connected to this server, trying another address" connIndex=2
+2024-04-23T09:20:17Z INF Registered tunnel connection connIndex=0 connection=2e69daa8-9148-4c46-be8d-7e4e02781780 event=0 ip=198.41.192.227 location=nrt05 protocol=quic
+2024-04-23T09:20:39Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.67
+2024-04-23T09:20:39Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.67
+2024-04-23T09:20:39Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.67
+2024-04-23T09:20:39Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.67
+2024-04-23T09:20:39Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:22:34Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:22:34Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:22:34Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:22:44Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:22:56Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:22:56Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:22:56Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:23:14Z ERR Failed to serve quic connection error="context canceled" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:23:14Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:23:15Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:23:37Z ERR Connection terminated error="context canceled" connIndex=0
+2024-04-23T09:23:47Z INF Registered tunnel connection connIndex=3 connection=5dbbb875-b4a8-4ee4-9ed3-0c2d8da294cd event=0 ip=198.41.192.167 location=nrt05 protocol=quic
+2024-04-23T09:23:47Z INF Registered tunnel connection connIndex=2 connection=fff1c71b-5ae8-4312-aeb7-7f34cca7e566 event=0 ip=198.41.200.23 location=nrt07 protocol=quic
+2024-04-23T09:24:54Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:24:54Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:24:54Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:24:54Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.227
+2024-04-23T09:24:54Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T09:24:54Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T09:24:54Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T09:24:54Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.167
+2024-04-23T09:24:54Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:24:54Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:24:54Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:24:54Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:24:55Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:24:55Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:24:55Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:25:05Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:25:05Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:25:05Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:25:05Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:25:07Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:25:08Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:25:08Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:25:08Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:25:08Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:25:09Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T09:25:21Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.67
+2024-04-23T09:25:21Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.67
+2024-04-23T09:25:21Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.67
+2024-04-23T09:25:21Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.67
+2024-04-23T09:25:23Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:25:28Z INF Registered tunnel connection connIndex=2 connection=7c1d1e58-b16c-401c-85a7-b6df57e2afb7 event=0 ip=198.41.192.57 location=nrt05 protocol=quic
+2024-04-23T09:25:28Z INF Registered tunnel connection connIndex=0 connection=89e8bc33-5089-479f-9eec-046d7bc1cea0 event=0 ip=198.41.192.107 location=nrt05 protocol=quic
+2024-04-23T09:25:33Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:25:33Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:25:33Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:25:33Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:25:35Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:25:36Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:25:36Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:25:36Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:25:51Z WRN Failed to serve quic connection error="already connected to this server, trying another address" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:25:51Z WRN Unable to establish connection. error="already connected to this server, trying another address" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:25:51Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:25:53Z WRN Connection terminated error="already connected to this server, trying another address" connIndex=3
+2024-04-23T09:25:54Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:26:02Z INF Registered tunnel connection connIndex=3 connection=a42bca99-c8d2-4042-b5aa-776f4ac25472 event=0 ip=198.41.200.233 location=nrt08 protocol=quic
+2024-04-23T09:27:22Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:27:22Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:27:22Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:27:40Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:28:44Z INF Registered tunnel connection connIndex=2 connection=d1864279-50a3-46a4-b669-3cbc087aa166 event=0 ip=198.41.200.53 location=nrt08 protocol=quic
+2024-04-23T09:28:44Z INF Registered tunnel connection connIndex=3 connection=7b1c6a0a-bdf6-4533-93e7-059f98b5371d event=0 ip=198.41.192.107 location=nrt01 protocol=quic
+2024-04-23T09:28:44Z INF Registered tunnel connection connIndex=1 connection=54715cab-37b9-462a-a6b1-8942f771da6e event=0 ip=198.41.200.113 location=nrt07 protocol=quic
+2024-04-23T09:28:44Z INF Registered tunnel connection connIndex=0 connection=44e530e8-bf7c-464f-8cea-d9bb5fdac5ee event=0 ip=198.41.192.7 location=nrt05 protocol=quic
+2024-04-23T09:29:15Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:29:15Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:29:15Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:29:24Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:32:39Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:32:39Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:32:39Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:32:53Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:33:52Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:33:52Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:33:52Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:34:17Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:35:55Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:35:55Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:35:55Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:35:57Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:38:09Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:38:09Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:38:09Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:38:19Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:38:36Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T09:38:36Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T09:38:36Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T09:38:36Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.113
+2024-04-23T09:38:36Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:38:36Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:38:36Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:38:36Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:38:36Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:38:36Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.233
+2024-04-23T09:38:36Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.233
+2024-04-23T09:38:36Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.233
+2024-04-23T09:38:36Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.233
+2024-04-23T09:38:36Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.53
+2024-04-23T09:38:36Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.53
+2024-04-23T09:38:36Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.200.53
+2024-04-23T09:38:36Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.53
+2024-04-23T09:38:36Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:38:36Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:38:36Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:38:36Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T09:38:37Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:38:37Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:38:37Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:38:37Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:38:37Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T09:38:38Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T09:38:38Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T09:38:38Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T09:38:38Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.107
+2024-04-23T09:38:38Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:38:38Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:38:38Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:38:38Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:38:38Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:38:38Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:38:38Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:38:38Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T09:38:39Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:38:39Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T09:38:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:38:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:38:43Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:38:43Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:38:45Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2024-04-23T09:38:46Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2024-04-23T09:38:57Z INF Registered tunnel connection connIndex=2 connection=79a763ec-43db-4626-96f8-039611686b47 event=0 ip=198.41.192.107 location=nrt01 protocol=quic
+2024-04-23T09:38:57Z INF Registered tunnel connection connIndex=0 connection=1d286a69-5843-4aba-abb6-d524fc467d12 event=0 ip=198.41.192.47 location=nrt05 protocol=quic
+2024-04-23T09:38:57Z INF Registered tunnel connection connIndex=3 connection=7a4cc154-9ace-4f12-80b9-d5e1744dafe4 event=0 ip=198.41.200.113 location=nrt08 protocol=quic
+2024-04-23T09:38:57Z INF Registered tunnel connection connIndex=1 connection=7187692d-eb8c-499c-a006-f9582e803a22 event=0 ip=198.41.200.23 location=nrt07 protocol=quic
+2024-04-23T09:39:14Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T09:39:14Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T09:39:14Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T09:39:14Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T09:39:15Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.23
+2024-04-23T09:39:15Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2024-04-23T09:39:15Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2024-04-23T09:39:15Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.23
+2024-04-23T09:39:15Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T09:39:16Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T09:39:16Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.107
+2024-04-23T09:39:16Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2024-04-23T09:39:16Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2024-04-23T09:39:16Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.107
+2024-04-23T09:39:17Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T09:39:17Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T09:39:17Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T09:39:17Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2024-04-23T09:39:17Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2024-04-23T09:39:17Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2024-04-23T09:39:22Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.27
+2024-04-23T09:39:22Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:39:22Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.27
+2024-04-23T09:39:22Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:39:22Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:39:22Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.73
+2024-04-23T09:39:22Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:39:22Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:39:23Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2024-04-23T09:39:26Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2024-04-23T09:39:26Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2024-04-23T09:39:26Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0
+2024-04-23T09:39:36Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2024-04-23T09:39:36Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:39:36Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.53
+2024-04-23T09:39:36Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:39:36Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:39:36Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:39:36Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T09:39:36Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T09:39:38Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2024-04-23T09:39:38Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2024-04-23T09:39:41Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2024-04-23T09:39:42Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0
+2024-04-23T09:40:29Z INF Registered tunnel connection connIndex=1 connection=fbb05781-0074-4c41-b944-a65292ada780 event=0 ip=198.41.200.233 location=nrt08 protocol=quic
+2024-04-23T09:40:29Z INF Registered tunnel connection connIndex=2 connection=4c065d96-52c7-45b2-9c8d-2b0946768272 event=0 ip=198.41.192.37 location=nrt05 protocol=quic
+2024-04-23T09:40:29Z INF Registered tunnel connection connIndex=3 connection=d6a81fed-a327-4282-aee1-9e5eb3f19bbd event=0 ip=198.41.200.193 location=nrt07 protocol=quic
+2024-04-23T09:40:29Z INF Registered tunnel connection connIndex=0 connection=f1b493eb-ddb2-42e3-b681-db8859c581dd event=0 ip=198.41.192.77 location=nrt01 protocol=quic
+2024-04-23T09:40:46Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:40:46Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:40:46Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:40:47Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:40:55Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:40:55Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:40:55Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:41:15Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:42:52Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:42:52Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:42:52Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:43:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:43:24Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:43:24Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:43:24Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:43:24Z INF Registered tunnel connection connIndex=3 connection=5f13cb97-53bf-4b58-991c-85aad3174932 event=0 ip=198.41.192.227 location=nrt01 protocol=quic
+2024-04-23T09:43:25Z INF Registered tunnel connection connIndex=1 connection=5fd2ddbf-b136-4ae0-9bca-4c93d413912c event=0 ip=198.41.200.193 location=nrt08 protocol=quic
+2024-04-23T09:43:25Z INF Registered tunnel connection connIndex=2 connection=268c2184-154a-43a4-a196-7b5de36d0d3d event=0 ip=198.41.200.23 location=nrt07 protocol=quic
+2024-04-23T09:43:25Z INF Registered tunnel connection connIndex=0 connection=61eea449-56b3-4d69-9a55-cd5f12d0bfb6 event=0 ip=198.41.192.27 location=nrt05 protocol=quic
+2024-04-23T09:43:26Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:45:54Z ERR Failed to serve quic connection error="context canceled" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:45:54Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:45:58Z ERR Connection terminated error="context canceled" connIndex=0
+2024-04-23T09:48:12Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:48:12Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:48:12Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T09:50:26Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T09:50:26Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:50:26Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:50:26Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:26Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:26Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:26Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:26Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:26Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:26Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:26Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:53546->[::1]:53: read: connection refused"
+2024-04-23T09:50:26Z WRN Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T09:50:26Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:57605->[::1]:53: read: connection refused"
+2024-04-23T09:50:26Z WRN Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T09:50:26Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:26Z ERR Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:26Z ERR Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:26Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:26Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:54196->[::1]:53: read: connection refused"
+2024-04-23T09:50:26Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T09:50:27Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T09:50:27Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T09:50:27Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T09:50:27Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T09:50:27Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T09:50:27Z ERR Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T09:50:27Z ERR Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T09:50:27Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T09:50:27Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:50139->[::1]:53: read: connection refused"
+2024-04-23T09:50:27Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T09:50:27Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:57076->[::1]:53: read: connection refused"
+2024-04-23T09:50:27Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T09:50:27Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:59711->[::1]:53: read: connection refused"
+2024-04-23T09:50:27Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T09:50:28Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:51238->[::1]:53: read: connection refused"
+2024-04-23T09:50:28Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T09:50:28Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:28Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:28Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:28Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.233
+2024-04-23T09:50:28Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T09:50:28Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.193
+2024-04-23T09:50:28Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:28Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T09:50:28Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T09:50:29Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:64272->[::1]:53: read: connection refused"
+2024-04-23T09:50:29Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T09:50:29Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:50:29Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T09:50:30Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T09:50:31Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:50822->[::1]:53: read: connection refused"
+2024-04-23T09:50:31Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T09:50:43Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:50:43Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:50:43Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:51:02Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:51:03Z INF Registered tunnel connection connIndex=2 connection=1a70f2d4-49bc-4de7-bc23-20a17834f336 event=0 ip=198.41.192.77 location=nrt01 protocol=quic
+2024-04-23T09:51:04Z INF Registered tunnel connection connIndex=1 connection=4d891bdb-795e-40cc-8553-96d57f850544 event=0 ip=198.41.200.13 location=nrt07 protocol=quic
+2024-04-23T09:51:04Z INF Registered tunnel connection connIndex=3 connection=569c641f-087c-4625-b5ba-0840abadd6d2 event=0 ip=198.41.200.33 location=nrt08 protocol=quic
+2024-04-23T09:51:04Z INF Registered tunnel connection connIndex=0 connection=e95b93a4-d416-4abe-b1a9-73f2351e8686 event=0 ip=198.41.192.7 location=nrt05 protocol=quic
+2024-04-23T09:51:35Z INF Registered tunnel connection connIndex=2 connection=e24931a9-4bd2-4322-82e4-563ae9e2b687 event=0 ip=198.41.200.23 location=nrt07 protocol=quic
+2024-04-23T09:51:35Z INF Registered tunnel connection connIndex=3 connection=7017d119-9d1c-40e7-9fd2-653798f53e74 event=0 ip=198.41.192.227 location=nrt05 protocol=quic
+2024-04-23T09:51:36Z INF Registered tunnel connection connIndex=0 connection=4afaab15-52ae-472a-9421-e1727e8d6777 event=0 ip=198.41.192.27 location=nrt05 protocol=quic
+2024-04-23T09:51:36Z INF Registered tunnel connection connIndex=1 connection=00645e2b-31ff-4856-b46b-63e0f298d808 event=0 ip=198.41.200.193 location=nrt07 protocol=quic
+2024-04-23T09:54:33Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:54:33Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:54:33Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:54:40Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:54:55Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:54:55Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:54:55Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:55:06Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:59:05Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:59:05Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:59:05Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:59:24Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:59:28Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:59:28Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:59:28Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T09:59:35Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T09:59:41Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:59:41Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T09:59:41Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:00:11Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:01:16Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:01:16Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:01:16Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:01:28Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:02:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:02:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:02:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:03:10Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:03:57Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:03:57Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: can't assign requested address" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:03:57Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: can't assign requested address" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:03:57Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:03:57Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:57Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: can't assign requested address" connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:57Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: can't assign requested address" connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:57Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:57Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:03:57Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:03:57Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:03:57Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:03:57Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:03:57Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:03:57Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:03:57Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:03:57Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:51328->[::1]:53: read: connection refused"
+2024-04-23T10:03:57Z WRN Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: can't assign requested address" connIndex=3
+2024-04-23T10:03:57Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:03:57Z WRN Failed to serve quic connection error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:03:57Z WRN Serve tunnel error error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:03:57Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:03:58Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:50998->[::1]:53: read: connection refused"
+2024-04-23T10:03:58Z WRN Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: can't assign requested address" connIndex=3
+2024-04-23T10:03:58Z WRN Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:58Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.192.227
+2024-04-23T10:03:58Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:03:58Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:03:58Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:03:58Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:03:58Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:03:58Z ERR Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:03:58Z ERR Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:03:58Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:03:58Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:61571->[::1]:53: read: connection refused"
+2024-04-23T10:03:58Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.227:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:03:58Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:63820->[::1]:53: read: connection refused"
+2024-04-23T10:03:58Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:03:58Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:03:58Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:03:58Z ERR Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:03:58Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:03:58Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:56272->[::1]:53: read: connection refused"
+2024-04-23T10:03:58Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:03:58Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:53073->[::1]:53: read: connection refused"
+2024-04-23T10:03:58Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:03:59Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:63340->[::1]:53: read: connection refused"
+2024-04-23T10:03:59Z ERR Connection terminated error="failed to accept QUIC stream: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:03:59Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:56750->[::1]:53: read: connection refused"
+2024-04-23T10:03:59Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:04:00Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:63268->[::1]:53: read: connection refused"
+2024-04-23T10:04:00Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:04:16Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:04:16Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:04:16Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:04:16Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:16Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:04:16Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:16Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:04:16Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.13
+2024-04-23T10:04:16Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:04:16Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:04:18Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:04:19Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:04:22Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:49835->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:22Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:25Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:49835->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:04:29Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.113:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T10:04:29Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T10:04:29Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T10:04:29Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.192.37
+2024-04-23T10:04:29Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T10:04:29Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.200.113
+2024-04-23T10:04:29Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.63
+2024-04-23T10:04:29Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.77
+2024-04-23T10:04:30Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:58947->[::1]:53: read: connection refused"
+2024-04-23T10:04:30Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:04:32Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:63720->[::1]:53: read: connection refused"
+2024-04-23T10:04:32Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:04:32Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:04:34Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.113:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:04:54Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.53
+2024-04-23T10:04:54Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:54Z INF Retrying connection in up to 16s connIndex=1 event=0 ip=198.41.200.53
+2024-04-23T10:04:54Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T10:04:54Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:04:54Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.192.7
+2024-04-23T10:04:54Z INF Retrying connection in up to 16s connIndex=2 event=0 ip=198.41.192.57
+2024-04-23T10:04:54Z INF Retrying connection in up to 16s connIndex=3 event=0 ip=198.41.200.33
+2024-04-23T10:04:57Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.57:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:04:57Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:05:02Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:05:03Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:05:03Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:05:03Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.200.23
+2024-04-23T10:05:03Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.193
+2024-04-23T10:05:03Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.107:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T10:05:03Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.192.107
+2024-04-23T10:05:03Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:05:03Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.27
+2024-04-23T10:05:03Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:52107->[::1]:53: read: connection refused"
+2024-04-23T10:05:03Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:59530->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:05:04Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:58313->[::1]:53: read: connection refused"
+2024-04-23T10:05:04Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:05:04Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:60205->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:05:05Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:55216->198.41.192.107:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:05:06Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp4 0.0.0.0:54020->198.41.200.193:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:05:58Z INF Registered tunnel connection connIndex=3 connection=648e553e-2d38-4117-b608-aaa1cdd761c3 event=0 ip=198.41.200.53 location=nrt07 protocol=quic
+2024-04-23T10:05:58Z INF Registered tunnel connection connIndex=0 connection=90d74d42-d0a7-4b22-bfb9-2b887b502dd9 event=0 ip=198.41.192.37 location=nrt01 protocol=quic
+2024-04-23T10:05:58Z INF Registered tunnel connection connIndex=2 connection=9d70a735-540e-4879-93a4-60428f8c462b event=0 ip=198.41.192.77 location=nrt05 protocol=quic
+2024-04-23T10:05:58Z INF Registered tunnel connection connIndex=1 connection=ef3f80d3-0d31-463e-8320-daf41f8bc6e9 event=0 ip=198.41.200.43 location=nrt08 protocol=quic
+2024-04-23T10:06:50Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:06:50Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:06:50Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:06:59Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:08:36Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:08:36Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:08:36Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:09:02Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:09:14Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:09:14Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:09:14Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:09:29Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:13:02Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:13:02Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:13:02Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:13:02Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:13:02Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:52081->[::1]:53: read: connection refused"
+2024-04-23T10:13:02Z WRN Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:53148->198.41.192.77:7844: sendmsg: network is unreachable" connIndex=2
+2024-04-23T10:13:02Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:13:02Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:13:02Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:13:02Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:13:02Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:13:02Z WRN Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:13:02Z WRN Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:13:02Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:13:02Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:13:02Z ERR Failed to serve quic connection error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:13:02Z ERR Serve tunnel error error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:13:02Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:13:03Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:54000->[::1]:53: read: connection refused"
+2024-04-23T10:13:03Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:55732->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=0
+2024-04-23T10:13:03Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:51042->[::1]:53: read: connection refused"
+2024-04-23T10:13:03Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:52375->198.41.200.43:7844: sendmsg: network is unreachable" connIndex=1
+2024-04-23T10:13:04Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:56211->[::1]:53: read: connection refused"
+2024-04-23T10:13:04Z ERR Connection terminated error="INTERNAL_ERROR (local): write udp4 0.0.0.0:60463->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3
+2024-04-23T10:15:57Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:15:57Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:15:57Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.53
+2024-04-23T10:15:57Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:15:57Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:15:57Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.43
+2024-04-23T10:15:57Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:15:57Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:15:57Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.77
+2024-04-23T10:15:57Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:15:57Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:15:57Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:16:04Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2024-04-23T10:16:04Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2024-04-23T10:16:04Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2024-04-23T10:16:04Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2024-04-23T10:16:14Z INF Registered tunnel connection connIndex=2 connection=76fcf0b9-ba73-4dff-b88f-7f36b5e200d5 event=0 ip=198.41.200.63 location=kix05 protocol=quic
+2024-04-23T10:16:14Z INF Registered tunnel connection connIndex=1 connection=180e82e9-264a-4650-8e3e-fcf76f3dc4a6 event=0 ip=198.41.200.23 location=kix05 protocol=quic
+2024-04-23T10:16:14Z INF Registered tunnel connection connIndex=3 connection=25814183-94f7-43d8-8b20-ba0e2f7b54bc event=0 ip=198.41.192.227 location=kix03 protocol=quic
+2024-04-23T10:16:14Z INF Registered tunnel connection connIndex=0 connection=2f2be58a-8323-4b06-8a13-c08a8a35f29b event=0 ip=198.41.192.167 location=kix03 protocol=quic
+2024-04-23T10:16:28Z INF Registered tunnel connection connIndex=2 connection=2cf1418e-69a1-4e0e-b954-8fbf999ec877 event=0 ip=198.41.192.77 location=kix03 protocol=quic
+2024-04-23T10:16:28Z INF Registered tunnel connection connIndex=0 connection=48695404-2e91-453b-bfaa-a78144161739 event=0 ip=198.41.192.37 location=kix03 protocol=quic
+2024-04-23T10:16:28Z INF Registered tunnel connection connIndex=3 connection=e540e413-da74-4b29-a46a-073772501980 event=0 ip=198.41.200.33 location=kix05 protocol=quic
+2024-04-23T10:16:28Z INF Registered tunnel connection connIndex=1 connection=3a29c5fe-e106-4aa5-a437-a6af6b5ad380 event=0 ip=198.41.200.113 location=kix05 protocol=quic
+2024-04-23T10:18:49Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:18:49Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:18:49Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:19:03Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:19:39Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:19:39Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:19:39Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:19:53Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:20:01Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:20:01Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:20:01Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:20:19Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:20:25Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:20:25Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:20:25Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:20:35Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:21:36Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:21:36Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:21:36Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:21:39Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:25:03Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:03Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:03Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:06Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:25:16Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:25:16Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:25:16Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:25:17Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:25:18Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:18Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:18Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:25:23Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:26:52Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:26:52Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:26:52Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:27:12Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:29:10Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:29:10Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:29:10Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:29:31Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:30:16Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:30:16Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:30:16Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:30:31Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:31:01Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=2 event=1 ingressRule=0 originService=http://localhost:8080
+2024-04-23T10:31:01Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=2 dest=https://local-line.run-ticket.com/test event=0 ip=198.41.200.63 type=http
+2024-04-23T10:34:23Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:34:23Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:34:23Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:34:32Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:34:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:34:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:34:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:35:21Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:36:43Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:36:43Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:36:43Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:37:00Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:37:08Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:37:08Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:37:08Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:37:35Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:38:34Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:38:34Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:38:34Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:38:58Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:42:15Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:15Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:15Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:26Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:42:41Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:41Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:41Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:42:49Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:43:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:43:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:43:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:44:09Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:46:36Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:46:36Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:46:36Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:46:42Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:46:42Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:46:42Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:46:54Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:46:54Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:49:37Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:49:37Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:49:37Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:49:55Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:49:55Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:49:55Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:49:55Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:50:26Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:51:34Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:51:34Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:51:34Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:51:54Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:55:37Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:55:37Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:55:37Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:56:00Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:56:31Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:56:31Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:56:31Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T10:56:44Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T10:59:17Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:59:17Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:59:17Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T10:59:41Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:00:01Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:00:01Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:00:01Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:00:29Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:01:01Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:01:01Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:01:01Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:01:20Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:04:29Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:04:29Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:04:29Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:04:45Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:05:01Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:05:01Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:05:01Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:05:07Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:05:07Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:05:07Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:05:12Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:05:31Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:08:14Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:08:14Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:08:14Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:08:14Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:10:29Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:10:29Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:10:29Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:10:53Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:12:05Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:12:05Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:12:05Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:12:13Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:14:03Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:14:03Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:14:03Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:14:10Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:16:05Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:16:05Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:16:05Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:16:10Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:17:45Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:17:45Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:17:45Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:18:07Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:19:17Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:19:17Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:19:17Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:19:46Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:21:11Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:21:11Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:21:11Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:21:31Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:22:21Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:22:21Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:22:21Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:22:50Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:23:31Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:23:31Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:23:31Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:23:36Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:26:36Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:26:36Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:26:36Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:27:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:27:21Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:27:21Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:27:21Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:27:23Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:29:03Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:29:03Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:29:03Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:29:16Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:31:26Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:31:26Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:31:26Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:31:44Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:34:03Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:34:03Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:34:03Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:34:29Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:35:33Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:35:33Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:35:33Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:35:43Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:35:43Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:35:43Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:35:55Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:36:08Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:38:14Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:38:14Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:38:14Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:38:15Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:38:30Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:38:30Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:38:30Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:38:56Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:42:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:42:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:42:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:43:12Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:44:14Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:44:14Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:44:14Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:44:21Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:44:21Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:44:21Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:44:25Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:44:45Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:46:46Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:46:46Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:46:46Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:47:11Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:49:44Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:49:44Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:49:44Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:49:45Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:51:10Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:51:10Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:51:10Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:51:24Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:52:17Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:52:17Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:52:17Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:52:42Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:55:07Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:55:07Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:55:07Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:55:08Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:56:06Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:56:06Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:56:06Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:56:16Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:57:12Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:57:12Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:57:12Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:57:29Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:57:49Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:57:49Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:57:49Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T11:58:08Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T11:59:31Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:59:31Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:59:31Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T11:59:49Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:01:19Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:01:19Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:01:19Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:01:45Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:03:00Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:03:00Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:03:00Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:03:20Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:03:20Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:03:20Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:03:20Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:03:46Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:03:55Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:03:55Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:03:55Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:04:15Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:04:25Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:04:25Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:04:25Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:04:34Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:05:42Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:05:42Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:05:42Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:05:46Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:06:16Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:06:16Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:06:16Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:06:40Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:07:04Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:07:04Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:07:04Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:07:20Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:11:57Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:11:57Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:11:57Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:11:58Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:11:58Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:11:58Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.200.233
+2024-04-23T12:12:25Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:12:27Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:15:56Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:15:56Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:15:56Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:16:00Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0
+2024-04-23T12:16:38Z ERR Failed to serve quic connection error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:16:38Z ERR Register tunnel error from server side error="Unauthorized: Failed to get tunnel" connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:16:38Z INF Retrying connection in up to 1m4s connIndex=0 event=0 ip=198.41.192.37
+2024-04-23T12:17:05Z ERR Connection terminated error="Unauthorized: Failed to get tunnel" connIndex=0

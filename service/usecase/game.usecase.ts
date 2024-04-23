@@ -9,6 +9,8 @@ import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush } from "../api/app.api";
 import { randomUUID } from "crypto";
+import { chatMessage } from "../messages/chatMessage";
+import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 
 export const play = async (teamId: string) => {
   const users = await GetUsersFindByTeamId(teamId);
@@ -103,6 +105,10 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       ]);
     })
     game.status = Status.CHAT;
+
+    await gameAction(game.allUsers, async (user) => {
+      await LinePush(user.userId, [chatMessage]);
+    });
   }
   await SetGame(game);
 }
@@ -150,14 +156,7 @@ export const ScanService = async (userName: string, treasureId: string) => {
   if (notScanTreasures == 0) {
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [
-        {
-          type: "text",
-          text: "全ての宝が見つかりました！",
-        },
-        {
-          type: "text",
-          text: "シーカーの勝利です！",
-        }
+        seekerVictoryMessage(game.seekers.map((seeker) => seeker.name)),
       ]);
       game.status = Status.END;
       await SetGame(game);
