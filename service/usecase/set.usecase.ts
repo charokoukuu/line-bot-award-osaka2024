@@ -1,20 +1,25 @@
 import { LinePush } from "../api/app.api";
-import { SetGame, SetTeam, SetUser } from "../repository/set.repository";
-import { Status, User } from "../types/app.type";
-import { GetGameFindOneByTeam, GetGameFindOneByTreasureId, GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
-import { hint, chat, play } from "./play.usecase";
-import { TeamBuilding, TeamJoining } from "../types/api.type";
+import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { Schedule, Status, User } from "../types/app.type";
+import { GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
+import { hint, chat, play } from "./game.usecase";
+import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
-import { gameAction } from "../helper/util";
+import { CronMethods } from "../method";
+import { playGameMessage } from "../messages/playGameMessage";
 
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
   const user = await GetUserFindOneByUserId(userId);
   console.log(user);
 
-  if (message == "プレイする" && user.teamId) {
-    const teamId = user.teamId;
-    await play(teamId);
+  if (message == "プレイする") {
+    if (user.teamId) {
+      const teamId = user.teamId;
+      await play(teamId);
+    } else {
+      throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
+    }
   }
   if (!game) return;
   switch (game.status) {
@@ -28,20 +33,20 @@ export const WebhookService = async (userId: string, message: string) => {
 
 };
 
-export const SchedulerService = async (delays: number[]) => {
-  console.log("スタート");
-  await Promise.all(
-    delays.map(
-      (delay) =>
-        new Promise((resolve) =>
-          setTimeout(async () => {
-            console.log("時間だよ");
-            resolve("done");
-          }, delay * 1000)
-        )
-    )
-  );
-  console.log("終わり");
+export const ScheduleService = async (scheduleItem: CreateSchedule) => {
+  const currentDate = new Date();
+  const futureDate = new Date(currentDate.getTime() + scheduleItem.timeAfterMinutes * 60000);
+  const newSchedule: Schedule = {
+    id: randomUUID(),
+    teamId: scheduleItem.teamId,
+    users: scheduleItem.users,
+    messages: scheduleItem.messages,
+    date: futureDate,
+    hintId: scheduleItem.hintId,
+    enableOwner: scheduleItem.enableOwner,
+  };
+  await SetSchedule(newSchedule);
+  await CronMethods();
 };
 
 
@@ -55,7 +60,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
     name: data.userName,
     teamId,
   });
-  await SetTeam({
+  const id = await SetTeam({
     teamId,
     hostId: data.userId,
     name: data.teamName,
@@ -65,7 +70,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
     keyword: data.keyword,
   });
 
-  LinePush(data.userId, [
+  await LinePush(data.userId, [
     {
       type: "text",
       text: "チームが作成されました",
@@ -75,6 +80,8 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
       text: "チーム名: " + data.teamName,
     },
   ]);
+
+  return id;
 };
 
 export const TeamJoiningService = async (data: TeamJoining) => {
@@ -106,213 +113,11 @@ export const TeamJoiningService = async (data: TeamJoining) => {
   ]);
 
   if (teamLength == team.playerCount) {
+    const users = await GetUsersFindByTeamId(data.teamId);
     await LinePush(team.hostId, [
-      {
-        "type": "flex",
-        "altText": "this is a flex message",
-        "contents": {
-          "type": "bubble",
-          "hero": {
-            "type": "image",
-            "url": "https://courrier.jp/media/2020/10/10194009/GettyImages-182710825-e1602294056127-1600x900.jpg",
-            "size": "full",
-            "aspectRatio": "20:13",
-            "aspectMode": "cover",
-            "action": {
-              "type": "uri",
-              "label": "Action",
-              "uri": "https://linecorp.com"
-            }
-          },
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "md",
-            "action": {
-              "type": "uri",
-              "label": "Action",
-              "uri": "https://linecorp.com"
-            },
-            "contents": [
-              {
-                "type": "text",
-                "text": "BoTreasure",
-                "weight": "bold",
-                "size": "xxl",
-                "contents": []
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "チーム",
-                    "weight": "bold",
-                    "size": "lg",
-                    "align": "start",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": `${team.name}`,
-                    "offsetStart": "15px",
-                    "contents": []
-                  }
-                ]
-              },
-              {
-                "type": "separator"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "メンバー",
-                    "weight": "bold",
-                    "size": "lg",
-                    "align": "start",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "たかし",
-                    "offsetStart": "15px",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "太郎",
-                    "offsetStart": "15px",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "みちたか",
-                    "offsetStart": "15px",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "じゅんぺい",
-                    "offsetStart": "15px",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "かよこ",
-                    "offsetStart": "15px",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": "りか",
-                    "offsetStart": "15px",
-                    "contents": []
-                  }
-                ]
-              },
-              {
-                "type": "separator"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "宝の数",
-                    "weight": "bold",
-                    "size": "lg",
-                    "align": "start",
-                    "contents": []
-                  },
-                  {
-                    "type": "text",
-                    "text": `${team.treasureCount}`,
-                    "offsetStart": "15px",
-                    "contents": []
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": "さあはじめましょう！",
-                "weight": "bold",
-                "size": "sm",
-                "color": "#AAAAAA",
-                "align": "center",
-                "wrap": true,
-                "contents": []
-              }
-            ]
-          },
-          "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "プレイする！",
-                  "text": `プレイする`
-                },
-                "color": "#905C44",
-                "style": "primary"
-              }
-            ]
-          }
-        }
-      }
-
+      playGameMessage(users.map(user => user.name), team.name, team.treasureCount)
     ]);
     return;
   }
 
 };
-
-
-
-export const ScanService = async (userName: string, treasureId: string) => {
-  const game = await GetGameFindOneByTreasureId(treasureId);
-  game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
-  const result: any = await SetGame(game);
-  if (result.modifiedCount == 0) {
-    console.log("既にスキャン済み");
-    return;
-  }
-
-  const notScanTreasures = game.treasures.filter((treasure) => !treasure.isScanned).length;
-  const messages = [
-    {
-      type: "text",
-      text: `${userName}さんが宝を見つけました`,
-    }
-  ]
-  if (notScanTreasures > 0) messages.push({
-    type: "text",
-    text: `残りの宝の数: ${notScanTreasures}`,
-  })
-  await gameAction(game.allUsers, async (user) => {
-    await LinePush(user.userId, messages);
-  });
-  if (notScanTreasures == 0) {
-    await gameAction(game.allUsers, async (user) => {
-      await LinePush(user.userId, [
-        {
-          type: "text",
-          text: "全ての宝が見つかりました！",
-        },
-        {
-          type: "text",
-          text: "シーカーの勝利です！",
-        }
-      ]);
-      game.status = Status.END;
-      await SetGame(game);
-    });
-  }
-}

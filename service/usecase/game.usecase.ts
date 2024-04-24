@@ -1,6 +1,7 @@
-import { displayJob, gameAction } from "../helper/util";
+import { gameAction } from "../helper/util";
 import {
   GetGameFindOneByTeam,
+  GetGameFindOneByTreasureId,
   GetTeamFindOneByTeamId,
   GetUsersFindByTeamId,
 } from "../repository/get.repository";
@@ -8,6 +9,9 @@ import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush } from "../api/app.api";
 import { randomUUID } from "crypto";
+import { chatMessage } from "../messages/chatMessage";
+import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
+import { findTreasureMessage } from "../messages/findTreasureMessage";
 
 export const play = async (teamId: string) => {
   const users = await GetUsersFindByTeamId(teamId);
@@ -25,6 +29,8 @@ export const play = async (teamId: string) => {
     owners: owners,
     seekers: seekers,
     hints: [],
+    arrestedMembers: [],
+    disabledScanMembers: [],
     treasures: [...new Array(team.treasureCount)].map((_, i) => ({
       id: randomUUID(),
       isScanned: false,
@@ -78,7 +84,8 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     return;
   }
   game.hints.push({
-    hint: hint,
+    id: randomUUID(),
+    content: hint,
     isPrinted: false,
   });
   await gameAction(game.allUsers, async (user) => {
@@ -98,7 +105,11 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         },
       ]);
     })
+
     game.status = Status.CHAT;
+    await gameAction(game.allUsers, async (user) => {
+      await LinePush(user.userId, [chatMessage()]);
+    });
   }
   await SetGame(game);
 }
@@ -117,8 +128,34 @@ export const chat = async (message: string, game: Game, user: User) => {
     ]);
 
   })
+}
 
 
+export const ScanService = async (userName: string, treasureId: string) => {
+  const game = await GetGameFindOneByTreasureId(treasureId);
+  game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
+  const result: any = await SetGame(game);
+  if (result.modifiedCount == 0) {
+    console.log("既にスキャン済み");
+    return;
+  }
 
+  const notScanTreasures = game.treasures.filter((treasure) => !treasure.isScanned).length;
+  await gameAction(game.allUsers, async (user) => {
+    await LinePush(user.userId, [findTreasureMessage(userName, notScanTreasures)]);
+  });
+  if (notScanTreasures == 0) {
+    await gameAction(game.allUsers, async (user) => {
+      await LinePush(user.userId, [
+        seekerVictoryMessage(game.seekers.map((seeker) => seeker.name)),
+      ]);
+      game.status = Status.END;
+      await SetGame(game);
+      await gameAction(game.allUsers, async (user) => {
+        user.teamId = "";
+        await SetUser(user);
+      });
+    });
+  }
 }
 

@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { CreateUserService, ScanService, SchedulerService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
-import { Team, User } from "../types/app.type";
-import { Scan, TeamBuilding, TeamJoining } from "../types/api.type";
-import { LinePush, LineReply, getUserProfile } from "../api/app.api";
+import { User } from "../types/app.type";
+import { CreateSchedule, Scan, TeamBuilding, TeamJoining } from "../types/api.type";
+import { LineReply, getUserProfile } from "../api/app.api";
+import { ScanService } from "../usecase/game.usecase";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -41,9 +42,9 @@ export const CreateUserController = async (req: Request, res: Response) => {
 }
 
 export const SchedulerController = async (req: Request, res: Response) => {
-    const delays = JSON.parse(req.body.delays);
+    const schedule = req.body as CreateSchedule;
     try {
-        SchedulerService(delays);
+        await ScheduleService(schedule);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -54,8 +55,8 @@ export const SchedulerController = async (req: Request, res: Response) => {
 export const TeamBuildingController = async (req: Request, res: Response) => {
     const teamBuildingData = req.body as TeamBuilding;
     try {
-        await TeamBuildingService(teamBuildingData)
-        res.sendStatus(200);
+        const id = await TeamBuildingService(teamBuildingData)
+        res.send(id);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);

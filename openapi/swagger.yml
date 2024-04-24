@@ -215,6 +215,35 @@ paths:
       responses:
         '204':
           description: Games deleted successfully
+  /api/schedule:
+    post:
+      tags:
+        - スケジュール作成
+      summary: Create a new schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '200':
+          description: Schedule created successfully
+  /api/schedule/{id}:
+    delete:
+      tags:
+        - スケジュール削除
+      summary: Delete schedule by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Schedule deleted successfully
+    
 components:
   schemas:
     User:
@@ -265,12 +294,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
+        arrestedMembers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        disabledScanMembers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
         hints:
           type: array
           items:
             type: object
             properties:
-              hint:
+              id:
+                type: string
+              content:
                 type: string
               isPrinted:
                 type: boolean
@@ -301,3 +340,28 @@ components:
         - chat
         - play
         - end
+    Schedule:
+      type: object
+      properties:
+        teamId:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        messages:
+          type: array
+          items:
+            type: object
+        timeAfterMinutes:
+          type: number
+        hintId:
+          type: string
+        enableOwner:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - teamId
+        - users
+        - messages
+        - timeAfterMinutes

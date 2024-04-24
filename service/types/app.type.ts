@@ -17,7 +17,12 @@ export interface Team {
 
 export interface Schedule {
   id: string
+  teamId: string
+  users: User[];
+  messages: object[];
   date: Date;
+  hintId?: string;
+  enableOwner?: User;
 }
 
 
@@ -26,8 +31,11 @@ export interface Game {
   allUsers: User[];
   owners: User[];
   seekers: User[];
+  arrestedMembers: User[];
+  disabledScanMembers: User[];
   hints: {
-    hint: string;
+    id: string;
+    content: string;
     isPrinted: boolean;
   }[];
   treasures: {

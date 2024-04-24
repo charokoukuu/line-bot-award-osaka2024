@@ -1,3 +1,5 @@
+import { User } from "./app.type";
+
 export interface TeamBuilding {
     userId: string;
     userName: string;
@@ -15,4 +17,13 @@ export interface TeamJoining {
 export interface Scan {
     userName: string;
     treasureId: string;
+}
+
+export interface CreateSchedule {
+    teamId: string
+    users: User[];
+    messages: object[];
+    timeAfterMinutes: number;
+    hintId?: string;
+    enableOwner?: User;
 }
