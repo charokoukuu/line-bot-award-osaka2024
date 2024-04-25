@@ -2,6 +2,7 @@ const express = require("express");
 import mongoose from "mongoose";
 import { MONGODB_URI } from "./config/app.config";
 import { CronMethods, GetMethods, PostMethods } from "./method";
+import { DeleteMethods } from "./method/app.delete";
 export const app = express();
 const cors = require('cors')
 app.use(cors());
@@ -15,7 +16,9 @@ app.use(express.urlencoded({
 
 GetMethods();
 PostMethods();
-CronMethods()
+DeleteMethods();
+CronMethods();
+
 const port = 8080;
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

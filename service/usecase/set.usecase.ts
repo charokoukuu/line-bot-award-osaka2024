@@ -1,4 +1,4 @@
-import { LinePush } from "../api/app.api";
+import { LinePush, getUserProfile } from "../api/app.api";
 import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
 import { GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
@@ -67,9 +67,10 @@ export const CreateUserService = async (user: User) => {
 };
 export const TeamBuildingService = async (data: ApiTeambuildingBody) => {
   const teamId = randomUUID();
+  const name = (await getUserProfile(data.userId)).displayName;
   await SetUser({
     userId: data.userId,
-    name: data.userName,
+    name: name ?? "名無しさん" + Math.floor(Math.random() * 1000),
     teamId,
   });
   const id = await SetTeam({
@@ -102,9 +103,10 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
   if (teamLength > team.playerCount) {
     throw new Error("チームが満員です");
   }
+  const name = (await getUserProfile(data.userId)).displayName ?? "名無しさん" + Math.floor(Math.random() * 1000);
   const user: any = await SetUser({
     userId: data.userId,
-    name: data.userName,
+    name: name,
     teamId: data.teamId,
   });
   if (user.upsertedCount == 0) {
@@ -120,7 +122,7 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
   await LinePush(team.hostId, [
     {
       type: "text",
-      text: `${data.userName}さんがチームに参加しました`,
+      text: `${name}さんがチームに参加しました`,
     },
   ]);
 

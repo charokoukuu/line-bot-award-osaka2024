@@ -21,6 +21,9 @@ describe("DefaultApi", () => {
     instance = new api.DefaultApi(config)
   });
 
+  test("apiGameTeamIdGet", () => {
+    return expect(instance.apiGameTeamIdGet({})).resolves.toBe(null)
+  })
   test("apiSchedulePost", () => {
     const body: api.ApiScheduleBody = undefined
     return expect(instance.apiSchedulePost(body, {})).resolves.toBe(null)
@@ -33,16 +36,20 @@ describe("DefaultApi", () => {
     const body: api.ApiTeamjoiningBody = undefined
     return expect(instance.apiTeamJoiningPost(body, {})).resolves.toBe(null)
   })
-})
-
-describe("GameApi", () => {
-  let instance: api.GameApi
-  beforeEach(function() {
-    instance = new api.GameApi(config)
-  });
-
-  test("apiGameTeamIdGet", () => {
-    return expect(instance.apiGameTeamIdGet({})).resolves.toBe(null)
+  test("apiTeamTeamIdDelete", () => {
+    const teamId: string = "teamId_example"
+    return expect(instance.apiTeamTeamIdDelete(teamId, {})).resolves.toBe(null)
+  })
+  test("apiTeamTeamIdGet", () => {
+    const teamId: string = "teamId_example"
+    return expect(instance.apiTeamTeamIdGet(teamId, {})).resolves.toBe(null)
+  })
+  test("apiTeamsGet", () => {
+    return expect(instance.apiTeamsGet({})).resolves.toBe(null)
+  })
+  test("apiUserUserIdGet", () => {
+    const userId: string = "userId_example"
+    return expect(instance.apiUserUserIdGet(userId, {})).resolves.toBe(null)
   })
 })
 
@@ -55,50 +62,6 @@ describe("QRApi", () => {
   test("apiQrScanPost", () => {
     const body: api.ApiQrscanBody = undefined
     return expect(instance.apiQrScanPost(body, {})).resolves.toBe(null)
-  })
-})
-
-describe("TeamApi", () => {
-  let instance: api.TeamApi
-  beforeEach(function() {
-    instance = new api.TeamApi(config)
-  });
-
-  test("apiTeamTeamIdDelete", () => {
-    const teamId: string = "teamId_example"
-    return expect(instance.apiTeamTeamIdDelete(teamId, {})).resolves.toBe(null)
-  })
-  test("apiTeamTeamIdGet", () => {
-    const teamId: string = "teamId_example"
-    return expect(instance.apiTeamTeamIdGet(teamId, {})).resolves.toBe(null)
-  })
-  test("apiTeamTeamIdPatch", () => {
-    const body: api.Team = undefined
-    const teamId: string = "teamId_example"
-    return expect(instance.apiTeamTeamIdPatch(body, teamId, {})).resolves.toBe(null)
-  })
-})
-
-describe("TeamsApi", () => {
-  let instance: api.TeamsApi
-  beforeEach(function() {
-    instance = new api.TeamsApi(config)
-  });
-
-  test("apiTeamsGet", () => {
-    return expect(instance.apiTeamsGet({})).resolves.toBe(null)
-  })
-})
-
-describe("UserApi", () => {
-  let instance: api.UserApi
-  beforeEach(function() {
-    instance = new api.UserApi(config)
-  });
-
-  test("apiUserUserIdGet", () => {
-    const userId: string = "userId_example"
-    return expect(instance.apiUserUserIdGet(userId, {})).resolves.toBe(null)
   })
 })
 

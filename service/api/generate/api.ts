@@ -88,7 +88,7 @@ export interface ApiQrscanBody {
      * @type {string}
      * @memberof ApiQrscanBody
      */
-    userName: string;
+    userId: string;
     /**
      * 
      * @type {string}
@@ -156,12 +156,6 @@ export interface ApiTeambuildingBody {
      * @type {string}
      * @memberof ApiTeambuildingBody
      */
-    userName: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiTeambuildingBody
-     */
     teamName: string;
     /**
      * 
@@ -200,12 +194,6 @@ export interface ApiTeamjoiningBody {
      * @memberof ApiTeamjoiningBody
      */
     userId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiTeamjoiningBody
-     */
-    userName: string;
     /**
      * 
      * @type {string}
@@ -480,6 +468,29 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @summary Get all game by team ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiGameTeamIdGet(options: any = {}): FetchArgs {
+            const localVarPath = `/api/game/{teamId}`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Create a new schedule
          * @param {ApiScheduleBody} body 
          * @param {*} [options] Override http request option.
@@ -574,6 +585,116 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Delete team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdDelete(teamId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'teamId' is not null or undefined
+            if (teamId === null || teamId === undefined) {
+                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdDelete.');
+            }
+            const localVarPath = `/api/team/{teamId}`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdGet(teamId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'teamId' is not null or undefined
+            if (teamId === null || teamId === undefined) {
+                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdGet.');
+            }
+            const localVarPath = `/api/team/{teamId}`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get all teams
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamsGet(options: any = {}): FetchArgs {
+            const localVarPath = `/api/teams`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get user by ID
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserUserIdGet(userId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'userId' is not null or undefined
+            if (userId === null || userId === undefined) {
+                throw new RequiredError('userId', 'Required parameter userId was null or undefined when calling apiUserUserIdGet.');
+            }
+            const localVarPath = `/api/user/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -583,6 +704,24 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
  */
 export const DefaultApiFp = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary Get all game by team ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiGameTeamIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Game> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiGameTeamIdGet(options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
         /**
          * 
          * @summary Create a new schedule
@@ -640,6 +779,81 @@ export const DefaultApiFp = function (configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * 
+         * @summary Delete team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdDelete(teamId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiTeamTeamIdDelete(teamId, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdGet(teamId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Team> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiTeamTeamIdGet(teamId, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get all teams
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamsGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Team>> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiTeamsGet(options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get user by ID
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserUserIdGet(userId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiUserUserIdGet(userId, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -649,6 +863,15 @@ export const DefaultApiFp = function (configuration?: Configuration) {
  */
 export const DefaultApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
+        /**
+         * 
+         * @summary Get all game by team ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiGameTeamIdGet(options?: any) {
+            return DefaultApiFp(configuration).apiGameTeamIdGet(options)(fetch, basePath);
+        },
         /**
          * 
          * @summary Create a new schedule
@@ -679,6 +902,45 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         apiTeamJoiningPost(body: ApiTeamjoiningBody, options?: any) {
             return DefaultApiFp(configuration).apiTeamJoiningPost(body, options)(fetch, basePath);
         },
+        /**
+         * 
+         * @summary Delete team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdDelete(teamId: string, options?: any) {
+            return DefaultApiFp(configuration).apiTeamTeamIdDelete(teamId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get team by ID
+         * @param {string} teamId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamTeamIdGet(teamId: string, options?: any) {
+            return DefaultApiFp(configuration).apiTeamTeamIdGet(teamId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get all teams
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTeamsGet(options?: any) {
+            return DefaultApiFp(configuration).apiTeamsGet(options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get user by ID
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiUserUserIdGet(userId: string, options?: any) {
+            return DefaultApiFp(configuration).apiUserUserIdGet(userId, options)(fetch, basePath);
+        },
     };
 };
 
@@ -689,6 +951,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get all game by team ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiGameTeamIdGet(options?: any) {
+        return DefaultApiFp(this.configuration).apiGameTeamIdGet(options)(this.fetch, this.basePath);
+    }
+
     /**
      * 
      * @summary Create a new schedule
@@ -725,100 +998,51 @@ export class DefaultApi extends BaseAPI {
         return DefaultApiFp(this.configuration).apiTeamJoiningPost(body, options)(this.fetch, this.basePath);
     }
 
-}
-/**
- * GameApi - fetch parameter creator
- * @export
- */
-export const GameApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get all game by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGameTeamIdGet(options: any = {}): FetchArgs {
-            const localVarPath = `/api/game/{teamId}`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * GameApi - functional programming interface
- * @export
- */
-export const GameApiFp = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get all game by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGameTeamIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Game> {
-            const localVarFetchArgs = GameApiFetchParamCreator(configuration).apiGameTeamIdGet(options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * GameApi - factory interface
- * @export
- */
-export const GameApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * 
-         * @summary Get all game by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGameTeamIdGet(options?: any) {
-            return GameApiFp(configuration).apiGameTeamIdGet(options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * GameApi - object-oriented interface
- * @export
- * @class GameApi
- * @extends {BaseAPI}
- */
-export class GameApi extends BaseAPI {
     /**
      * 
-     * @summary Get all game by team ID
+     * @summary Delete team by ID
+     * @param {string} teamId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GameApi
+     * @memberof DefaultApi
      */
-    public apiGameTeamIdGet(options?: any) {
-        return GameApiFp(this.configuration).apiGameTeamIdGet(options)(this.fetch, this.basePath);
+    public apiTeamTeamIdDelete(teamId: string, options?: any) {
+        return DefaultApiFp(this.configuration).apiTeamTeamIdDelete(teamId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get team by ID
+     * @param {string} teamId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiTeamTeamIdGet(teamId: string, options?: any) {
+        return DefaultApiFp(this.configuration).apiTeamTeamIdGet(teamId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get all teams
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiTeamsGet(options?: any) {
+        return DefaultApiFp(this.configuration).apiTeamsGet(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get user by ID
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiUserUserIdGet(userId: string, options?: any) {
+        return DefaultApiFp(this.configuration).apiUserUserIdGet(userId, options)(this.fetch, this.basePath);
     }
 
 }
@@ -927,464 +1151,6 @@ export class QRApi extends BaseAPI {
      */
     public apiQrScanPost(body: ApiQrscanBody, options?: any) {
         return QRApiFp(this.configuration).apiQrScanPost(body, options)(this.fetch, this.basePath);
-    }
-
-}
-/**
- * TeamApi - fetch parameter creator
- * @export
- */
-export const TeamApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Delete team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdDelete(teamId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'teamId' is not null or undefined
-            if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdDelete.');
-            }
-            const localVarPath = `/api/team/{teamId}`
-                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdGet(teamId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'teamId' is not null or undefined
-            if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdGet.');
-            }
-            const localVarPath = `/api/team/{teamId}`
-                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update team by ID
-         * @param {Team} body 
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdPatch(body: Team, teamId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiTeamTeamIdPatch.');
-            }
-            // verify required parameter 'teamId' is not null or undefined
-            if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdPatch.');
-            }
-            const localVarPath = `/api/team/{teamId}`
-                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Team" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * TeamApi - functional programming interface
- * @export
- */
-export const TeamApiFp = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Delete team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdDelete(teamId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = TeamApiFetchParamCreator(configuration).apiTeamTeamIdDelete(teamId, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary Get team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdGet(teamId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Team> {
-            const localVarFetchArgs = TeamApiFetchParamCreator(configuration).apiTeamTeamIdGet(teamId, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary Update team by ID
-         * @param {Team} body 
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdPatch(body: Team, teamId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Team> {
-            const localVarFetchArgs = TeamApiFetchParamCreator(configuration).apiTeamTeamIdPatch(body, teamId, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * TeamApi - factory interface
- * @export
- */
-export const TeamApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * 
-         * @summary Delete team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdDelete(teamId: string, options?: any) {
-            return TeamApiFp(configuration).apiTeamTeamIdDelete(teamId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary Get team by ID
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdGet(teamId: string, options?: any) {
-            return TeamApiFp(configuration).apiTeamTeamIdGet(teamId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary Update team by ID
-         * @param {Team} body 
-         * @param {string} teamId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamTeamIdPatch(body: Team, teamId: string, options?: any) {
-            return TeamApiFp(configuration).apiTeamTeamIdPatch(body, teamId, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * TeamApi - object-oriented interface
- * @export
- * @class TeamApi
- * @extends {BaseAPI}
- */
-export class TeamApi extends BaseAPI {
-    /**
-     * 
-     * @summary Delete team by ID
-     * @param {string} teamId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TeamApi
-     */
-    public apiTeamTeamIdDelete(teamId: string, options?: any) {
-        return TeamApiFp(this.configuration).apiTeamTeamIdDelete(teamId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Get team by ID
-     * @param {string} teamId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TeamApi
-     */
-    public apiTeamTeamIdGet(teamId: string, options?: any) {
-        return TeamApiFp(this.configuration).apiTeamTeamIdGet(teamId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Update team by ID
-     * @param {Team} body 
-     * @param {string} teamId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TeamApi
-     */
-    public apiTeamTeamIdPatch(body: Team, teamId: string, options?: any) {
-        return TeamApiFp(this.configuration).apiTeamTeamIdPatch(body, teamId, options)(this.fetch, this.basePath);
-    }
-
-}
-/**
- * TeamsApi - fetch parameter creator
- * @export
- */
-export const TeamsApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get all teams
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamsGet(options: any = {}): FetchArgs {
-            const localVarPath = `/api/teams`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * TeamsApi - functional programming interface
- * @export
- */
-export const TeamsApiFp = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get all teams
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamsGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Team>> {
-            const localVarFetchArgs = TeamsApiFetchParamCreator(configuration).apiTeamsGet(options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * TeamsApi - factory interface
- * @export
- */
-export const TeamsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * 
-         * @summary Get all teams
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiTeamsGet(options?: any) {
-            return TeamsApiFp(configuration).apiTeamsGet(options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * TeamsApi - object-oriented interface
- * @export
- * @class TeamsApi
- * @extends {BaseAPI}
- */
-export class TeamsApi extends BaseAPI {
-    /**
-     * 
-     * @summary Get all teams
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TeamsApi
-     */
-    public apiTeamsGet(options?: any) {
-        return TeamsApiFp(this.configuration).apiTeamsGet(options)(this.fetch, this.basePath);
-    }
-
-}
-/**
- * UserApi - fetch parameter creator
- * @export
- */
-export const UserApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdGet(userId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId', 'Required parameter userId was null or undefined when calling apiUserUserIdGet.');
-            }
-            const localVarPath = `/api/user/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * UserApi - functional programming interface
- * @export
- */
-export const UserApiFp = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Get user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdGet(userId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
-            const localVarFetchArgs = UserApiFetchParamCreator(configuration).apiUserUserIdGet(userId, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * UserApi - factory interface
- * @export
- */
-export const UserApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * 
-         * @summary Get user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdGet(userId: string, options?: any) {
-            return UserApiFp(configuration).apiUserUserIdGet(userId, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * UserApi - object-oriented interface
- * @export
- * @class UserApi
- * @extends {BaseAPI}
- */
-export class UserApi extends BaseAPI {
-    /**
-     * 
-     * @summary Get user by ID
-     * @param {string} userId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public apiUserUserIdGet(userId: string, options?: any) {
-        return UserApiFp(this.configuration).apiUserUserIdGet(userId, options)(this.fetch, this.basePath);
     }
 
 }
