@@ -1,5 +1,6 @@
+import { Game, Schedule, Team, User } from "../api/generate";
 import { GameModel, ScheduleModel, TeamModel, UserModel } from "../domain/create.model";
-import { Game, Schedule, Team, User } from "../types/app.type";
+
 
 
 export const SetTeam = async (team: Team) => {

@@ -1,17 +1,19 @@
 import fetch from "node-fetch";
 import {
+  LINE_LOADING_ENDPOINT,
   LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
   LINE_REPLY_ENDPOINT,
-  headers,
+  isDebug,
 } from "../config/app.config";
+import { headers } from "../config/secret.config";
 
 export const LineReply = async (replyToken: string, content: object[]) => {
   const payload = {
     replyToken: replyToken,
     messages: content,
   }
-  await fetch(LINE_REPLY_ENDPOINT, {
+  !isDebug && await fetch(LINE_REPLY_ENDPOINT, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(payload),
@@ -25,7 +27,7 @@ export const LinePush = async (userId: string, content: object) => {
     to: userId,
     messages: content,
   }
-  await fetch(LINE_PUSH_ENDPOINT, {
+  !isDebug && await fetch(LINE_PUSH_ENDPOINT, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(payload),
@@ -33,6 +35,22 @@ export const LinePush = async (userId: string, content: object) => {
     console.error(err);
   });
 };
+
+
+export const publishLoadingMessage = async (userId: string, interval: number) => {
+
+  await fetch(LINE_LOADING_ENDPOINT, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      chatId: userId,
+      loadingSeconds: interval
+    }),
+  }).catch((err: any) => {
+    console.error(err);
+  });
+};
+
 
 interface UserProfile {
   userId: string,

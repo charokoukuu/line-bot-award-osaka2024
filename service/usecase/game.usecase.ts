@@ -1,22 +1,24 @@
 import { gameAction } from "../helper/util";
 import {
-  GetGameFindOneByTeam,
-  GetGameFindOneByTreasureId,
-  GetTeamFindOneByTeamId,
-  GetUsersFindByTeamId,
+  GetOneGameByTeam,
+  GetOneGameByUserId,
+  GetOneTeamByTeamId,
+  GetOneUserByUserId,
+  GetUsersByTeamId,
 } from "../repository/get.repository";
-import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
-import { LinePush } from "../api/app.api";
+import { LinePush, publishLoadingMessage } from "../api/app.api";
 import { randomUUID } from "crypto";
 import { chatMessage } from "../messages/chatMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
+import { Game, Status, User } from "../api/generate";
 
 export const play = async (teamId: string) => {
-  const users = await GetUsersFindByTeamId(teamId);
-  const team = await GetTeamFindOneByTeamId(teamId);
-  const game = await GetGameFindOneByTeam(team);
+  console.log("game");
+  const users = await GetUsersByTeamId(teamId);
+  const team = await GetOneTeamByTeamId(teamId);
+  const game = await GetOneGameByTeam(team);
   if (!team) throw new Error("該当するチームが存在しません");
   if (game) throw new Error("既にゲームが開始されています");
 
@@ -35,7 +37,7 @@ export const play = async (teamId: string) => {
       id: randomUUID(),
       isScanned: false,
     })),
-    status: Status.PREPARE,
+    status: Status.Prepare,
   }
   await SetGame(newGame);
   await gameAction([...owners, ...seekers], async (user) => {
@@ -81,6 +83,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         text: "オーナーがヒントを入力中です。しばらくお待ちください",
       },
     ]);
+    await publishLoadingMessage(userId, 20);
     return;
   }
   game.hints.push({
@@ -106,7 +109,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       ]);
     })
 
-    game.status = Status.CHAT;
+    game.status = Status.Chat;
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [chatMessage()]);
     });
@@ -131,8 +134,10 @@ export const chat = async (message: string, game: Game, user: User) => {
 }
 
 
-export const ScanService = async (userName: string, treasureId: string) => {
-  const game = await GetGameFindOneByTreasureId(treasureId);
+export const ScanService = async (userId: string, treasureId: string) => {
+  const user = await GetOneUserByUserId(userId);
+  const game = await GetOneGameByUserId(userId);
+  const userName = user.name;
   game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
   const result: any = await SetGame(game);
   if (result.modifiedCount == 0) {
@@ -149,7 +154,7 @@ export const ScanService = async (userName: string, treasureId: string) => {
       await LinePush(user.userId, [
         seekerVictoryMessage(game.seekers.map((seeker) => seeker.name)),
       ]);
-      game.status = Status.END;
+      game.status = Status.End;
       await SetGame(game);
       await gameAction(game.allUsers, async (user) => {
         user.teamId = "";
@@ -158,4 +163,5 @@ export const ScanService = async (userName: string, treasureId: string) => {
     });
   }
 }
+
 

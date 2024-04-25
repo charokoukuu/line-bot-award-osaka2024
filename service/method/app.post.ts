@@ -1,5 +1,5 @@
 import { app } from "..";
-import { CreateUserController, PrintQRController, ScanController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
+import { CreateUserController, PrintQRController, SaveHintController, ScanController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
 import { PrintHintService } from "../usecase/print.usecase";
 
 export const PostMethods = () => {
@@ -20,4 +20,8 @@ export const PostMethods = () => {
     //プリントサービス
     app.post("/api/create-qr", PrintQRController);
     app.post("/api/hint-print", PrintHintService);
+
+    //debug
+    app.post("/api/save/hint", SaveHintController);
+
 }

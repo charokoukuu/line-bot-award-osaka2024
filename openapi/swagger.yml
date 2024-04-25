@@ -4,10 +4,10 @@ info:
   description: BoTreasureに関するAPI仕様書です。
   version: 1.0.0
 servers:
-  - url: https://local-line.run-ticket.com/
-    description: Production server (uses live data)
+  - url: https://node-learn.run-ticket.com/
+    description: Production server (ros2)
   - url: http://localhost:8080/
-    description: Local server (uses test data)
+    description: Local server (mac)
 paths:
   /api/team-building:
     post:
@@ -22,8 +22,6 @@ paths:
               type: object
               properties:
                 userId:
-                  type: string
-                userName:
                   type: string
                 teamName:
                   type: string
@@ -40,7 +38,6 @@ paths:
                   type: string
               required:
                 - userId
-                - userName
                 - teamName
                 - playerCount
                 - ownerCount
@@ -64,17 +61,28 @@ paths:
               properties:
                 userId:
                   type: string
-                userName:
-                  type: string
                 teamId:
                   type: string
               required:
                 - userId
-                - userName
                 - teamId
       responses:
         '201':
           description: Successfully joined the team
+  /api/teams:
+      get:
+        tags:
+          - チーム一覧取得
+        summary: Get all teams
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Team'
   /api/qr-scan:
     post:
       tags:
@@ -87,12 +95,12 @@ paths:
             schema:
               type: object
               properties:
-                userName:
+                userId:
                   type: string
                 treasureId:
                   type: string
               required:
-                - userName
+                - userId
                 - treasureId
       responses:
         '200':
@@ -100,7 +108,7 @@ paths:
   /api/user/{userId}:
     get:
       tags:
-          - User
+          - 特定のユーザー取得
       summary: Get user by ID
       parameters:
         - in: path
@@ -115,23 +123,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-    delete:
-      tags:
-          - User
-      summary: Delete user by ID
-      parameters:
-        - in: path
-          name: userId
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: User deleted successfully
   /api/team/{teamId}:
     get:
       tags:
-          - Team
+          - 特定のチーム取得/削除
       summary: Get team by ID
       parameters:
         - in: path
@@ -148,7 +143,7 @@ paths:
                 $ref: '#/components/schemas/Team'
     delete:
       tags:
-          - Team
+          - 特定のチーム取得/削除
       summary: Delete team by ID
       parameters:
         - in: path
@@ -159,62 +154,18 @@ paths:
       responses:
         '204':
           description: Team deleted successfully
-    patch:
-      tags:
-          - Team
-      summary: Update team by ID
-      parameters:
-        - in: path
-          name: teamId
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Team'
-      responses:
-        '200':
-          description: Team updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Team'
-  /api/teams:
-      get:
-        tags:
-          - Teams
-        summary: Get all teams
-        responses:
-          '200':
-            description: Successful operation
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Team'
-  /api/games/{teamId}:
+  /api/game/{teamId}:
     get:
       tags:
-        - Games
-      summary: Get all games by team ID
+        - 特定のゲーム情報取得
+      summary: Get all game by team ID
       responses:
         '200':
-          description: A list of games
+          description: A list of game
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
-    delete:
-      tags:
-        - Games
-      summary: Delete games by team ID
-      responses:
-        '204':
-          description: Games deleted successfully
   /api/schedule:
     post:
       tags:
@@ -224,25 +175,55 @@ paths:
         required: true
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Schedule'
+              schema:
+                type: object
+                properties:
+                  teamId:
+                    type: string
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                  timeAfterMinutes: 
+                    type: number
+                  hintId:
+                    type: string
+                  enableOwner:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - teamId
+                  - users
+                  - messages
+                  - timeAfterMinutes
       responses:
         '200':
           description: Schedule created successfully
-  /api/schedule/{id}:
-    delete:
+  /api/save/hint:
+    post:
       tags:
-        - スケジュール削除
-      summary: Delete schedule by ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - ヒント作成(デバッグ用)
+      summary: Create a new hint
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  teamId:
+                    type: string
+                  content:
+                    type: string
+                required:
+                  - teamId
+                  - content
       responses:
-        '204':
-          description: Schedule deleted successfully
+        '201':
+          description: Hint created successfully
     
 components:
   schemas:
@@ -256,6 +237,9 @@ components:
         teamId:
           type: string
           nullable: true
+      required:
+        - userId
+        - name
     Team:
       type: object
       properties:
@@ -277,6 +261,14 @@ components:
         keyword:
           type: string
           nullable: true
+      required:
+        - teamId
+        - hostId
+        - name
+        - playerCount
+        - ownerCount
+        - treasureCount
+        - keyword
     Game:
       type: object
       properties:
@@ -334,6 +326,7 @@ components:
         - status
     Status:
       type: string
+      format: string
       enum:
         - create
         - prepare
@@ -343,6 +336,8 @@ components:
     Schedule:
       type: object
       properties:
+        id:
+          type: string
         teamId:
           type: string
         users:
@@ -353,8 +348,9 @@ components:
           type: array
           items:
             type: object
-        timeAfterMinutes:
-          type: number
+        date:
+          type: string
+          format: date-time
         hintId:
           type: string
         enableOwner:
@@ -364,4 +360,11 @@ components:
         - teamId
         - users
         - messages
-        - timeAfterMinutes
+        - date
+    treasure:
+      type: object
+      properties:
+        id:
+          type: string
+        isScanned:
+          type: boolean

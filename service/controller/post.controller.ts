@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import { CreateUserService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
-import { User } from "../types/app.type";
-import { CreateSchedule, Scan, TeamBuilding, TeamJoining } from "../types/api.type";
 import { LineReply, getUserProfile } from "../api/app.api";
 import { ScanService } from "../usecase/game.usecase";
+import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -21,6 +20,7 @@ export const WebhookController = async (req: Request, res: Response) => {
         }
         res.sendStatus(200);
     } catch (err: any) {
+        console.error(err);
         await LineReply(replyToken, [
             {
                 type: "text",
@@ -42,7 +42,7 @@ export const CreateUserController = async (req: Request, res: Response) => {
 }
 
 export const SchedulerController = async (req: Request, res: Response) => {
-    const schedule = req.body as CreateSchedule;
+    const schedule = req.body as ApiScheduleBody;
     try {
         await ScheduleService(schedule);
         res.sendStatus(200);
@@ -53,7 +53,7 @@ export const SchedulerController = async (req: Request, res: Response) => {
 }
 
 export const TeamBuildingController = async (req: Request, res: Response) => {
-    const teamBuildingData = req.body as TeamBuilding;
+    const teamBuildingData = req.body as ApiTeambuildingBody;
     try {
         const id = await TeamBuildingService(teamBuildingData)
         res.send(id);
@@ -64,7 +64,7 @@ export const TeamBuildingController = async (req: Request, res: Response) => {
 }
 
 export const TeamJoiningController = async (req: Request, res: Response) => {
-    const teamJoiningData = req.body as TeamJoining;
+    const teamJoiningData = req.body as ApiTeamjoiningBody;
     try {
         await TeamJoiningService(teamJoiningData)
         res.sendStatus(200);
@@ -74,9 +74,10 @@ export const TeamJoiningController = async (req: Request, res: Response) => {
     }
 }
 export const ScanController = async (req: Request, res: Response) => {
-    const scanData = req.body as Scan;
+    const scanData = req.body as ApiQrscanBody;
+    const userId = req.body.userId as string;
     try {
-        await ScanService(scanData.userName, scanData.treasureId);
+        await ScanService(userId, scanData.treasureId);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -101,6 +102,18 @@ export const PrintHintController = async (req: Request, res: Response) => {
     const text = req.body.text as string;
     try {
         await PrintHintService(id, text)
+        res.sendStatus(200);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+
+export const SaveHintController = async (req: Request, res: Response) => {
+    const teamId = req.body.teamId as string;
+    const content = req.body.content as string;
+    try {
+        await SaveHintService(teamId, content)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

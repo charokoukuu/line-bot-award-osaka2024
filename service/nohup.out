@@ -1,0 +1,39 @@
+2024-04-25T14:29:57Z INF Starting tunnel tunnelID=d002b36d-585e-4876-899a-55ec99790903
+2024-04-25T14:29:57Z INF Version 2024.2.1
+2024-04-25T14:29:57Z INF GOOS: darwin, GOVersion: go1.21.5-devel-cf, GoArch: arm64
+2024-04-25T14:29:57Z INF Settings: map[cred-file:/Users/charokoukuu/.cloudflared/d002b36d-585e-4876-899a-55ec99790903.json credentials-file:/Users/charokoukuu/.cloudflared/d002b36d-585e-4876-899a-55ec99790903.json url:http://localhost:8080]
+2024-04-25T14:29:57Z INF cloudflared will not automatically update if installed by a package manager.
+2024-04-25T14:29:57Z INF Generated Connector ID: e09ae0a5-60c5-44a8-96d8-8e11ccedb4c3
+2024-04-25T14:29:57Z INF Initial protocol quic
+2024-04-25T14:29:57Z INF ICMP proxy will use 192.168.68.74 as source for IPv4
+2024-04-25T14:29:57Z INF ICMP proxy will use fe80::ef:5225:d647:f262 in zone en0 as source for IPv6
+2024-04-25T14:29:57Z INF Created ICMP proxy listening on 192.168.68.74:0
+2024-04-25T14:29:57Z INF Created ICMP proxy listening on [fe80::ef:5225:d647:f262%en0]:0
+2024-04-25T14:29:57Z INF Starting metrics server on 127.0.0.1:60786/metrics
+2024-04-25T14:29:57Z ERR update check failed error="no release found"
+2024-04-25T14:29:57Z INF Registered tunnel connection connIndex=0 connection=d790e371-913d-48a2-af7a-9395b9184b9d event=0 ip=198.41.200.73 location=kix02 protocol=quic
+2024-04-25T14:29:58Z INF Registered tunnel connection connIndex=1 connection=11d7ca5c-e16a-4bbc-a987-2a2ff85524f4 event=0 ip=198.41.192.227 location=kix03 protocol=quic
+2024-04-25T14:29:59Z INF Registered tunnel connection connIndex=2 connection=2124bcf5-fd93-408a-a755-d9769cb9d2d7 event=0 ip=198.41.200.53 location=kix02 protocol=quic
+2024-04-25T14:30:00Z INF Registered tunnel connection connIndex=3 connection=fcbfe383-7012-40fa-bf2d-999cb9b3dc4f event=0 ip=198.41.192.167 location=kix04 protocol=quic
+2024-04-25T14:30:06Z INF Initiating graceful shutdown due to signal terminated ...
+2024-04-25T14:30:07Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.192.227
+2024-04-25T14:30:07Z ERR writing finish: Application error 0x0 (remote)
+2024-04-25T14:30:07Z ERR Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.192.227
+2024-04-25T14:30:07Z ERR Serve tunnel error error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.192.227
+2024-04-25T14:30:07Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.192.227
+2024-04-25T14:30:07Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.192.167
+2024-04-25T14:30:07Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.200.73
+2024-04-25T14:30:07Z ERR Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=3 event=0 ip=198.41.192.167
+2024-04-25T14:30:07Z ERR Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=0 event=0 ip=198.41.200.73
+2024-04-25T14:30:07Z ERR Serve tunnel error error="Application error 0x0 (remote)" connIndex=3 event=0 ip=198.41.192.167
+2024-04-25T14:30:07Z ERR Serve tunnel error error="Application error 0x0 (remote)" connIndex=0 event=0 ip=198.41.200.73
+2024-04-25T14:30:07Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.192.167
+2024-04-25T14:30:07Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.73
+2024-04-25T14:30:07Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.200.53
+2024-04-25T14:30:07Z ERR Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=2 event=0 ip=198.41.200.53
+2024-04-25T14:30:07Z ERR Serve tunnel error error="Application error 0x0 (remote)" connIndex=2 event=0 ip=198.41.200.53
+2024-04-25T14:30:07Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.200.53
+2024-04-25T14:30:07Z ERR no more connections active and exiting
+2024-04-25T14:30:07Z INF Tunnel server stopped
+2024-04-25T14:30:07Z INF Metrics server stopped
+2024-04-25T14:30:07Z INF icmp router terminated error="read udp 192.168.68.74:0: raw-read udp 192.168.68.74:0: use of closed network connection"
