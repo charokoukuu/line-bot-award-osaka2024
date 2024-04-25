@@ -7,7 +7,7 @@ import {
 } from "../repository/get.repository";
 import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
-import { LinePush } from "../api/app.api";
+import { LinePush, publishLoadingMessage } from "../api/app.api";
 import { randomUUID } from "crypto";
 import { chatMessage } from "../messages/chatMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
@@ -81,6 +81,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         text: "オーナーがヒントを入力中です。しばらくお待ちください",
       },
     ]);
+    await publishLoadingMessage(userId, 20);
     return;
   }
   game.hints.push({
@@ -158,4 +159,5 @@ export const ScanService = async (userName: string, treasureId: string) => {
     });
   }
 }
+
 

@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import {
+  LINE_LOADING_ENDPOINT,
   LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
   LINE_REPLY_ENDPOINT,
@@ -33,6 +34,22 @@ export const LinePush = async (userId: string, content: object) => {
     console.error(err);
   });
 };
+
+
+export const publishLoadingMessage = async (userId: string, interval: number) => {
+
+  await fetch(LINE_LOADING_ENDPOINT, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      chatId: userId,
+      loadingSeconds: interval
+    }),
+  }).catch((err: any) => {
+    console.error(err);
+  });
+};
+
 
 interface UserProfile {
   userId: string,

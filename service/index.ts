@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { MONGODB_URI } from "./config/app.config";
 import { CronMethods, GetMethods, PostMethods } from "./method";
 export const app = express();
+const cors = require('cors')
+app.use(cors());
 mongoose.connect(MONGODB_URI);
 
 

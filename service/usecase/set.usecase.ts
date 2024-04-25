@@ -11,7 +11,6 @@ import { playGameMessage } from "../messages/playGameMessage";
 export const WebhookService = async (userId: string, message: string) => {
   const game = await GetGameFindOneByUserId(userId);
   const user = await GetUserFindOneByUserId(userId);
-  console.log(user);
 
   if (message == "プレイする") {
     if (user.teamId) {
@@ -21,13 +20,30 @@ export const WebhookService = async (userId: string, message: string) => {
       throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
     }
   }
-  if (!game) return;
+  if (!game && user.teamId) {
+    const users = await GetUsersFindByTeamId(user.teamId);
+    const team = await GetTeamFindOneByTeamId(user.teamId);
+    if (!team) throw new Error("チームが存在しません");
+    await LinePush(userId, [
+      playGameMessage(users.map(user => user.name), team.name, team.treasureCount)
+    ]);
+    return;
+  }
+  console.log(game);
   switch (game.status) {
     case Status.PREPARE:
       hint(userId, message, game);
       break;
     case Status.CHAT:
       chat(message, game, user);
+      break;
+    default:
+      await LinePush(userId, [
+        {
+          type: "text",
+          text: "ゲームが開始されていません",
+        },
+      ]);
       break;
   }
 

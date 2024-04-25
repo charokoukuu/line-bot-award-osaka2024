@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { GetAllTeamsService } from '../usecase/get.usecase';
+const path = require('path');
 export const GetAllTeamsController = async (req: Request, res: Response) => {
     try {
         const teams = await GetAllTeamsService();
