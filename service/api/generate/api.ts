@@ -99,6 +99,49 @@ export interface ApiQrscanBody {
 /**
  * 
  * @export
+ * @interface ApiScheduleBody
+ */
+export interface ApiScheduleBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiScheduleBody
+     */
+    teamId: string;
+    /**
+     * 
+     * @type {Array<User>}
+     * @memberof ApiScheduleBody
+     */
+    users: Array<User>;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof ApiScheduleBody
+     */
+    messages: Array<any>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiScheduleBody
+     */
+    timeAfterMinutes: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiScheduleBody
+     */
+    hintId?: string;
+    /**
+     * 
+     * @type {User}
+     * @memberof ApiScheduleBody
+     */
+    enableOwner?: User;
+}
+/**
+ * 
+ * @export
  * @interface ApiTeambuildingBody
  */
 export interface ApiTeambuildingBody {
@@ -286,6 +329,12 @@ export interface Schedule {
      * @type {string}
      * @memberof Schedule
      */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Schedule
+     */
     teamId: string;
     /**
      * 
@@ -301,10 +350,10 @@ export interface Schedule {
     messages: Array<any>;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof Schedule
      */
-    timeAfterMinutes: number;
+    date: Date;
     /**
      * 
      * @type {string}
@@ -324,11 +373,11 @@ export interface Schedule {
  * @enum {string}
  */
 export enum Status {
-    Create = <any> 'create',
-    Prepare = <any> 'prepare',
-    Chat = <any> 'chat',
-    Play = <any> 'play',
-    End = <any> 'end'
+    Create = 'create',
+    Prepare = 'prepare',
+    Chat = 'chat',
+    Play = 'play',
+    End = 'end'
 }
 /**
  * 
@@ -341,43 +390,62 @@ export interface Team {
      * @type {string}
      * @memberof Team
      */
-    teamId?: string;
+    teamId: string;
     /**
      * 
      * @type {string}
      * @memberof Team
      */
-    hostId?: string;
+    hostId: string;
     /**
      * 
      * @type {string}
      * @memberof Team
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof Team
      */
-    playerCount?: number;
+    playerCount: number;
     /**
      * 
      * @type {number}
      * @memberof Team
      */
-    ownerCount?: number;
+    ownerCount: number;
     /**
      * 
      * @type {number}
      * @memberof Team
      */
-    treasureCount?: number;
+    treasureCount: number;
     /**
      * 
      * @type {string}
      * @memberof Team
      */
-    keyword?: string;
+    keyword: string;
+}
+/**
+ * 
+ * @export
+ * @interface Treasure
+ */
+export interface Treasure {
+    /**
+     * 
+     * @type {string}
+     * @memberof Treasure
+     */
+    id?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Treasure
+     */
+    isScanned?: boolean;
 }
 /**
  * 
@@ -390,13 +458,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    userId?: string;
+    userId: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -412,44 +480,15 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @summary Delete schedule by ID
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiScheduleIdDelete(id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling apiScheduleIdDelete.');
-            }
-            const localVarPath = `/api/schedule/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Create a new schedule
-         * @param {Schedule} body 
+         * @param {ApiScheduleBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: Schedule, options: any = {}): FetchArgs {
+        apiSchedulePost(body: ApiScheduleBody, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiSchedulePost.');
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiSchedulePost.');
             }
             const localVarPath = `/api/schedule`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -463,8 +502,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Schedule" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+            const needsSerialization = (<any>"ApiScheduleBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -481,7 +520,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         apiTeamBuildingPost(body: ApiTeambuildingBody, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiTeamBuildingPost.');
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiTeamBuildingPost.');
             }
             const localVarPath = `/api/team-building`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -496,7 +535,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"ApiTeambuildingBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -513,7 +552,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         apiTeamJoiningPost(body: ApiTeamjoiningBody, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiTeamJoiningPost.');
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiTeamJoiningPost.');
             }
             const localVarPath = `/api/team-joining`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -528,7 +567,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"ApiTeamjoiningBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -542,35 +581,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
  * DefaultApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function(configuration?: Configuration) {
+export const DefaultApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Delete schedule by ID
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiScheduleIdDelete(id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiScheduleIdDelete(id, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
          * @summary Create a new schedule
-         * @param {Schedule} body 
+         * @param {ApiScheduleBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: Schedule, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+        apiSchedulePost(body: ApiScheduleBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiSchedulePost(body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -631,22 +651,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
     return {
         /**
          * 
-         * @summary Delete schedule by ID
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiScheduleIdDelete(id: string, options?: any) {
-            return DefaultApiFp(configuration).apiScheduleIdDelete(id, options)(fetch, basePath);
-        },
-        /**
-         * 
          * @summary Create a new schedule
-         * @param {Schedule} body 
+         * @param {ApiScheduleBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: Schedule, options?: any) {
+        apiSchedulePost(body: ApiScheduleBody, options?: any) {
             return DefaultApiFp(configuration).apiSchedulePost(body, options)(fetch, basePath);
         },
         /**
@@ -681,25 +691,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
 export class DefaultApi extends BaseAPI {
     /**
      * 
-     * @summary Delete schedule by ID
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public apiScheduleIdDelete(id: string, options?: any) {
-        return DefaultApiFp(this.configuration).apiScheduleIdDelete(id, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
      * @summary Create a new schedule
-     * @param {Schedule} body 
+     * @param {ApiScheduleBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiSchedulePost(body: Schedule, options?: any) {
+    public apiSchedulePost(body: ApiScheduleBody, options?: any) {
         return DefaultApiFp(this.configuration).apiSchedulePost(body, options)(this.fetch, this.basePath);
     }
 
@@ -729,42 +727,19 @@ export class DefaultApi extends BaseAPI {
 
 }
 /**
- * GamesApi - fetch parameter creator
+ * GameApi - fetch parameter creator
  * @export
  */
-export const GamesApiFetchParamCreator = function (configuration?: Configuration) {
+export const GameApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Delete games by team ID
+         * @summary Get all game by team ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGamesTeamIdDelete(options: any = {}): FetchArgs {
-            const localVarPath = `/api/games/{teamId}`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all games by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGamesTeamIdGet(options: any = {}): FetchArgs {
-            const localVarPath = `/api/games/{teamId}`;
+        apiGameTeamIdGet(options: any = {}): FetchArgs {
+            const localVarPath = `/api/game/{teamId}`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -784,37 +759,19 @@ export const GamesApiFetchParamCreator = function (configuration?: Configuration
 };
 
 /**
- * GamesApi - functional programming interface
+ * GameApi - functional programming interface
  * @export
  */
-export const GamesApiFp = function(configuration?: Configuration) {
+export const GameApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Delete games by team ID
+         * @summary Get all game by team ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGamesTeamIdDelete(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = GamesApiFetchParamCreator(configuration).apiGamesTeamIdDelete(options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary Get all games by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGamesTeamIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Game> {
-            const localVarFetchArgs = GamesApiFetchParamCreator(configuration).apiGamesTeamIdGet(options);
+        apiGameTeamIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Game> {
+            const localVarFetchArgs = GameApiFetchParamCreator(configuration).apiGameTeamIdGet(options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -829,59 +786,39 @@ export const GamesApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * GamesApi - factory interface
+ * GameApi - factory interface
  * @export
  */
-export const GamesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const GameApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
          * 
-         * @summary Delete games by team ID
+         * @summary Get all game by team ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGamesTeamIdDelete(options?: any) {
-            return GamesApiFp(configuration).apiGamesTeamIdDelete(options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary Get all games by team ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGamesTeamIdGet(options?: any) {
-            return GamesApiFp(configuration).apiGamesTeamIdGet(options)(fetch, basePath);
+        apiGameTeamIdGet(options?: any) {
+            return GameApiFp(configuration).apiGameTeamIdGet(options)(fetch, basePath);
         },
     };
 };
 
 /**
- * GamesApi - object-oriented interface
+ * GameApi - object-oriented interface
  * @export
- * @class GamesApi
+ * @class GameApi
  * @extends {BaseAPI}
  */
-export class GamesApi extends BaseAPI {
+export class GameApi extends BaseAPI {
     /**
      * 
-     * @summary Delete games by team ID
+     * @summary Get all game by team ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GamesApi
+     * @memberof GameApi
      */
-    public apiGamesTeamIdDelete(options?: any) {
-        return GamesApiFp(this.configuration).apiGamesTeamIdDelete(options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary Get all games by team ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GamesApi
-     */
-    public apiGamesTeamIdGet(options?: any) {
-        return GamesApiFp(this.configuration).apiGamesTeamIdGet(options)(this.fetch, this.basePath);
+    public apiGameTeamIdGet(options?: any) {
+        return GameApiFp(this.configuration).apiGameTeamIdGet(options)(this.fetch, this.basePath);
     }
 
 }
@@ -901,7 +838,7 @@ export const QRApiFetchParamCreator = function (configuration?: Configuration) {
         apiQrScanPost(body: ApiQrscanBody, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiQrScanPost.');
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiQrScanPost.');
             }
             const localVarPath = `/api/qr-scan`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -916,7 +853,7 @@ export const QRApiFetchParamCreator = function (configuration?: Configuration) {
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"ApiQrscanBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -930,7 +867,7 @@ export const QRApiFetchParamCreator = function (configuration?: Configuration) {
  * QRApi - functional programming interface
  * @export
  */
-export const QRApiFp = function(configuration?: Configuration) {
+export const QRApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -1009,7 +946,7 @@ export const TeamApiFetchParamCreator = function (configuration?: Configuration)
         apiTeamTeamIdDelete(teamId: string, options: any = {}): FetchArgs {
             // verify required parameter 'teamId' is not null or undefined
             if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId','Required parameter teamId was null or undefined when calling apiTeamTeamIdDelete.');
+                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdDelete.');
             }
             const localVarPath = `/api/team/{teamId}`
                 .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
@@ -1038,7 +975,7 @@ export const TeamApiFetchParamCreator = function (configuration?: Configuration)
         apiTeamTeamIdGet(teamId: string, options: any = {}): FetchArgs {
             // verify required parameter 'teamId' is not null or undefined
             if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId','Required parameter teamId was null or undefined when calling apiTeamTeamIdGet.');
+                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdGet.');
             }
             const localVarPath = `/api/team/{teamId}`
                 .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
@@ -1068,11 +1005,11 @@ export const TeamApiFetchParamCreator = function (configuration?: Configuration)
         apiTeamTeamIdPatch(body: Team, teamId: string, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling apiTeamTeamIdPatch.');
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiTeamTeamIdPatch.');
             }
             // verify required parameter 'teamId' is not null or undefined
             if (teamId === null || teamId === undefined) {
-                throw new RequiredError('teamId','Required parameter teamId was null or undefined when calling apiTeamTeamIdPatch.');
+                throw new RequiredError('teamId', 'Required parameter teamId was null or undefined when calling apiTeamTeamIdPatch.');
             }
             const localVarPath = `/api/team/{teamId}`
                 .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
@@ -1088,7 +1025,7 @@ export const TeamApiFetchParamCreator = function (configuration?: Configuration)
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"Team" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -1102,7 +1039,7 @@ export const TeamApiFetchParamCreator = function (configuration?: Configuration)
  * TeamApi - functional programming interface
  * @export
  */
-export const TeamApiFp = function(configuration?: Configuration) {
+export const TeamApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -1286,7 +1223,7 @@ export const TeamsApiFetchParamCreator = function (configuration?: Configuration
  * TeamsApi - functional programming interface
  * @export
  */
-export const TeamsApiFp = function(configuration?: Configuration) {
+export const TeamsApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -1354,35 +1291,6 @@ export const UserApiFetchParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
-         * @summary Delete user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdDelete(userId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiUserUserIdDelete.');
-            }
-            const localVarPath = `/api/user/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Get user by ID
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -1391,7 +1299,7 @@ export const UserApiFetchParamCreator = function (configuration?: Configuration)
         apiUserUserIdGet(userId: string, options: any = {}): FetchArgs {
             // verify required parameter 'userId' is not null or undefined
             if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiUserUserIdGet.');
+                throw new RequiredError('userId', 'Required parameter userId was null or undefined when calling apiUserUserIdGet.');
             }
             const localVarPath = `/api/user/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
@@ -1417,27 +1325,8 @@ export const UserApiFetchParamCreator = function (configuration?: Configuration)
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function(configuration?: Configuration) {
+export const UserApiFp = function (configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @summary Delete user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdDelete(userId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = UserApiFetchParamCreator(configuration).apiUserUserIdDelete(userId, options);
-            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
         /**
          * 
          * @summary Get user by ID
@@ -1468,16 +1357,6 @@ export const UserApiFactory = function (configuration?: Configuration, fetch?: F
     return {
         /**
          * 
-         * @summary Delete user by ID
-         * @param {string} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiUserUserIdDelete(userId: string, options?: any) {
-            return UserApiFp(configuration).apiUserUserIdDelete(userId, options)(fetch, basePath);
-        },
-        /**
-         * 
          * @summary Get user by ID
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -1496,18 +1375,6 @@ export const UserApiFactory = function (configuration?: Configuration, fetch?: F
  * @extends {BaseAPI}
  */
 export class UserApi extends BaseAPI {
-    /**
-     * 
-     * @summary Delete user by ID
-     * @param {string} userId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public apiUserUserIdDelete(userId: string, options?: any) {
-        return UserApiFp(this.configuration).apiUserUserIdDelete(userId, options)(this.fetch, this.basePath);
-    }
-
     /**
      * 
      * @summary Get user by ID

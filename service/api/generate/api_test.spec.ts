@@ -21,12 +21,8 @@ describe("DefaultApi", () => {
     instance = new api.DefaultApi(config)
   });
 
-  test("apiScheduleIdDelete", () => {
-    const id: string = "id_example"
-    return expect(instance.apiScheduleIdDelete(id, {})).resolves.toBe(null)
-  })
   test("apiSchedulePost", () => {
-    const body: api.Schedule = undefined
+    const body: api.ApiScheduleBody = undefined
     return expect(instance.apiSchedulePost(body, {})).resolves.toBe(null)
   })
   test("apiTeamBuildingPost", () => {
@@ -39,17 +35,14 @@ describe("DefaultApi", () => {
   })
 })
 
-describe("GamesApi", () => {
-  let instance: api.GamesApi
+describe("GameApi", () => {
+  let instance: api.GameApi
   beforeEach(function() {
-    instance = new api.GamesApi(config)
+    instance = new api.GameApi(config)
   });
 
-  test("apiGamesTeamIdDelete", () => {
-    return expect(instance.apiGamesTeamIdDelete({})).resolves.toBe(null)
-  })
-  test("apiGamesTeamIdGet", () => {
-    return expect(instance.apiGamesTeamIdGet({})).resolves.toBe(null)
+  test("apiGameTeamIdGet", () => {
+    return expect(instance.apiGameTeamIdGet({})).resolves.toBe(null)
   })
 })
 
@@ -103,10 +96,6 @@ describe("UserApi", () => {
     instance = new api.UserApi(config)
   });
 
-  test("apiUserUserIdDelete", () => {
-    const userId: string = "userId_example"
-    return expect(instance.apiUserUserIdDelete(userId, {})).resolves.toBe(null)
-  })
   test("apiUserUserIdGet", () => {
     const userId: string = "userId_example"
     return expect(instance.apiUserUserIdGet(userId, {})).resolves.toBe(null)

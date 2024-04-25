@@ -5,13 +5,13 @@ import {
   GetTeamFindOneByTeamId,
   GetUsersFindByTeamId,
 } from "../repository/get.repository";
-import { Game, Status, User } from "../types/app.type";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush, publishLoadingMessage } from "../api/app.api";
 import { randomUUID } from "crypto";
 import { chatMessage } from "../messages/chatMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
+import { Game, Status, User } from "../api/generate";
 
 export const play = async (teamId: string) => {
   const users = await GetUsersFindByTeamId(teamId);
@@ -35,7 +35,7 @@ export const play = async (teamId: string) => {
       id: randomUUID(),
       isScanned: false,
     })),
-    status: Status.PREPARE,
+    status: Status.Prepare,
   }
   await SetGame(newGame);
   await gameAction([...owners, ...seekers], async (user) => {
@@ -107,7 +107,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       ]);
     })
 
-    game.status = Status.CHAT;
+    game.status = Status.Chat;
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [chatMessage()]);
     });
@@ -150,7 +150,7 @@ export const ScanService = async (userName: string, treasureId: string) => {
       await LinePush(user.userId, [
         seekerVictoryMessage(game.seekers.map((seeker) => seeker.name)),
       ]);
-      game.status = Status.END;
+      game.status = Status.End;
       await SetGame(game);
       await gameAction(game.allUsers, async (user) => {
         user.teamId = "";

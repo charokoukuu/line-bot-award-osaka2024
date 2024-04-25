@@ -1,9 +1,8 @@
 import { LinePush } from "../api/app.api";
 import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
-import { Schedule, Status, User } from "../types/app.type";
+import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
 import { GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
-import { CreateSchedule, TeamBuilding, TeamJoining } from "../types/api.type";
 import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
@@ -24,17 +23,14 @@ export const WebhookService = async (userId: string, message: string) => {
     const users = await GetUsersFindByTeamId(user.teamId);
     const team = await GetTeamFindOneByTeamId(user.teamId);
     if (!team) throw new Error("チームが存在しません");
-    await LinePush(userId, [
-      playGameMessage(users.map(user => user.name), team.name, team.treasureCount)
-    ]);
     return;
   }
   console.log(game);
   switch (game.status) {
-    case Status.PREPARE:
+    case Status.Prepare:
       hint(userId, message, game);
       break;
-    case Status.CHAT:
+    case Status.Chat:
       chat(message, game, user);
       break;
     default:
@@ -49,7 +45,7 @@ export const WebhookService = async (userId: string, message: string) => {
 
 };
 
-export const ScheduleService = async (scheduleItem: CreateSchedule) => {
+export const ScheduleService = async (scheduleItem: ApiScheduleBody) => {
   const currentDate = new Date();
   const futureDate = new Date(currentDate.getTime() + scheduleItem.timeAfterMinutes * 60000);
   const newSchedule: Schedule = {
@@ -69,7 +65,7 @@ export const ScheduleService = async (scheduleItem: CreateSchedule) => {
 export const CreateUserService = async (user: User) => {
   await SetUser(user);
 };
-export const TeamBuildingService = async (data: TeamBuilding) => {
+export const TeamBuildingService = async (data: ApiTeambuildingBody) => {
   const teamId = randomUUID();
   await SetUser({
     userId: data.userId,
@@ -100,7 +96,7 @@ export const TeamBuildingService = async (data: TeamBuilding) => {
   return id;
 };
 
-export const TeamJoiningService = async (data: TeamJoining) => {
+export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
   const teamLength = await (await GetUsersFindByTeamId(data.teamId)).length + 1;
   const team = await GetTeamFindOneByTeamId(data.teamId);
   if (teamLength > team.playerCount) {

@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import { CreateUserService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
-import { User } from "../types/app.type";
-import { CreateSchedule, Scan, TeamBuilding, TeamJoining } from "../types/api.type";
 import { LineReply, getUserProfile } from "../api/app.api";
 import { ScanService } from "../usecase/game.usecase";
+import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -42,7 +41,7 @@ export const CreateUserController = async (req: Request, res: Response) => {
 }
 
 export const SchedulerController = async (req: Request, res: Response) => {
-    const schedule = req.body as CreateSchedule;
+    const schedule = req.body as ApiScheduleBody;
     try {
         await ScheduleService(schedule);
         res.sendStatus(200);
@@ -53,7 +52,7 @@ export const SchedulerController = async (req: Request, res: Response) => {
 }
 
 export const TeamBuildingController = async (req: Request, res: Response) => {
-    const teamBuildingData = req.body as TeamBuilding;
+    const teamBuildingData = req.body as ApiTeambuildingBody;
     try {
         const id = await TeamBuildingService(teamBuildingData)
         res.send(id);
@@ -64,7 +63,7 @@ export const TeamBuildingController = async (req: Request, res: Response) => {
 }
 
 export const TeamJoiningController = async (req: Request, res: Response) => {
-    const teamJoiningData = req.body as TeamJoining;
+    const teamJoiningData = req.body as ApiTeamjoiningBody;
     try {
         await TeamJoiningService(teamJoiningData)
         res.sendStatus(200);
@@ -74,7 +73,7 @@ export const TeamJoiningController = async (req: Request, res: Response) => {
     }
 }
 export const ScanController = async (req: Request, res: Response) => {
-    const scanData = req.body as Scan;
+    const scanData = req.body as ApiQrscanBody;
     try {
         await ScanService(scanData.userName, scanData.treasureId);
         res.sendStatus(200);

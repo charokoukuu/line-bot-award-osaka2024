@@ -129,19 +129,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-    delete:
-      tags:
-          - User
-      summary: Delete user by ID
-      parameters:
-        - in: path
-          name: userId
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: User deleted successfully
   /api/team/{teamId}:
     get:
       tags:
@@ -196,25 +183,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
-  /api/games/{teamId}:
+  /api/game/{teamId}:
     get:
       tags:
-        - Games
-      summary: Get all games by team ID
+        - Game
+      summary: Get all game by team ID
       responses:
         '200':
-          description: A list of games
+          description: A list of game
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
-    delete:
-      tags:
-        - Games
-      summary: Delete games by team ID
-      responses:
-        '204':
-          description: Games deleted successfully
   /api/schedule:
     post:
       tags:
@@ -224,25 +204,33 @@ paths:
         required: true
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Schedule'
+              schema:
+                type: object
+                properties:
+                  teamId:
+                    type: string
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                  timeAfterMinutes: 
+                    type: number
+                  hintId:
+                    type: string
+                  enableOwner:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - teamId
+                  - users
+                  - messages
+                  - timeAfterMinutes
       responses:
         '200':
           description: Schedule created successfully
-  /api/schedule/{id}:
-    delete:
-      tags:
-        - スケジュール削除
-      summary: Delete schedule by ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Schedule deleted successfully
     
 components:
   schemas:
@@ -256,6 +244,9 @@ components:
         teamId:
           type: string
           nullable: true
+      required:
+        - userId
+        - name
     Team:
       type: object
       properties:
@@ -277,6 +268,14 @@ components:
         keyword:
           type: string
           nullable: true
+      required:
+        - teamId
+        - hostId
+        - name
+        - playerCount
+        - ownerCount
+        - treasureCount
+        - keyword
     Game:
       type: object
       properties:
@@ -334,6 +333,7 @@ components:
         - status
     Status:
       type: string
+      format: string
       enum:
         - create
         - prepare
@@ -343,6 +343,8 @@ components:
     Schedule:
       type: object
       properties:
+        id:
+          type: string
         teamId:
           type: string
         users:
@@ -353,8 +355,9 @@ components:
           type: array
           items:
             type: object
-        timeAfterMinutes:
-          type: number
+        date:
+          type: string
+          format: date-time
         hintId:
           type: string
         enableOwner:
@@ -364,4 +367,11 @@ components:
         - teamId
         - users
         - messages
-        - timeAfterMinutes
+        - date
+    treasure:
+      type: object
+      properties:
+        id:
+          type: string
+        isScanned:
+          type: boolean

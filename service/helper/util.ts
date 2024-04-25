@@ -1,4 +1,4 @@
-import { User } from "../types/app.type";
+import { User } from "../api/generate";
 
 export const reply = (token: string, content: any) => {
   return JSON.stringify({

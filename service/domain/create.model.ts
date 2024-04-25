@@ -1,10 +1,6 @@
+import { Game, Schedule, Team, User } from "../api/generate";
 import { GameSchema, ScheduleSchema, TeamSchema, UserSchema } from "../schema/db.schema";
-import {
-  Game,
-  Schedule,
-  Team,
-  User,
-} from "../types/app.type";
+
 import mongoose from "mongoose";
 
 export const createTeam = (team: Team) => {
