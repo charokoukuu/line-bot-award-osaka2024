@@ -16,7 +16,9 @@ app.use(express.urlencoded({
 
 GetMethods();
 PostMethods();
-CronMethods()
+DeleteMethods();
+CronMethods();
+
 const port = 4000;
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
