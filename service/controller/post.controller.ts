@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
+import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { LineReply, getUserProfile } from "../api/app.api";
 import { ScanService } from "../usecase/game.usecase";
@@ -102,6 +102,18 @@ export const PrintHintController = async (req: Request, res: Response) => {
     const text = req.body.text as string;
     try {
         await PrintHintService(id, text)
+        res.sendStatus(200);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+
+export const SaveHintController = async (req: Request, res: Response) => {
+    const teamId = req.body.teamId as string;
+    const content = req.body.content as string;
+    try {
+        await SaveHintService(teamId, content)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

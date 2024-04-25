@@ -65,3 +65,15 @@ describe("QRApi", () => {
   })
 })
 
+describe("_Api", () => {
+  let instance: api._Api
+  beforeEach(function() {
+    instance = new api._Api(config)
+  });
+
+  test("apiSaveHintPost", () => {
+    const body: api.SaveHintBody = undefined
+    return expect(instance.apiSaveHintPost(body, {})).resolves.toBe(null)
+  })
+})
+

@@ -309,6 +309,25 @@ export interface GameTreasures {
 /**
  * 
  * @export
+ * @interface SaveHintBody
+ */
+export interface SaveHintBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveHintBody
+     */
+    teamId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveHintBody
+     */
+    content: string;
+}
+/**
+ * 
+ * @export
  * @interface Schedule
  */
 export interface Schedule {
@@ -1151,6 +1170,114 @@ export class QRApi extends BaseAPI {
      */
     public apiQrScanPost(body: ApiQrscanBody, options?: any) {
         return QRApiFp(this.configuration).apiQrScanPost(body, options)(this.fetch, this.basePath);
+    }
+
+}
+/**
+ * _Api - fetch parameter creator
+ * @export
+ */
+export const _ApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new hint
+         * @param {SaveHintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSaveHintPost(body: SaveHintBody, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiSaveHintPost.');
+            }
+            const localVarPath = `/api/save/hint`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"SaveHintBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * _Api - functional programming interface
+ * @export
+ */
+export const _ApiFp = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new hint
+         * @param {SaveHintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSaveHintPost(body: SaveHintBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = _ApiFetchParamCreator(configuration).apiSaveHintPost(body, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * _Api - factory interface
+ * @export
+ */
+export const _ApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary Create a new hint
+         * @param {SaveHintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSaveHintPost(body: SaveHintBody, options?: any) {
+            return _ApiFp(configuration).apiSaveHintPost(body, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * _Api - object-oriented interface
+ * @export
+ * @class _Api
+ * @extends {BaseAPI}
+ */
+export class _Api extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new hint
+     * @param {SaveHintBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof _Api
+     */
+    public apiSaveHintPost(body: SaveHintBody, options?: any) {
+        return _ApiFp(this.configuration).apiSaveHintPost(body, options)(this.fetch, this.basePath);
     }
 
 }

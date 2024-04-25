@@ -1,7 +1,7 @@
 import { LinePush, getUserProfile } from "../api/app.api";
-import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { SetGame, SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
-import { GetGameFindOneByUserId, GetTeamFindOneByTeamId, GetUserFindOneByUserId, GetUsersFindByTeamId } from "../repository/get.repository";
+import { GetOneGameByUserId, GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
 import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
@@ -9,15 +9,15 @@ import { playGameMessage } from "../messages/playGameMessage";
 
 export const WebhookService = async (userId: string, message: string) => {
 
-  const game = await GetGameFindOneByUserId(userId);
-  const user = await GetUserFindOneByUserId(userId);
+  const game = await GetOneGameByUserId(userId);
+  const user = await GetOneUserByUserId(userId);
 
   if (!user || !user.teamId) {
     throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
   }
   if (!game && user.teamId) {
-    const users = await GetUsersFindByTeamId(user.teamId);
-    const team = await GetTeamFindOneByTeamId(user.teamId);
+    const users = await GetUsersByTeamId(user.teamId);
+    const team = await GetOneTeamByTeamId(user.teamId);
     if (users.length < team.playerCount) {
       throw new Error("チーム人数が足りません。チームメンバーが全員揃うまでお待ちください。");
     } else {
@@ -104,13 +104,13 @@ export const TeamBuildingService = async (data: ApiTeambuildingBody) => {
 };
 
 export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
-  const teamLength = await (await GetUsersFindByTeamId(data.teamId)).length + 1;
-  const team = await GetTeamFindOneByTeamId(data.teamId);
+  const teamLength = await (await GetUsersByTeamId(data.teamId)).length + 1;
+  const team = await GetOneTeamByTeamId(data.teamId);
   if (teamLength > team.playerCount) {
     throw new Error("チームが満員です");
   }
   const name = (await getUserProfile(data.userId)).displayName ?? "名無しさん" + Math.floor(Math.random() * 1000);
-  const beforeUserTeamId = (await GetUserFindOneByUserId(data.userId)).teamId;
+  const beforeUserTeamId = (await GetOneUserByUserId(data.userId))?.teamId;
   const userSetInfo: any = await SetUser({
     userId: data.userId,
     name: name,
@@ -136,11 +136,17 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
   ]);
 
   if (teamLength == team.playerCount) {
-    const users = await GetUsersFindByTeamId(data.teamId);
+    const users = await GetUsersByTeamId(data.teamId);
     await LinePush(team.hostId, [
       playGameMessage(users.map(user => user.name), team.name, team.treasureCount)
     ]);
     return;
   }
 
+};
+
+export const SaveHintService = async (teamId: string, content: string) => {
+  const game = await GetOneGameByTeamId(teamId);
+  console.log(game);
+  hint(game.owners[0].userId, content, game);
 };

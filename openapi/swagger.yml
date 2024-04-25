@@ -4,10 +4,10 @@ info:
   description: BoTreasureに関するAPI仕様書です。
   version: 1.0.0
 servers:
-  - url: https://local-line.run-ticket.com/
-    description: Production server (uses live data)
+  - url: https://node-learn.run-ticket.com/
+    description: Production server (ros2)
   - url: http://localhost:8080/
-    description: Local server (uses test data)
+    description: Local server (mac)
 paths:
   /api/team-building:
     post:
@@ -202,6 +202,28 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/save/hint:
+    post:
+      tags:
+        - ヒント作成(デバッグ用)
+      summary: Create a new hint
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  teamId:
+                    type: string
+                  content:
+                    type: string
+                required:
+                  - teamId
+                  - content
+      responses:
+        '201':
+          description: Hint created successfully
     
 components:
   schemas:

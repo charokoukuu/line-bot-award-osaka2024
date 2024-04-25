@@ -1,11 +1,10 @@
 import { gameAction } from "../helper/util";
 import {
-  GetGameFindOneByTeam,
-  GetGameFindOneByTreasureId,
-  GetGameFindOneByUserId,
-  GetTeamFindOneByTeamId,
-  GetUserFindOneByUserId,
-  GetUsersFindByTeamId,
+  GetOneGameByTeam,
+  GetOneGameByUserId,
+  GetOneTeamByTeamId,
+  GetOneUserByUserId,
+  GetUsersByTeamId,
 } from "../repository/get.repository";
 import { SetGame, SetUser } from "../repository/set.repository";
 import { LinePush, publishLoadingMessage } from "../api/app.api";
@@ -17,9 +16,9 @@ import { Game, Status, User } from "../api/generate";
 
 export const play = async (teamId: string) => {
   console.log("game");
-  const users = await GetUsersFindByTeamId(teamId);
-  const team = await GetTeamFindOneByTeamId(teamId);
-  const game = await GetGameFindOneByTeam(team);
+  const users = await GetUsersByTeamId(teamId);
+  const team = await GetOneTeamByTeamId(teamId);
+  const game = await GetOneGameByTeam(team);
   if (!team) throw new Error("該当するチームが存在しません");
   if (game) throw new Error("既にゲームが開始されています");
 
@@ -136,8 +135,8 @@ export const chat = async (message: string, game: Game, user: User) => {
 
 
 export const ScanService = async (userId: string, treasureId: string) => {
-  const user = await GetUserFindOneByUserId(userId);
-  const game = await GetGameFindOneByUserId(userId);
+  const user = await GetOneUserByUserId(userId);
+  const game = await GetOneGameByUserId(userId);
   const userName = user.name;
   game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
   const result: any = await SetGame(game);

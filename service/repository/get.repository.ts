@@ -2,12 +2,12 @@ import { GameModel, ScheduleModel, TeamModel, UserModel } from "../domain/create
 import { Game, Schedule, Team, User } from "../api/generate";
 
 
-export const GetUserFindOneByUserId = async (userId: string): Promise<User> => {
+export const GetOneUserByUserId = async (userId: string): Promise<User> => {
   const getUser = await UserModel.findOne({ userId: userId });
   return getUser as User;
 };
 
-export const GetUsersFindByTeamId = async (teamId: string): Promise<User[]> => {
+export const GetUsersByTeamId = async (teamId: string): Promise<User[]> => {
   const getUsers = await UserModel.find({
     teamId
   });
@@ -15,7 +15,7 @@ export const GetUsersFindByTeamId = async (teamId: string): Promise<User[]> => {
 }
 
 
-export const GetTeamFindOneByTeamId = async (teamId: string): Promise<Team> => {
+export const GetOneTeamByTeamId = async (teamId: string): Promise<Team> => {
   const getTeam = await TeamModel.findOne({ teamId: teamId });
   return getTeam as Team;
 };
@@ -38,27 +38,27 @@ export const GetOneGameByTeamId = async (teamId: string): Promise<Game> => {
 
 }
 
-export const GetGameFindOneByTeam = async (team: Team): Promise<Game> => {
+export const GetOneGameByTeam = async (team: Team): Promise<Game> => {
   const getGame = await GameModel.findOne({ team: team, status: { $ne: "end" } });
   return getGame as Game;
 };
 
-export const GetGameFindOneByUserId = async (userId: string): Promise<Game> => {
+export const GetOneGameByUserId = async (userId: string): Promise<Game> => {
   const getGame = await GameModel.findOne({ "allUsers.userId": userId, status: { $ne: "end" } });
   return getGame as Game;
 };
 
-export const GetGameFindOneByTreasureId = async (id: string): Promise<Game> => {
+export const GetOneGameByTreasureId = async (id: string): Promise<Game> => {
   const getGame = await GameModel.findOne({ "treasures.id": id });
   return getGame as Game;
 };
 
-export const GetScheduleFindOneByDate = async (date: string): Promise<Schedule> => {
+export const GetOneScheduleByDate = async (date: string): Promise<Schedule> => {
   const getSchedule = await ScheduleModel.findOne({ date: date });
   return getSchedule as Schedule;
 };
 
-export const GetScheduleFind = async (): Promise<Schedule[]> => {
+export const GetAllSchedule = async (): Promise<Schedule[]> => {
   const getSchedule = await ScheduleModel.find();
   return getSchedule as Schedule[];
 };
