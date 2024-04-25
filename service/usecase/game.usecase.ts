@@ -14,6 +14,7 @@ import { findTreasureMessage } from "../messages/findTreasureMessage";
 import { Game, Status, User } from "../api/generate";
 
 export const play = async (teamId: string) => {
+  console.log("game");
   const users = await GetUsersFindByTeamId(teamId);
   const team = await GetTeamFindOneByTeamId(teamId);
   const game = await GetGameFindOneByTeam(team);

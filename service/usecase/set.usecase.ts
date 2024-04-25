@@ -8,12 +8,15 @@ import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
 
 export const WebhookService = async (userId: string, message: string) => {
+  console.log("game");
+
   const game = await GetGameFindOneByUserId(userId);
   const user = await GetUserFindOneByUserId(userId);
 
   if (message == "プレイする") {
     if (user.teamId) {
       const teamId = user.teamId;
+
       await play(teamId);
     } else {
       throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");

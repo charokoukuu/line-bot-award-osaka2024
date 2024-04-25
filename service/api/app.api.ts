@@ -4,8 +4,8 @@ import {
   LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
   LINE_REPLY_ENDPOINT,
-  headers,
 } from "../config/app.config";
+import { headers } from "../config/secret.config";
 
 export const LineReply = async (replyToken: string, content: object[]) => {
   const payload = {
