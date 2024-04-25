@@ -8,35 +8,38 @@ import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
 
 export const WebhookService = async (userId: string, message: string) => {
-  console.log("game");
 
   const game = await GetGameFindOneByUserId(userId);
   const user = await GetUserFindOneByUserId(userId);
 
-  if (message == "プレイする") {
-    if (user.teamId) {
-      const teamId = user.teamId;
-
-      await play(teamId);
-    } else {
-      throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
-    }
+  if (!user || !user.teamId) {
+    throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
   }
   if (!game && user.teamId) {
     const users = await GetUsersFindByTeamId(user.teamId);
     const team = await GetTeamFindOneByTeamId(user.teamId);
-    if (!team) throw new Error("チームが存在しません");
-    return;
+    if (users.length < team.playerCount) {
+      throw new Error("チーム人数が足りません。チームメンバーが全員揃うまでお待ちください。");
+    } else {
+      if (message == "プレイする") {
+        await play(user.teamId);
+        return;
+      }
+    }
+    throw new Error("ゲームが開始されていません。プレイする！を押すとゲームを開始できます。");
   }
-  console.log(game);
+  if (!game) throw new Error("ゲームが開始されていません");
   switch (game.status) {
     case Status.Prepare:
+      console.log("prepare");
       hint(userId, message, game);
       break;
     case Status.Chat:
+      console.log("chat");
       chat(message, game, user);
       break;
     default:
+      console.log("default");
       await LinePush(userId, [
         {
           type: "text",

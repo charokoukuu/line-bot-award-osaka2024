@@ -9,3 +9,5 @@ export const LINE_PROFILE_ENDPOINT = "https://api.line.me/v2/bot/profile/";
 // Printer API
 export const POS_QR_ENDPOINT = "https://pos.run-ticket.com/qr";
 export const POS_HINT_ENDPOINT = "https://pos.run-ticket.com/hint";
+
+export const isDebug = false;

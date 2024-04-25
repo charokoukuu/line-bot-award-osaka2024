@@ -20,6 +20,7 @@ export const WebhookController = async (req: Request, res: Response) => {
         }
         res.sendStatus(200);
     } catch (err: any) {
+        console.error(err);
         await LineReply(replyToken, [
             {
                 type: "text",

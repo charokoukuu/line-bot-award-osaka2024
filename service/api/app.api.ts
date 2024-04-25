@@ -4,6 +4,7 @@ import {
   LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
   LINE_REPLY_ENDPOINT,
+  isDebug,
 } from "../config/app.config";
 import { headers } from "../config/secret.config";
 
@@ -12,7 +13,7 @@ export const LineReply = async (replyToken: string, content: object[]) => {
     replyToken: replyToken,
     messages: content,
   }
-  await fetch(LINE_REPLY_ENDPOINT, {
+  !isDebug && await fetch(LINE_REPLY_ENDPOINT, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(payload),
@@ -26,7 +27,7 @@ export const LinePush = async (userId: string, content: object) => {
     to: userId,
     messages: content,
   }
-  await fetch(LINE_PUSH_ENDPOINT, {
+  !isDebug && await fetch(LINE_PUSH_ENDPOINT, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(payload),
