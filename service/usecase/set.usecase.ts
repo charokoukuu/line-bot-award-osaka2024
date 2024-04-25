@@ -110,12 +110,15 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
     throw new Error("チームが満員です");
   }
   const name = (await getUserProfile(data.userId)).displayName ?? "名無しさん" + Math.floor(Math.random() * 1000);
-  const user: any = await SetUser({
+  const beforeUserTeamId = (await GetUserFindOneByUserId(data.userId)).teamId;
+  const userSetInfo: any = await SetUser({
     userId: data.userId,
     name: name,
     teamId: data.teamId,
   });
-  if (user.upsertedCount == 0) {
+  console.log(beforeUserTeamId);
+  if (beforeUserTeamId != "" && userSetInfo.upsertedCount == 0) {
+    console.log("すでにチームに参加しています");
     await LinePush(data.userId, [
       {
         type: "text",

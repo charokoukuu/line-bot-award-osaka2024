@@ -2,7 +2,9 @@ import { gameAction } from "../helper/util";
 import {
   GetGameFindOneByTeam,
   GetGameFindOneByTreasureId,
+  GetGameFindOneByUserId,
   GetTeamFindOneByTeamId,
+  GetUserFindOneByUserId,
   GetUsersFindByTeamId,
 } from "../repository/get.repository";
 import { SetGame, SetUser } from "../repository/set.repository";
@@ -133,8 +135,10 @@ export const chat = async (message: string, game: Game, user: User) => {
 }
 
 
-export const ScanService = async (userName: string, treasureId: string) => {
-  const game = await GetGameFindOneByTreasureId(treasureId);
+export const ScanService = async (userId: string, treasureId: string) => {
+  const user = await GetUserFindOneByUserId(userId);
+  const game = await GetGameFindOneByUserId(userId);
+  const userName = user.name;
   game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
   const result: any = await SetGame(game);
   if (result.modifiedCount == 0) {

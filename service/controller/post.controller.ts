@@ -76,9 +76,8 @@ export const TeamJoiningController = async (req: Request, res: Response) => {
 export const ScanController = async (req: Request, res: Response) => {
     const scanData = req.body as ApiQrscanBody;
     const userId = req.body.userId as string;
-    const name = (await getUserProfile(userId)).displayName;
     try {
-        await ScanService(name, scanData.treasureId);
+        await ScanService(userId, scanData.treasureId);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

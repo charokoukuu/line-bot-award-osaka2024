@@ -1,4 +1,4 @@
-import { ScheduleModel } from "../domain/create.model";
+import { ScheduleModel, UserModel } from "../domain/create.model";
 
 export const DeleteSchedule = async (scheduleId: string) => {
     try {
@@ -9,3 +9,13 @@ export const DeleteSchedule = async (scheduleId: string) => {
         return err;
     }
 };
+
+export const DeleteOneUser = async (userId: string) => {
+    try {
+        const result = await UserModel.deleteOne({ userId: userId });
+        return result;
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+}
