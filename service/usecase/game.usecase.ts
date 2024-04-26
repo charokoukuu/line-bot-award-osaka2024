@@ -142,7 +142,7 @@ export const chat = async (message: string, game: Game, user: User) => {
 }
 
 
-export const ScanService = async (userId: string, treasureId: string) => {
+export const ScanTreasureService = async (userId: string, treasureId: string) => {
   const user = await GetOneUserByUserId(userId);
   const game = await GetOneGameByUserId(userId);
   const userName = user.name;

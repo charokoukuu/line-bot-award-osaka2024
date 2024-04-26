@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { LineReply, getUserProfile } from "../api/app.api";
-import { ScanService } from "../usecase/game.usecase";
+import { ScanTreasureService } from "../usecase/game.usecase";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 
 export const WebhookController = async (req: Request, res: Response) => {
@@ -77,11 +77,17 @@ export const ScanController = async (req: Request, res: Response) => {
     const scanData = req.body as ApiQrscanBody;
     const userId = req.body.userId as string;
     try {
-        if (scanData.qrCode === undefined) {
-            res.sendStatus(400);
+        if (scanData.qrCode.includes(":seeker")) {
+            console.log("seeker");
+        } else if (scanData.qrCode.includes(":treasure")) {
+            console.log("treasure");
+        } else if (scanData.qrCode.includes(":rescue")) {
+            console.log("rescue");
+        } else {
+            res.sendStatus(500);
             return;
         }
-        await ScanService(userId, scanData.qrCode);
+        await ScanTreasureService(userId, scanData.qrCode);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
