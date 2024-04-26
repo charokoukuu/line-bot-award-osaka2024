@@ -94,7 +94,7 @@ export interface ApiQrscanBody {
      * @type {string}
      * @memberof ApiQrscanBody
      */
-    treasureId: string;
+    qrCode: string;
 }
 /**
  * 

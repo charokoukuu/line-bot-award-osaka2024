@@ -97,11 +97,11 @@ paths:
               properties:
                 userId:
                   type: string
-                treasureId:
+                qrCode:
                   type: string
               required:
                 - userId
-                - treasureId
+                - qrCode
       responses:
         '200':
           description: QR code scanned successfully
