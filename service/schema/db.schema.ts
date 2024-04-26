@@ -1,6 +1,5 @@
 import { Schema } from "mongoose";
 import { Game, Schedule, Status, Team, User } from "../api/generate";
-import { userInfo } from "os";
 
 /**
  * DB Schema /api/user/{userId}

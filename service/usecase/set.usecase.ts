@@ -1,5 +1,5 @@
 import { LinePush, getUserProfile } from "../api/app.api";
-import { SetGame, SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
 import { GetOneGameByUserId, GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
