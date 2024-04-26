@@ -77,7 +77,11 @@ export const ScanController = async (req: Request, res: Response) => {
     const scanData = req.body as ApiQrscanBody;
     const userId = req.body.userId as string;
     try {
-        await ScanService(userId, scanData.treasureId);
+        if (scanData.qrCode === undefined) {
+            res.sendStatus(400);
+            return;
+        }
+        await ScanService(userId, scanData.qrCode);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
