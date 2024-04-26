@@ -16,7 +16,7 @@ import * as url from "url";
 import * as isomorphicFetch from "isomorphic-fetch";
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "https://local-line.run-ticket.com/".replace(/\/+$/, "");
+const BASE_PATH = "https://node-learn.run-ticket.com/".replace(/\/+$/, "");
 
 /**
  *
@@ -221,34 +221,28 @@ export interface Game {
     allUsers: Array<User>;
     /**
      * 
-     * @type {Array<User>}
+     * @type {Array<GameOwners>}
      * @memberof Game
      */
-    owners: Array<User>;
+    owners: Array<GameOwners>;
     /**
      * 
-     * @type {Array<User>}
+     * @type {Array<GameSeekers>}
      * @memberof Game
      */
-    seekers: Array<User>;
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof Game
-     */
-    arrestedMembers?: Array<User>;
-    /**
-     * 
-     * @type {Array<User>}
-     * @memberof Game
-     */
-    disabledScanMembers?: Array<User>;
+    seekers: Array<GameSeekers>;
     /**
      * 
      * @type {Array<GameHints>}
      * @memberof Game
      */
     hints: Array<GameHints>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Game
+     */
+    rescueCode?: string;
     /**
      * 
      * @type {Array<GameTreasures>}
@@ -286,6 +280,50 @@ export interface GameHints {
      * @memberof GameHints
      */
     isPrinted?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface GameOwners
+ */
+export interface GameOwners {
+    /**
+     * 
+     * @type {User}
+     * @memberof GameOwners
+     */
+    userInfo: User;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GameOwners
+     */
+    isDisabledScan: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface GameSeekers
+ */
+export interface GameSeekers {
+    /**
+     * 
+     * @type {User}
+     * @memberof GameSeekers
+     */
+    userInfo: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof GameSeekers
+     */
+    myCode: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GameSeekers
+     */
+    isArrested: boolean;
 }
 /**
  * 

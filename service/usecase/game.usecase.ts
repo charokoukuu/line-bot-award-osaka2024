@@ -25,20 +25,28 @@ export const play = async (teamId: string) => {
   const shuffledArray = users.sort(() => Math.random() - 0.5);
   const owners = shuffledArray.slice(0, team.ownerCount);
   const seekers = shuffledArray.slice(team.ownerCount);
+  console.log(owners, seekers);
   const newGame: Game = {
     team: team,
     allUsers: users,
-    owners: owners,
-    seekers: seekers,
+    owners: owners.map((owner) => ({
+      userInfo: owner,
+      isDisabledScan: false,
+    })),
+    seekers: seekers.map((seekers) => ({
+      userInfo: seekers,
+      myCode: randomUUID() + ":seeker",
+      isArrested: false,
+    })),
     hints: [],
-    arrestedMembers: [],
-    disabledScanMembers: [],
     treasures: [...new Array(team.treasureCount)].map((_, i) => ({
-      id: randomUUID(),
+      id: randomUUID() + ":treasure",
       isScanned: false,
     })),
+    rescueCode: randomUUID() + ":rescue",
     status: Status.Prepare,
   }
+
   await SetGame(newGame);
   await gameAction([...owners, ...seekers], async (user) => {
     await LinePush(user.userId, [
@@ -76,7 +84,7 @@ export const play = async (teamId: string) => {
 };
 
 export const hint = async (userId: string, hint: string, game: Game) => {
-  if (game.seekers.find((seeker) => seeker.userId === userId)) {
+  if (game.seekers.find((seeker) => seeker.userInfo.userId === userId)) {
     await LinePush(userId, [
       {
         type: "text",
@@ -118,10 +126,10 @@ export const hint = async (userId: string, hint: string, game: Game) => {
 }
 
 export const chat = async (message: string, game: Game, user: User) => {
-  const isSeeker = game.seekers.find((seeker) => seeker.userId === user.userId);
+  const isSeeker = game.seekers.find((seeker) => seeker.userInfo.userId === user.userId);
   const publishUsers = isSeeker ? game.seekers : game
     .owners;
-  const otherUsers = publishUsers.filter((publishUser) => publishUser.userId !== user.userId);
+  const otherUsers = publishUsers.filter((publishUser) => publishUser.userInfo.userId !== user.userId).map((publishUser) => publishUser.userInfo);
   gameAction(otherUsers, async (otherUser) => {
     await LinePush(otherUser.userId, [
       {
@@ -152,7 +160,7 @@ export const ScanService = async (userId: string, treasureId: string) => {
   if (notScanTreasures == 0) {
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [
-        seekerVictoryMessage(game.seekers.map((seeker) => seeker.name)),
+        seekerVictoryMessage(game.seekers.map((seeker) => seeker.userInfo.name)),
       ]);
       game.status = Status.End;
       await SetGame(game);

@@ -148,5 +148,5 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
 export const SaveHintService = async (teamId: string, content: string) => {
   const game = await GetOneGameByTeamId(teamId);
   console.log(game);
-  hint(game.owners[0].userId, content, game);
+  hint(game.owners[0].userInfo.userId, content, game);
 };
