@@ -279,21 +279,32 @@ components:
           items:
             $ref: '#/components/schemas/User'
         owners:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+            type: array
+            items:
+              type: object
+              properties:
+                userInfo:
+                  $ref: '#/components/schemas/User'
+                isDisabledScan:
+                  type: boolean
+              required:
+                - userInfo
+                - isDisabledScan
         seekers:
           type: array
           items:
-            $ref: '#/components/schemas/User'
-        arrestedMembers:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        disabledScanMembers:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+            type: object
+            properties:
+              userInfo:
+                $ref: '#/components/schemas/User'
+              myCode:
+                type: string
+              isArrested:
+                type: boolean
+            required:
+              - userInfo
+              - myCode
+              - isArrested
         hints:
           type: array
           items:
@@ -305,6 +316,8 @@ components:
                 type: string
               isPrinted:
                 type: boolean
+        rescueCode:
+            type: string
         treasures:
           type: array
           items:
@@ -323,6 +336,7 @@ components:
         - seekers
         - hints
         - treasures
+        - rescue
         - status
     Status:
       type: string

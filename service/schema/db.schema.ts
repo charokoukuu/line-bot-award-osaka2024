@@ -1,5 +1,6 @@
 import { Schema } from "mongoose";
 import { Game, Schedule, Status, Team, User } from "../api/generate";
+import { userInfo } from "os";
 
 /**
  * DB Schema /api/user/{userId}
@@ -29,15 +30,13 @@ export const TeamSchema = new Schema<Team>({
 export const GameSchema = new Schema<Game>({
     team: { type: TeamSchema, required: true },
     allUsers: { type: [UserSchema], required: true },
-    owners: { type: [UserSchema], required: true },
-    seekers: { type: [UserSchema], required: true },
-    arrestedMembers: { type: [UserSchema], required: true },
-    disabledScanMembers: { type: [UserSchema], required: true },
+    owners: [{ userInfo: { type: UserSchema, required: true }, isDisabledScan: { type: Boolean, required: true } }],
+    seekers: [{ userInfo: { type: UserSchema, required: true }, myCode: { type: String, required: true }, isArrested: { type: Boolean, required: true } }],
     hints: { type: [{ id: String, content: String, isPrinted: Boolean }], required: true },
     treasures: { type: [{ id: String, isScanned: Boolean }], required: true },
+    rescueCode: { type: String, required: true },
     status: { type: String, enum: Object.values(Status) }
 });
-
 
 /**
  * DB Schema /api/schedule
