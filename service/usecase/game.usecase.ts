@@ -140,36 +140,3 @@ export const chat = async (message: string, game: Game, user: User) => {
 
   })
 }
-
-
-export const ScanTreasureService = async (userId: string, treasureId: string) => {
-  const user = await GetOneUserByUserId(userId);
-  const game = await GetOneGameByUserId(userId);
-  const userName = user.name;
-  game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
-  const result: any = await SetGame(game);
-  if (result.modifiedCount == 0) {
-    console.log("既にスキャン済み");
-    return;
-  }
-
-  const notScanTreasures = game.treasures.filter((treasure) => !treasure.isScanned).length;
-  await gameAction(game.allUsers, async (user) => {
-    await LinePush(user.userId, [findTreasureMessage(userName, notScanTreasures)]);
-  });
-  if (notScanTreasures == 0) {
-    await gameAction(game.allUsers, async (user) => {
-      await LinePush(user.userId, [
-        seekerVictoryMessage(game.seekers.map((seeker) => seeker.userInfo.name)),
-      ]);
-      game.status = Status.End;
-      await SetGame(game);
-      await gameAction(game.allUsers, async (user) => {
-        user.teamId = "";
-        await SetUser(user);
-      });
-    });
-  }
-}
-
-

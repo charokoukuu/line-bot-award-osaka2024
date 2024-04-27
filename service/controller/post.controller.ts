@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { LineReply, getUserProfile } from "../api/app.api";
-import { ScanTreasureService } from "../usecase/game.usecase";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
+import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -77,17 +77,13 @@ export const ScanController = async (req: Request, res: Response) => {
     const scanData = req.body as ApiQrscanBody;
     const userId = req.body.userId as string;
     try {
-        if (scanData.qrCode.includes(":seeker")) {
-            console.log("seeker");
-        } else if (scanData.qrCode.includes(":treasure")) {
-            console.log("treasure");
-        } else if (scanData.qrCode.includes(":rescue")) {
-            console.log("rescue");
-        } else {
+        if (scanData.qrCode.includes(":seeker")) await ScanSeekerService(userId, scanData.qrCode);
+        else if (scanData.qrCode.includes(":treasure")) await ScanTreasureService(userId, scanData.qrCode);
+        else if (scanData.qrCode.includes(":rescue")) await ScanRescueService(userId, scanData.qrCode);
+        else {
             res.sendStatus(500);
             return;
         }
-        await ScanTreasureService(userId, scanData.qrCode);
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
