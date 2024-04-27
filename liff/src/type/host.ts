@@ -1,4 +1,4 @@
-export type CreateTeam = {
+export type Team = {
   userId: string;
   teamName: string,
   playerCount: number,

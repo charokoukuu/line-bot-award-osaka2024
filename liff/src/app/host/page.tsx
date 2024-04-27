@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { MaterialSymbol } from "react-material-symbols";
 import { clsx } from "clsx";
 import "react-material-symbols/rounded";
-import { CreateTeam } from "@/type";
+import { Team } from "@/type";
 import { useLiff } from "@/components/LiffProvider";
 
 export default function Host() {
@@ -14,7 +14,7 @@ export default function Host() {
     handleSubmit,
     setValue,
     formState: { errors: formatError, isValid, isSubmitting },
-  } = useForm<CreateTeam>();
+  } = useForm<Team>();
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     fetch("https://node-learn.run-ticket.com/api/team-building", {
