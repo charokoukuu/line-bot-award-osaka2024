@@ -84,7 +84,7 @@ export default function Host() {
         </div>
         <div className="grid grid-flow-col w-full justify-between">
           <div>
-            <h2 className="text-xl">隠す人</h2>
+            <h2 className="text-xl">オーナー</h2>
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="person" size={100} />
               <select
@@ -106,7 +106,7 @@ export default function Host() {
             </div>
           </div>
           <div>
-            <h2 className="text-xl">探す人</h2>
+            <h2 className="text-xl">シーカー</h2>
             <div className="flex justify-center items-end gap-2">
               <MaterialSymbol icon="group" size={100} />
               <select
