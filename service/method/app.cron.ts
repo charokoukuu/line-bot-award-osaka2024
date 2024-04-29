@@ -4,6 +4,8 @@ import { DeleteSchedule } from "../repository/delete.repository";
 import { GetAllSchedule, GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
 import schedule from 'node-schedule';
 import { SetGame } from "../repository/set.repository";
+import { ChangeOwnerScannerValid, PrintHintJob } from "../usecase/cron.usecase";
+import { PrintHintService } from "../usecase/print.usecase";
 
 const cron = require('node-cron');
 export const CronMethods = async () => {
@@ -15,16 +17,8 @@ export const CronMethods = async () => {
             await gameAction(scheduleItem.users, async (user) => {
                 LinePush(user.userId, scheduleItem.messages)
             })
-            if (scheduleItem.enableOwner) {
-                const user = await GetOneUserByUserId(scheduleItem.enableOwner.userId)
-                const game = await GetOneGameByTeamId(user.teamId ?? "");
-                game.owners.forEach(async owner => {
-                    if (owner.userInfo.userId === user.userId) {
-                        owner.isDisabledScan = false;
-                    }
-                });
-                await SetGame(game);
-            }
+            if (scheduleItem.enableOwner) ChangeOwnerScannerValid(scheduleItem)
+            if (scheduleItem.hintId) PrintHintJob(scheduleItem)
             await DeleteSchedule(scheduleItem.id)
         });
     });
