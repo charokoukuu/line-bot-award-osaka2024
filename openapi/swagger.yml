@@ -169,7 +169,7 @@ paths:
   /api/schedule:
     post:
       tags:
-        - スケジュール作成
+        - スケジュール作成(デバッグ用)
       summary: Create a new schedule
       requestBody:
         required: true
@@ -205,8 +205,8 @@ paths:
   /api/create-qr:
     post:
       tags:
-        - Treasure用QRプリント
-      summary: Create a new QR
+        - Treasure用QRプリント(デバッグ用)
+      summary: Print QR code
       requestBody:
         required: true
         content:
@@ -251,7 +251,7 @@ paths:
     post:
       tags:
         - ビーコン(デバッグ用)
-      summary: Create a new hint
+      summary: Beacon
       requestBody:
         required: true
         content:

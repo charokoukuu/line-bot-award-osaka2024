@@ -1,6 +1,7 @@
 import { LinePush } from "../api/app.api";
 import { gameAction } from "../helper/util";
-import { GetOneGameByTeamId, GetOneUserByUserId, GetUsersByTeamId } from "../repository/get.repository";
+import { disableScannerMessage } from "../messages/disableScannerMessage";
+import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
 import { ScheduleService } from "./set.usecase";
 
@@ -13,11 +14,8 @@ export const BeaconService = async (userId: string) => {
         }
     });
     await SetGame(game);
-    await gameAction(game.allUsers, async (user) => {
-        await LinePush(user.userId, [{
-            type: "text",
-            text: `発券エリアでオーナーを検知しました。オーナー${user.name}は一定時間スキャナーを使用できません。`
-        }]);
+    await gameAction(game.allUsers, async (user_) => {
+        await LinePush(user_.userId, [disableScannerMessage(user.name)]);
     })
     await ScheduleService(
         {

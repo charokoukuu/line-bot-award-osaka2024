@@ -1,5 +1,5 @@
 import { Schedule } from "../api/generate";
-import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
+import { GetOneGameByTeamId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
 import { PrintHintService } from "./print.usecase";
 
