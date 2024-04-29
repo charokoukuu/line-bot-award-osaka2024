@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "beebotte": "^1.7.0",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.1.4",
     "express": "^4.19.2",
     "firebase-admin": "^11.11.1",

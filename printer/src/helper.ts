@@ -1,24 +1,17 @@
-const { exec } = require("child_process");
+const { exec, execSync } = require("child_process");
 const path = "/home/kiosk/line-bot-award-osaka2024/printer/src";
 
 const fs = require("fs");
 // const path = ".";
-export const ticketing = (
+export const ticketing = async (
   id: string,
-  title: string,
-  date: string,
-  time: string
+  base64: string,
+  key: "hint" | "treasure"
 ) => {
-  exec(
-    `python3 ${path}/pos.py ${id}`,
-    async (err: any, _: any, stderr: any) => {
-      if (err) {
-        throw new Error(`stderr: ${stderr}`);
-      } else {
-        console.log(`success`);
-      }
-    }
-  );
+  decodeBase64ToPNG(base64, `image/${id}_${key}.png`);
+  const stdout = execSync(`python3 ${path}/pos.py ${id}_${key}`);
+  console.log(stdout);
+
 };
 export const cut = () => {
   exec(`python3 ${path}/cut.py`, (err: any, stdout: any, stderr: any) => {

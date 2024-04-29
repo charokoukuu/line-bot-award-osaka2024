@@ -2,13 +2,28 @@ import { cut, ticketing } from "./helper";
 import { Request, Response } from "express";
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+app.use(bodyParser.json({ limit: '500mb' }));
+app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
-app.post("/ticketing", (req: Request, res: Response) => {
-  const data = req.body;
-  ticketing(data.id, data.title, data.date, data.time);
+interface hintType {
+  id: string;
+  base64: string;
+}
+
+
+app.post("/hint", (req: Request, res: Response) => {
+  const data = req.body as hintType;
+  console.log(data)
+  ticketing(data.id, data.base64, "hint");
+  res.send(200);
+});
+app.post("/qr", async (req: Request, res: Response) => {
+  const data = req.body as hintType;
+  console.log(data)
+  await ticketing(data.id, data.base64, "treasure");
+  res.send(200);
 });
 
 app.get("/cut", (req: Request, res: Response) => {
