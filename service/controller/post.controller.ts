@@ -4,6 +4,7 @@ import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { LineReply, getUserProfile } from "../api/app.api";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
+import { BeaconService } from "../usecase/beacon.usecase";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -17,6 +18,9 @@ export const WebhookController = async (req: Request, res: Response) => {
     try {
         if (event.type === "message") {
             await WebhookService(userId, message);
+        }
+        if (event.type === "beacon") {
+            await BeaconService(userId);
         }
         res.sendStatus(200);
     } catch (err: any) {

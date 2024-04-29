@@ -224,6 +224,25 @@ paths:
       responses:
         '201':
           description: Hint created successfully
+  /api/beacon:
+    post:
+      tags:
+        - ビーコン(デバッグ用)
+      summary: Create a new hint
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                required:
+                  - userId
+      responses:
+        '201':
+          description: Hint created successfully
     
 components:
   schemas:
