@@ -65,12 +65,28 @@ describe("QRApi", () => {
   })
 })
 
+describe("TreasureQRApi", () => {
+  let instance: api.TreasureQRApi
+  beforeEach(function() {
+    instance = new api.TreasureQRApi(config)
+  });
+
+  test("apiCreateQrPost", () => {
+    const body: api.ApiCreateqrBody = undefined
+    return expect(instance.apiCreateQrPost(body, {})).resolves.toBe(null)
+  })
+})
+
 describe("_Api", () => {
   let instance: api._Api
   beforeEach(function() {
     instance = new api._Api(config)
   });
 
+  test("apiBeaconPost", () => {
+    const body: api.ApiBeaconBody = undefined
+    return expect(instance.apiBeaconPost(body, {})).resolves.toBe(null)
+  })
   test("apiSaveHintPost", () => {
     const body: api.SaveHintBody = undefined
     return expect(instance.apiSaveHintPost(body, {})).resolves.toBe(null)

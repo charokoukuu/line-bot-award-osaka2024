@@ -80,6 +80,38 @@ export class RequiredError extends Error {
 /**
  * 
  * @export
+ * @interface ApiBeaconBody
+ */
+export interface ApiBeaconBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiBeaconBody
+     */
+    userId: string;
+}
+/**
+ * 
+ * @export
+ * @interface ApiCreateqrBody
+ */
+export interface ApiCreateqrBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiCreateqrBody
+     */
+    groupName?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ApiCreateqrBody
+     */
+    ids: Array<string>;
+}
+/**
+ * 
+ * @export
  * @interface ApiQrscanBody
  */
 export interface ApiQrscanBody {
@@ -336,13 +368,13 @@ export interface GameTreasures {
      * @type {string}
      * @memberof GameTreasures
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {boolean}
      * @memberof GameTreasures
      */
-    isScanned?: boolean;
+    isScanned: boolean;
 }
 /**
  * 
@@ -1212,11 +1244,151 @@ export class QRApi extends BaseAPI {
 
 }
 /**
+ * TreasureQRApi - fetch parameter creator
+ * @export
+ */
+export const TreasureQRApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new QR
+         * @param {ApiCreateqrBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateQrPost(body: ApiCreateqrBody, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiCreateQrPost.');
+            }
+            const localVarPath = `/api/create-qr`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ApiCreateqrBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TreasureQRApi - functional programming interface
+ * @export
+ */
+export const TreasureQRApiFp = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new QR
+         * @param {ApiCreateqrBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateQrPost(body: ApiCreateqrBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = TreasureQRApiFetchParamCreator(configuration).apiCreateQrPost(body, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * TreasureQRApi - factory interface
+ * @export
+ */
+export const TreasureQRApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary Create a new QR
+         * @param {ApiCreateqrBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateQrPost(body: ApiCreateqrBody, options?: any) {
+            return TreasureQRApiFp(configuration).apiCreateQrPost(body, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * TreasureQRApi - object-oriented interface
+ * @export
+ * @class TreasureQRApi
+ * @extends {BaseAPI}
+ */
+export class TreasureQRApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new QR
+     * @param {ApiCreateqrBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TreasureQRApi
+     */
+    public apiCreateQrPost(body: ApiCreateqrBody, options?: any) {
+        return TreasureQRApiFp(this.configuration).apiCreateQrPost(body, options)(this.fetch, this.basePath);
+    }
+
+}
+/**
  * _Api - fetch parameter creator
  * @export
  */
 export const _ApiFetchParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary Create a new hint
+         * @param {ApiBeaconBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiBeaconPost(body: ApiBeaconBody, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiBeaconPost.');
+            }
+            const localVarPath = `/api/beacon`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ApiBeaconBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary Create a new hint
@@ -1261,6 +1433,25 @@ export const _ApiFp = function (configuration?: Configuration) {
         /**
          * 
          * @summary Create a new hint
+         * @param {ApiBeaconBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiBeaconPost(body: ApiBeaconBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = _ApiFetchParamCreator(configuration).apiBeaconPost(body, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Create a new hint
          * @param {SaveHintBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1289,6 +1480,16 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
         /**
          * 
          * @summary Create a new hint
+         * @param {ApiBeaconBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiBeaconPost(body: ApiBeaconBody, options?: any) {
+            return _ApiFp(configuration).apiBeaconPost(body, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Create a new hint
          * @param {SaveHintBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1306,6 +1507,18 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
  * @extends {BaseAPI}
  */
 export class _Api extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new hint
+     * @param {ApiBeaconBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof _Api
+     */
+    public apiBeaconPost(body: ApiBeaconBody, options?: any) {
+        return _ApiFp(this.configuration).apiBeaconPost(body, options)(this.fetch, this.basePath);
+    }
+
     /**
      * 
      * @summary Create a new hint

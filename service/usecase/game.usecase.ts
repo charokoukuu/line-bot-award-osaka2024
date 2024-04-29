@@ -13,6 +13,7 @@ import { chatMessage } from "../messages/chatMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
 import { Game, Status, User } from "../api/generate";
+import { PrintQRService } from "./print.usecase";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -47,21 +48,24 @@ export const play = async (teamId: string) => {
     status: Status.Prepare,
   }
 
-  await SetGame(newGame);
-  await gameAction([...owners, ...seekers], async (user) => {
-    await LinePush(user.userId, [
-      {
-        type: "text",
-        text: "ゲームが開始されました！",
-      },
-    ]);
-  })
   await gameAction(owners, async (user) => {
     await LinePush(user.userId, [
       {
         type: "text",
         text: "あなたの役割はオーナーです",
       },
+      {
+        type: "text",
+        text: "宝が出ます！少々お待ちください",
+      },
+    ]);
+    await publishLoadingMessage(user.userId, 60);
+  })
+  await PrintQRService(team.name, newGame.treasures.map(treasure => treasure.id));
+  await SetGame(newGame);
+
+  gameAction(owners, async (user) => {
+    await LinePush(user.userId, [
       {
         type: "text",
         text: "宝を隠し，隠した場所のヒントを入力してください",
@@ -71,6 +75,10 @@ export const play = async (teamId: string) => {
 
   await gameAction(seekers, async (user) => {
     await LinePush(user.userId, [
+      {
+        type: "text",
+        text: "役割が決定しました！",
+      },
       {
         type: "text",
         text: "あなたの役割はシーカーです",
