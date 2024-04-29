@@ -202,6 +202,29 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/create-qr:
+    post:
+      tags:
+        - Treasure用QRプリント
+      summary: Create a new QR
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  groupName:
+                    type: string
+                  ids:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - ids
+      responses:
+        '200':
+          description: Schedule created successfully
   /api/save/hint:
     post:
       tags:
@@ -346,6 +369,9 @@ components:
                 type: string
               isScanned:
                 type: boolean
+            required:
+              - id
+              - isScanned
         status:
           $ref: '#/components/schemas/Status'
       required:

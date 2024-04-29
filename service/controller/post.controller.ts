@@ -96,10 +96,10 @@ export const ScanController = async (req: Request, res: Response) => {
 }
 
 export const PrintQRController = async (req: Request, res: Response) => {
-    const id = req.body.id as string;
-    const qrList = req.body.qrList as string[];
+    const ids = req.body.ids as string[];
+    const groupName = req.body.groupName as string;
     try {
-        await PrintQRService(id, qrList)
+        await PrintQRService(groupName, ids)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
