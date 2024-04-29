@@ -1,4 +1,4 @@
-export const arrestedMessage = (member: string) => {
+export const disableScannerMessage = (member: string) => {
     const contents: any = {
         "type": "bubble",
         "hero": {

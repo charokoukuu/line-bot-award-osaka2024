@@ -1,4 +1,4 @@
-export const ownerMessage = () => {
+export const seekerMessage = () => {
     const contents: any = {
         "type": "bubble",
         "hero": {

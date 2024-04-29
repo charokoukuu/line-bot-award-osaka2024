@@ -1,19 +1,17 @@
 import { gameAction } from "../helper/util";
 import {
   GetOneGameByTeam,
-  GetOneGameByUserId,
   GetOneTeamByTeamId,
-  GetOneUserByUserId,
   GetUsersByTeamId,
 } from "../repository/get.repository";
-import { SetGame, SetUser } from "../repository/set.repository";
+import { SetGame } from "../repository/set.repository";
 import { LinePush, publishLoadingMessage } from "../api/app.api";
 import { randomUUID } from "crypto";
 import { chatMessage } from "../messages/chatMessage";
-import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
-import { findTreasureMessage } from "../messages/findTreasureMessage";
 import { Game, Status, User } from "../api/generate";
 import { PrintQRService } from "./print.usecase";
+import { ownerMessage } from "../messages/ownerMessage";
+import { seekerMessage } from "../messages/seekerMessage";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -50,10 +48,7 @@ export const play = async (teamId: string) => {
 
   await gameAction(owners, async (user) => {
     await LinePush(user.userId, [
-      {
-        type: "text",
-        text: "あなたの役割はオーナーです",
-      },
+      ownerMessage(),
       {
         type: "text",
         text: "宝が出ます！少々お待ちください",
@@ -79,10 +74,7 @@ export const play = async (teamId: string) => {
         type: "text",
         text: "役割が決定しました！",
       },
-      {
-        type: "text",
-        text: "あなたの役割はシーカーです",
-      },
+      seekerMessage(),
       {
         type: "text",
         text: "オーナーが宝を隠している間、指定された場所で待機してください",
