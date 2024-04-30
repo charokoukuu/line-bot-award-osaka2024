@@ -3,7 +3,7 @@ export const disableScannerMessage = (member: string) => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://t3.ftcdn.net/jpg/03/79/75/50/360_F_379755056_D17cESBPHjElxg7i0tdJ48BwaP2EfjIi.jpg",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-05-01%2001.55.41%20-%20An%20illustration-style%20image%20showing%20a%20teenage%20Owner%20character%20from%20the%20game%20'BoTreasure'%20with%20their%20scanning%20app%20disabled%2C%20in%20an%20anime%20style%20similar%20t.webp?alt=media&token=2aec18be-7d1c-4545-ba26-7865ffb2543c",
             "size": "full",
             "aspectRatio": "1:1",
             "aspectMode": "cover",

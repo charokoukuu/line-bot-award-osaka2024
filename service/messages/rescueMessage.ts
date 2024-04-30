@@ -3,9 +3,9 @@ export const rescueMessage = (member: string) => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://media.istockphoto.com/id/1186508256/ja/ベクター/非常口左-非常口右-脱出ルート標識-ベクトル図.jpg?s=612x612&w=0&k=20&c=ScUqEHv1vNnUgxn5AuAgXnhaR6I2CmMUjVPKqsDGzE4=",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-05-01%2001.38.12%20-%20An%20illustration-style%20image%20showing%20the%20release%20of%20all%20Seekers%20from%20the%20game%20'BoTreasure'%2C%20in%20an%20anime%20style%20similar%20to%20the%20image%20with%20ID%20'NoXiElftLnV.webp?alt=media&token=ea67dc7c-c7cd-45c2-8bbf-7e083a8033c8",
             "size": "full",
-            "aspectRatio": "20:13",
+            "aspectRatio": "1:1",
             "aspectMode": "cover",
             "action": {
                 "type": "uri",
