@@ -4,12 +4,7 @@ import { writeFileSync } from "fs";
 import { writeFile } from "fs/promises";
 
 export const hintImageGenerator = (id: string, hint: string) => {
-
-  const json = JSON.stringify({
-    text: hint,
-  });
-
-  writeFileSync("typst/hint/hint.json", json, "utf8")
+  decodeBase64ToPNG(hint, `typst/hint/img/hint.png`)
   execSync(
     `cd typst/hint && pwd && typst compile main.typ ${id}.png`)
 };
