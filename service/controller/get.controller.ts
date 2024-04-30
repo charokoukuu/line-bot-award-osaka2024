@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetAllGamesService, GetAllTeamsService, GetOneGameService } from '../usecase/get.usecase';
+import { GetAllGamesService, GetAllTeamsService, GetOneGameService, GetOneScannerStatusService } from '../usecase/get.usecase';
 const path = require('path');
 export const GetAllTeamsController = async (req: Request, res: Response) => {
     try {
@@ -19,6 +19,20 @@ export const GetOneGameController = async (req: Request, res: Response) => {
             return;
         }
         res.send(teams);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+}
+export const GetOneScannerStatusController = async (req: Request, res: Response) => {
+    const userId = req.params.userId as string;
+    try {
+        const scannerStatus = await GetOneScannerStatusService(userId);
+        if (scannerStatus === null) {
+            res.sendStatus(404);
+            return;
+        }
+        res.send(scannerStatus);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);

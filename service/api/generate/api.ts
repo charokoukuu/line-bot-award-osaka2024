@@ -379,6 +379,25 @@ export interface GameTreasures {
 /**
  * 
  * @export
+ * @interface InlineResponse200
+ */
+export interface InlineResponse200 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse200
+     */
+    userId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse200
+     */
+    isDisabledScan?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface SaveHintBody
  */
 export interface SaveHintBody {
@@ -580,30 +599,21 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Create a new schedule
-         * @param {ApiScheduleBody} body 
+         * @summary Get scanner status by user ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: ApiScheduleBody, options: any = {}): FetchArgs {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiSchedulePost.');
-            }
-            const localVarPath = `/api/schedule`;
+        apiScannerStatusUserIdGet(options: any = {}): FetchArgs {
+            const localVarPath = `/api/scannerStatus/{userId}`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"ApiScheduleBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -813,17 +823,16 @@ export const DefaultApiFp = function (configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create a new schedule
-         * @param {ApiScheduleBody} body 
+         * @summary Get scanner status by user ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: ApiScheduleBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiSchedulePost(body, options);
+        apiScannerStatusUserIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<InlineResponse200> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiScannerStatusUserIdGet(options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                        return response.json();
                     } else {
                         throw response;
                     }
@@ -963,13 +972,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         },
         /**
          * 
-         * @summary Create a new schedule
-         * @param {ApiScheduleBody} body 
+         * @summary Get scanner status by user ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSchedulePost(body: ApiScheduleBody, options?: any) {
-            return DefaultApiFp(configuration).apiSchedulePost(body, options)(fetch, basePath);
+        apiScannerStatusUserIdGet(options?: any) {
+            return DefaultApiFp(configuration).apiScannerStatusUserIdGet(options)(fetch, basePath);
         },
         /**
          * 
@@ -1053,14 +1061,13 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Create a new schedule
-     * @param {ApiScheduleBody} body 
+     * @summary Get scanner status by user ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiSchedulePost(body: ApiScheduleBody, options?: any) {
-        return DefaultApiFp(this.configuration).apiSchedulePost(body, options)(this.fetch, this.basePath);
+    public apiScannerStatusUserIdGet(options?: any) {
+        return DefaultApiFp(this.configuration).apiScannerStatusUserIdGet(options)(this.fetch, this.basePath);
     }
 
     /**
@@ -1244,14 +1251,14 @@ export class QRApi extends BaseAPI {
 
 }
 /**
- * TreasureQRApi - fetch parameter creator
+ * TreasureQR_Api - fetch parameter creator
  * @export
  */
-export const TreasureQRApiFetchParamCreator = function (configuration?: Configuration) {
+export const TreasureQR_ApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create a new QR
+         * @summary Print QR code
          * @param {ApiCreateqrBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1285,20 +1292,20 @@ export const TreasureQRApiFetchParamCreator = function (configuration?: Configur
 };
 
 /**
- * TreasureQRApi - functional programming interface
+ * TreasureQR_Api - functional programming interface
  * @export
  */
-export const TreasureQRApiFp = function (configuration?: Configuration) {
+export const TreasureQR_ApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create a new QR
+         * @summary Print QR code
          * @param {ApiCreateqrBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         apiCreateQrPost(body: ApiCreateqrBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = TreasureQRApiFetchParamCreator(configuration).apiCreateQrPost(body, options);
+            const localVarFetchArgs = TreasureQR_ApiFetchParamCreator(configuration).apiCreateQrPost(body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1313,41 +1320,41 @@ export const TreasureQRApiFp = function (configuration?: Configuration) {
 };
 
 /**
- * TreasureQRApi - factory interface
+ * TreasureQR_Api - factory interface
  * @export
  */
-export const TreasureQRApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const TreasureQR_ApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
          * 
-         * @summary Create a new QR
+         * @summary Print QR code
          * @param {ApiCreateqrBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         apiCreateQrPost(body: ApiCreateqrBody, options?: any) {
-            return TreasureQRApiFp(configuration).apiCreateQrPost(body, options)(fetch, basePath);
+            return TreasureQR_ApiFp(configuration).apiCreateQrPost(body, options)(fetch, basePath);
         },
     };
 };
 
 /**
- * TreasureQRApi - object-oriented interface
+ * TreasureQR_Api - object-oriented interface
  * @export
- * @class TreasureQRApi
+ * @class TreasureQR_Api
  * @extends {BaseAPI}
  */
-export class TreasureQRApi extends BaseAPI {
+export class TreasureQR_Api extends BaseAPI {
     /**
      * 
-     * @summary Create a new QR
+     * @summary Print QR code
      * @param {ApiCreateqrBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TreasureQRApi
+     * @memberof TreasureQR_Api
      */
     public apiCreateQrPost(body: ApiCreateqrBody, options?: any) {
-        return TreasureQRApiFp(this.configuration).apiCreateQrPost(body, options)(this.fetch, this.basePath);
+        return TreasureQR_ApiFp(this.configuration).apiCreateQrPost(body, options)(this.fetch, this.basePath);
     }
 
 }
@@ -1359,7 +1366,7 @@ export const _ApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create a new hint
+         * @summary Beacon
          * @param {ApiBeaconBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1421,6 +1428,38 @@ export const _ApiFetchParamCreator = function (configuration?: Configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Create a new schedule
+         * @param {ApiScheduleBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSchedulePost(body: ApiScheduleBody, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiSchedulePost.');
+            }
+            const localVarPath = `/api/schedule`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ApiScheduleBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1432,7 +1471,7 @@ export const _ApiFp = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create a new hint
+         * @summary Beacon
          * @param {ApiBeaconBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1468,6 +1507,25 @@ export const _ApiFp = function (configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * 
+         * @summary Create a new schedule
+         * @param {ApiScheduleBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSchedulePost(body: ApiScheduleBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = _ApiFetchParamCreator(configuration).apiSchedulePost(body, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -1479,7 +1537,7 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
     return {
         /**
          * 
-         * @summary Create a new hint
+         * @summary Beacon
          * @param {ApiBeaconBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1497,6 +1555,16 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
         apiSaveHintPost(body: SaveHintBody, options?: any) {
             return _ApiFp(configuration).apiSaveHintPost(body, options)(fetch, basePath);
         },
+        /**
+         * 
+         * @summary Create a new schedule
+         * @param {ApiScheduleBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSchedulePost(body: ApiScheduleBody, options?: any) {
+            return _ApiFp(configuration).apiSchedulePost(body, options)(fetch, basePath);
+        },
     };
 };
 
@@ -1509,7 +1577,7 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
 export class _Api extends BaseAPI {
     /**
      * 
-     * @summary Create a new hint
+     * @summary Beacon
      * @param {ApiBeaconBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1529,6 +1597,18 @@ export class _Api extends BaseAPI {
      */
     public apiSaveHintPost(body: SaveHintBody, options?: any) {
         return _ApiFp(this.configuration).apiSaveHintPost(body, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Create a new schedule
+     * @param {ApiScheduleBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof _Api
+     */
+    public apiSchedulePost(body: ApiScheduleBody, options?: any) {
+        return _ApiFp(this.configuration).apiSchedulePost(body, options)(this.fetch, this.basePath);
     }
 
 }

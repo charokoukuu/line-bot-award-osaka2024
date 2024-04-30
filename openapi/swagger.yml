@@ -166,6 +166,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+  /api/scannerStatus/{userId}:
+    get:
+      tags:
+        - 特定のユーザーのスキャナーステータス取得
+      summary: Get scanner status by user ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  isDisabledScan:
+                    type: boolean
+            
   /api/schedule:
     post:
       tags:
