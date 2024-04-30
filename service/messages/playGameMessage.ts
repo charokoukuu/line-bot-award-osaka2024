@@ -3,9 +3,9 @@ export const playGameMessage = (members: string[], teamName: string, treasureCou
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-23%2019.42.06%20-%20A%20vibrant%20and%20dynamic%20cover%20image%20for%20a%20game%20called%20'BoTreasure'.%20The%20image%20shows%20a%20mysterious%20treasure%20map%20as%20the%20central%20theme%20with%20symbols%20of%20two%20c.webp?alt=media&token=cecc28a8-47e0-442e-818d-b491e299316e",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-30%2017.17.13%20-%20Another%20illustration-style%20cover%20image%20for%20the%20game%20'BoTreasure'.%20The%20scene%20shows%20one%20main%20character_%20the%20'Seeker'.%20The%20Seeker%2C%20wearing%20an%20explorer's%20.webp?alt=media&token=4d999220-72f4-4b1a-81e4-7a83c2835362",
             "size": "full",
-            "aspectRatio": "20:13",
+            "aspectRatio": "1:1",
             "aspectMode": "cover",
             "action": {
                 "type": "uri",
