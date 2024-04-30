@@ -4,15 +4,16 @@ import { TeamCard } from "@/components/TeamCard";
 import { JoinTeam } from "@/type";
 import clsx from "clsx";
 import { useState } from "react";
-import { teamJoin } from "../actions";
 import { useLiff } from "@/components/LiffProvider";
+import { teamJoin } from "../actions";
 
 export const TeamList = (props: { teams: JoinTeam[] }) => {
   const { teams } = props;
-  const { liff } = useLiff();
+  const { liff, profile } = useLiff();
   const [inputKeyword, setInputKeyword] = useState("");
   const [selectedTeam, setSelectedTeam] = useState<JoinTeam | null>(null);
-  if (!liff) {
+  const [message, setMessage] = useState("");
+  if (!useLiff || !liff) {
     return <div>loading...</div>;
   }
   return (
@@ -46,6 +47,7 @@ export const TeamList = (props: { teams: JoinTeam[] }) => {
         >
           <p className="text-2xl mb-4">{selectedTeam?.name}</p>
           <div>
+            <p>{message}</p>
             <h2 className="text-xl">あいことば</h2>
             <div className="flex justify-center items-end gap-2">
               <div>
@@ -78,9 +80,14 @@ export const TeamList = (props: { teams: JoinTeam[] }) => {
               disabled={inputKeyword === ""}
               onClick={async () => {
                 if (selectedTeam.keyword === inputKeyword) {
-                  await teamJoin(liff.id ? liff.id : "", selectedTeam.teamId);
-                  setSelectedTeam(null);
-                  liff.closeWindow();
+                  await teamJoin(
+                    profile?.userId ? profile.userId : "",
+                    selectedTeam.teamId
+                  );
+                  console.log(profile?.userId);
+                  setMessage(profile?.userId ? profile.userId : "");
+                  // setSelectedTeam(null);
+                  // liff.closeWindow();
                 } else {
                   setSelectedTeam(null);
                 }
