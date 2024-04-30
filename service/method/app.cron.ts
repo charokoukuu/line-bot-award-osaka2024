@@ -6,20 +6,36 @@ import schedule from 'node-schedule';
 import { SetGame } from "../repository/set.repository";
 import { ChangeOwnerScannerValid, PrintHintJob } from "../usecase/cron.usecase";
 import { PrintHintService } from "../usecase/print.usecase";
+import { Schedule } from "../api/generate";
 
 const cron = require('node-cron');
-export const CronMethods = async () => {
+export const CronMethods = async (scheduleProps?: Schedule) => {
 
-    const schedules = await GetAllSchedule()
-    schedules.forEach(scheduleItem => {
-        const scheduledDate = new Date(scheduleItem.date);
-        schedule.scheduleJob(scheduledDate, async () => {
-            await gameAction(scheduleItem.users, async (user) => {
-                LinePush(user.userId, scheduleItem.messages)
-            })
-            if (scheduleItem.enableOwner) ChangeOwnerScannerValid(scheduleItem)
-            if (scheduleItem.hintId) PrintHintJob(scheduleItem)
-            await DeleteSchedule(scheduleItem.id)
+    if (!scheduleProps) {
+        const schedules = await GetAllSchedule()
+        schedules.forEach(scheduleItem => {
+            const scheduledDate = new Date(scheduleItem.date);
+            schedule.scheduleJob(scheduledDate, async () => {
+                console.log("schedule");
+                await gameAction(scheduleItem.users, async (user) => {
+                    LinePush(user.userId, scheduleItem.messages)
+                })
+                if (scheduleItem.enableOwner) ChangeOwnerScannerValid(scheduleItem)
+                if (scheduleItem.hintId) PrintHintJob(scheduleItem)
+                await DeleteSchedule(scheduleItem.id)
+            });
         });
-    });
+    } else {
+        const scheduledDate = new Date(scheduleProps.date);
+        schedule.scheduleJob(scheduledDate, async () => {
+            console.log("schedule");
+            await gameAction(scheduleProps.users, async (user) => {
+                LinePush(user.userId, scheduleProps.messages)
+            })
+            if (scheduleProps.enableOwner) ChangeOwnerScannerValid(scheduleProps)
+            if (scheduleProps.hintId) PrintHintJob(scheduleProps)
+            await DeleteSchedule(scheduleProps.id)
+        });
+    }
+
 }

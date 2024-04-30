@@ -1,6 +1,6 @@
 import { app } from "..";
 import { BeaconController } from "../controller/debug.controller";
-import { CreateUserController, PrintQRController, SaveHintController, ScanController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
+import { CreateUserController, PrintHintController, PrintQRController, SaveHintController, ScanController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
 import { PrintHintService } from "../usecase/print.usecase";
 
 export const PostMethods = () => {
@@ -15,12 +15,12 @@ export const PostMethods = () => {
     app.post("/api/team-building", TeamBuildingController);
     app.post("/api/team-joining", TeamJoiningController);
 
-    //QQRスキャン
+    //QRスキャン
     app.post("/api/qr-scan", ScanController);
 
     //プリントサービス
     app.post("/api/create-qr", PrintQRController);
-    app.post("/api/hint-print", PrintHintService);
+    app.post("/api/create-hint", PrintHintController);
 
     //debug
     app.post("/api/save/hint", SaveHintController);

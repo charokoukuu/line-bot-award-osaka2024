@@ -3,43 +3,25 @@ const { exec, execSync } = require("child_process");
 import { writeFileSync } from "fs";
 import { writeFile } from "fs/promises";
 
-export const hintImageGenerator = (id: string, hint: string): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    const json = JSON.stringify({
-      text: hint,
-    });
+export const hintImageGenerator = (id: string, hint: string) => {
 
-    writeFile("typst/hint/hint.json", json, "utf8")
-      .then(() => {
-        exec(
-          `cd typst/hint && pwd && typst compile main.typ ${id}.png`,
-          (error: any, stdout: any, stderr: any) => {
-            if (error) {
-              console.error(`エラーが発生しました: ${error}`);
-              reject(error);
-              return;
-            }
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
-            resolve();
-          }
-        );
-      })
-      .catch((error) => {
-        console.error(`ファイルの書き込み中にエラーが発生しました: ${error}`);
-        reject(error);
-      });
+  const json = JSON.stringify({
+    text: hint,
   });
+
+  writeFileSync("typst/hint/hint.json", json, "utf8")
+  execSync(
+    `cd typst/hint && pwd && typst compile main.typ ${id}.png`)
 };
 
-export const qrImageGenerator = async (groupName: string, id: string): Promise<void> => {
+export const qrImageGenerator = (teamName: string, id: string) => {
   const json = JSON.stringify({
-    groupName: groupName,
+    groupName: teamName,
     qr: [id],
   });
 
   writeFileSync("typst/qr/qr.json", json, "utf8")
-  await execSync(`cd typst/qr && typst compile main.typ 1.png`);
+  execSync(`cd typst/qr && typst compile main.typ 1.png`);
 };
 
 export const encodePNGToBase64 = (
