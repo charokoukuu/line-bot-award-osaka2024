@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 export default function Scan() {
   const [keyword, setKeyword] = useState("");
   const [isSaned, setIsSaned] = useState(false);
-  const { liff } = useLiff();
+  const { liff, profile } = useLiff();
   useEffect(() => {
-    if (!isSaned && keyword === "" && liff) {
+    if (!isSaned && keyword === "" && liff && profile) {
+      const userId = profile.userId;
       liff?.scanCodeV2().then(async (result) => {
         console.log(result.value);
         setKeyword(result.value ?? "");
         fetch(
-          `https://local-line.run-ticket.com/qr-scan?id=${liff.id}&content=${result.value}`,
+          `https://local-line.run-ticket.com/qr-scan?id=${userId}&content=${result.value}`,
           {
             method: "GET",
           }
@@ -20,7 +21,7 @@ export default function Scan() {
         });
       });
     }
-  }, [isSaned, keyword, liff]);
+  }, [isSaned, keyword, liff, profile]);
   return (
     <main className="m-4">
       <h1 className="text-center text-3xl font-semibold">スキャン</h1>

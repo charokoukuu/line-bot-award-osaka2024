@@ -12,7 +12,6 @@ export const TeamList = (props: { teams: JoinTeam[] }) => {
   const { liff, profile } = useLiff();
   const [inputKeyword, setInputKeyword] = useState("");
   const [selectedTeam, setSelectedTeam] = useState<JoinTeam | null>(null);
-  const [message, setMessage] = useState("");
   if (!useLiff || !liff) {
     return <div>loading...</div>;
   }
@@ -47,7 +46,6 @@ export const TeamList = (props: { teams: JoinTeam[] }) => {
         >
           <p className="text-2xl mb-4">{selectedTeam?.name}</p>
           <div>
-            <p>{message}</p>
             <h2 className="text-xl">あいことば</h2>
             <div className="flex justify-center items-end gap-2">
               <div>
@@ -80,14 +78,9 @@ export const TeamList = (props: { teams: JoinTeam[] }) => {
               disabled={inputKeyword === ""}
               onClick={async () => {
                 if (selectedTeam.keyword === inputKeyword) {
-                  await teamJoin(
-                    profile?.userId ? profile.userId : "",
-                    selectedTeam.teamId
-                  );
-                  console.log(profile?.userId);
-                  setMessage(profile?.userId ? profile.userId : "");
-                  // setSelectedTeam(null);
-                  // liff.closeWindow();
+                  await teamJoin(profile?.userId ?? "", selectedTeam.teamId);
+                  setSelectedTeam(null);
+                  liff.closeWindow();
                 } else {
                   setSelectedTeam(null);
                 }

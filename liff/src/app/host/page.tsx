@@ -9,7 +9,7 @@ import { useLiff } from "@/components/LiffProvider";
 import { teamCreate } from "./actions";
 
 export default function Host() {
-  const { liff } = useLiff();
+  const { liff, profile } = useLiff();
   const {
     register,
     handleSubmit,
@@ -32,7 +32,7 @@ export default function Host() {
     return <div>loading...</div>;
   }
   const onSubmit = handleSubmit(async (data) => {
-    const userId = (await liff.getProfile()).userId;
+    const userId = profile?.userId ?? "";
     setValue("userId", userId);
     teamCreate(data);
     liff.closeWindow();
