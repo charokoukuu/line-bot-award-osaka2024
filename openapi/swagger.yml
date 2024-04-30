@@ -232,7 +232,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  groupName:
+                  teamName:
                     type: string
                   ids:
                     type: array

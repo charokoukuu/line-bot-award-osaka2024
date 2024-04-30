@@ -101,7 +101,7 @@ export interface ApiCreateqrBody {
      * @type {string}
      * @memberof ApiCreateqrBody
      */
-    groupName?: string;
+    teamName?: string;
     /**
      * 
      * @type {Array<string>}
