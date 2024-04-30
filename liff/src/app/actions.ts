@@ -6,7 +6,7 @@ export async function getUserProfile(liff: Liff) {
   if (process.env.NODE_ENV === "development") {
     return {
       displayName: "test-user",
-      userId: "anmerutu-yyokoyoko-ikeruikeru",
+      userId: "anmerutu-yokoyoko-ikeruikeru",
       pictureUrl: "https://picsum.photos/200",
       statusMessage: "test-user",
     } as Profile;
