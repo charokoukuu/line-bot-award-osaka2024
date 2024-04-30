@@ -1,4 +1,4 @@
-import { LinePush, getUserProfile } from "../api/app.api";
+import { LinePush, getContents, getUserProfile } from "../api/app.api";
 import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
 import { GetOneGameByUserId, GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
@@ -6,8 +6,9 @@ import { hint, chat, play } from "./game.usecase";
 import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
+import { blobToBase64 } from "../helper/util";
 
-export const WebhookService = async (userId: string, message: string) => {
+export const WebhookService = async (userId: string, message: string, event: any) => {
 
   const game = await GetOneGameByUserId(userId);
   const user = await GetOneUserByUserId(userId);
@@ -32,7 +33,12 @@ export const WebhookService = async (userId: string, message: string) => {
   switch (game.status) {
     case Status.Prepare:
       console.log("prepare");
-      hint(userId, message, game);
+      if (event.message.type === "image") {
+        const contentData = await getContents(event.message.id);
+        const base64 = await blobToBase64(await contentData.blob());
+        console.log(base64);
+        hint(userId, base64, game);
+      }
       break;
     case Status.Chat:
       console.log("chat");
