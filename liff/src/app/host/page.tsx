@@ -26,14 +26,14 @@ export default function Host() {
     setValue("ownerCount", owners);
     setValue("treasureCount", seekers);
     console.log("set value", players, owners, seekers);
-  }, [owners, players, seekers, setValue]);
+    const userId = profile?.userId ?? "";
+    setValue("userId", userId);
+  }, [owners, players, profile, seekers, setValue]);
 
   if (!liff) {
     return <div>loading...</div>;
   }
   const onSubmit = handleSubmit(async (data) => {
-    const userId = profile?.userId ?? "";
-    setValue("userId", userId);
     teamCreate(data);
     liff.closeWindow();
   });
