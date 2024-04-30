@@ -21,10 +21,6 @@ export default function Host() {
   const [owners, setOwners] = useState<number>(1);
   const [seekers, setSeekers] = useState<number>(0);
 
-  if (liff && liff.id) {
-    register("userId", { value: liff.id });
-  }
-
   useEffect(() => {
     setValue("playerCount", players);
     setValue("ownerCount", owners);
@@ -35,7 +31,9 @@ export default function Host() {
   if (!liff) {
     return <div>loading...</div>;
   }
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    const userId = (await liff.getProfile()).userId;
+    setValue("userId", userId);
     teamCreate(data);
     liff.closeWindow();
   });
