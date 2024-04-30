@@ -3,7 +3,7 @@ export const ownerVictoryMessage = (members: string[]) => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-23%2019.44.19%20-%20An%20exciting%20and%20dramatic%20illustration%20showing%20the%20victory%20of%20the%20'Owner'%20in%20the%20game%20'BoTreasure'.%20The%20scene%20depicts%20the%20Owner%2C%20a%20cunning%20and%20clever%20c.webp?alt=media&token=c0ca4865-0332-4d6c-ba7a-11c48f428a33",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-30%2017.38.00%20-%20An%20illustration-style%20image%20showing%20the%20victory%20of%20the%20'Owner'%20character%20from%20the%20game%20'BoTreasure'.%20The%20scene%20shows%20the%20Owner%20as%20a%20young%20adult%2C%20a%20cle.png?alt=media&token=fd5c59ce-22da-4524-9198-6a3d43b22124",
             "size": "full",
             "aspectRatio": "1:1",
             "aspectMode": "cover",

@@ -9,14 +9,14 @@ import { BeaconService } from "../usecase/beacon.usecase";
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
     const userId = event.source.userId;
-    const message = event.message.text;
     const replyToken = event.replyToken;
     const user = await getUserProfile(userId);
 
-    console.log(user.displayName, userId, message);
 
     try {
         if (event.type === "message") {
+            const message = event.message.text;
+            console.log(user.displayName, userId, message);
             await WebhookService(userId, message);
         }
         if (event.type === "beacon") {
@@ -97,9 +97,9 @@ export const ScanController = async (req: Request, res: Response) => {
 
 export const PrintQRController = async (req: Request, res: Response) => {
     const ids = req.body.ids as string[];
-    const groupName = req.body.groupName as string;
+    const teamName = req.body.teamName as string;
     try {
-        await PrintQRService(groupName, ids)
+        await PrintQRService(teamName, ids)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
