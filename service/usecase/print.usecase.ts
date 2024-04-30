@@ -17,6 +17,8 @@ export const PrintQRService = async (groupName: string, ids: string[]) => {
           id: id,
           base64: base64,
         }),
+      }).catch((err) => {
+        console.error(err);
       });
     }));
 };
