@@ -409,8 +409,27 @@ export interface InlineResponse200 {
     userId?: string;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof InlineResponse200
+     */
+    myCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2001
+ */
+export interface InlineResponse2001 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001
+     */
+    userId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2001
      */
     isDisabledScan?: boolean;
 }
@@ -641,6 +660,29 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Get seeker by user ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSeekerUserIdGet(options: any = {}): FetchArgs {
+            const localVarPath = `/api/seeker/{userId}`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Create a team building request
          * @param {ApiTeambuildingBody} body 
          * @param {*} [options] Override http request option.
@@ -846,8 +888,26 @@ export const DefaultApiFp = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiScannerStatusUserIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<InlineResponse200> {
+        apiScannerStatusUserIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<InlineResponse2001> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiScannerStatusUserIdGet(options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get seeker by user ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSeekerUserIdGet(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<InlineResponse200> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).apiSeekerUserIdGet(options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1000,6 +1060,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         },
         /**
          * 
+         * @summary Get seeker by user ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSeekerUserIdGet(options?: any) {
+            return DefaultApiFp(configuration).apiSeekerUserIdGet(options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Create a team building request
          * @param {ApiTeambuildingBody} body 
          * @param {*} [options] Override http request option.
@@ -1087,6 +1156,17 @@ export class DefaultApi extends BaseAPI {
      */
     public apiScannerStatusUserIdGet(options?: any) {
         return DefaultApiFp(this.configuration).apiScannerStatusUserIdGet(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get seeker by user ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiSeekerUserIdGet(options?: any) {
+        return DefaultApiFp(this.configuration).apiSeekerUserIdGet(options)(this.fetch, this.basePath);
     }
 
     /**

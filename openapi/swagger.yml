@@ -166,6 +166,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+  /api/seeker/{userId}:
+    get:
+      tags:
+        - 特定のシーカー情報取得
+      summary: Get seeker by user ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+                  schema:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                      myCode:
+                        type: string
   /api/scannerStatus/{userId}:
     get:
       tags:

@@ -27,6 +27,9 @@ describe("DefaultApi", () => {
   test("apiScannerStatusUserIdGet", () => {
     return expect(instance.apiScannerStatusUserIdGet({})).resolves.toBe(null)
   })
+  test("apiSeekerUserIdGet", () => {
+    return expect(instance.apiSeekerUserIdGet({})).resolves.toBe(null)
+  })
   test("apiTeamBuildingPost", () => {
     const body: api.ApiTeambuildingBody = undefined
     return expect(instance.apiTeamBuildingPost(body, {})).resolves.toBe(null)
