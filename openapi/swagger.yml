@@ -166,6 +166,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+  /api/seeker/{userId}:
+    get:
+      tags:
+        - 特定のシーカー情報取得
+      summary: Get seeker by user ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+                  schema:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                      myCode:
+                        type: string
   /api/scannerStatus/{userId}:
     get:
       tags:
@@ -232,7 +249,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  groupName:
+                  teamName:
                     type: string
                   ids:
                     type: array
@@ -243,6 +260,28 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/create-hint:
+    post:
+      tags:
+        - ヒントプリント(デバッグ用)
+      summary: Print hint
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  content:
+                      type: string
+                required:
+                  - id
+                  - content
+      responses:
+        '200':
+          description: Hint created successfully
   /api/save/hint:
     post:
       tags:

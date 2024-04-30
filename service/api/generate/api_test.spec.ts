@@ -27,6 +27,9 @@ describe("DefaultApi", () => {
   test("apiScannerStatusUserIdGet", () => {
     return expect(instance.apiScannerStatusUserIdGet({})).resolves.toBe(null)
   })
+  test("apiSeekerUserIdGet", () => {
+    return expect(instance.apiSeekerUserIdGet({})).resolves.toBe(null)
+  })
   test("apiTeamBuildingPost", () => {
     const body: api.ApiTeambuildingBody = undefined
     return expect(instance.apiTeamBuildingPost(body, {})).resolves.toBe(null)
@@ -85,6 +88,10 @@ describe("_Api", () => {
   test("apiBeaconPost", () => {
     const body: api.ApiBeaconBody = undefined
     return expect(instance.apiBeaconPost(body, {})).resolves.toBe(null)
+  })
+  test("apiCreateHintPost", () => {
+    const body: api.ApiCreatehintBody = undefined
+    return expect(instance.apiCreateHintPost(body, {})).resolves.toBe(null)
   })
   test("apiSaveHintPost", () => {
     const body: api.SaveHintBody = undefined

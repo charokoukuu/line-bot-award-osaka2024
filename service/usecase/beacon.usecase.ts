@@ -6,6 +6,7 @@ import { SetGame } from "../repository/set.repository";
 import { ScheduleService } from "./set.usecase";
 
 export const BeaconService = async (userId: string) => {
+    console.log("ビーコン検知");
     const user = (await GetOneUserByUserId(userId));
     const game = await GetOneGameByTeamId(user.teamId ?? "");
     game.owners.forEach(async owner => {
@@ -28,7 +29,6 @@ export const BeaconService = async (userId: string) => {
                 }
             ],
             timeAfterMinutes: 0.5,
-            hintId: "string",
             enableOwner: user
         });
 

@@ -12,6 +12,7 @@ import { Game, Status, User } from "../api/generate";
 import { PrintQRService } from "./print.usecase";
 import { ownerMessage } from "../messages/ownerMessage";
 import { seekerMessage } from "../messages/seekerMessage";
+import { ScheduleService } from "./set.usecase";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -108,6 +109,18 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     ]);
   })
   if (game.hints.length === game.team.treasureCount) {
+
+    await game.hints.forEach(async (hint, index) => {
+      await ScheduleService(
+        {
+          teamId: game.team.teamId ?? "",
+          users: game.allUsers,
+          messages: [],
+          timeAfterMinutes: (5 / (game.hints.length + 1)) * (index + 1),
+          hintId: hint.id,
+        });
+    })
+
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [
         {

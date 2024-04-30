@@ -5,18 +5,19 @@ import { LineReply, getUserProfile } from "../api/app.api";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
 import { BeaconService } from "../usecase/beacon.usecase";
+import { EXAMPLE_USER_ID } from "../config/secret.config";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
     const userId = event.source.userId;
-    const message = event.message.text;
     const replyToken = event.replyToken;
     const user = await getUserProfile(userId);
 
-    console.log(user.displayName, userId, message);
 
     try {
         if (event.type === "message") {
+            const message = event.message.text;
+            console.log(user.displayName, userId, message);
             await WebhookService(userId, message);
         }
         if (event.type === "beacon") {
@@ -97,9 +98,9 @@ export const ScanController = async (req: Request, res: Response) => {
 
 export const PrintQRController = async (req: Request, res: Response) => {
     const ids = req.body.ids as string[];
-    const groupName = req.body.groupName as string;
+    const teamName = req.body.teamName as string;
     try {
-        await PrintQRService(groupName, ids)
+        await PrintQRService(teamName, ids)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -109,9 +110,13 @@ export const PrintQRController = async (req: Request, res: Response) => {
 
 export const PrintHintController = async (req: Request, res: Response) => {
     const id = req.body.id as string;
-    const text = req.body.text as string;
+    const content = req.body.content as string;
     try {
-        await PrintHintService(id, text)
+        await PrintHintService(id, content, [{
+            userId: EXAMPLE_USER_ID,
+            name: "example",
+            teamId: "example"
+        }])
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
