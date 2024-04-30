@@ -24,9 +24,8 @@ describe("DefaultApi", () => {
   test("apiGameTeamIdGet", () => {
     return expect(instance.apiGameTeamIdGet({})).resolves.toBe(null)
   })
-  test("apiSchedulePost", () => {
-    const body: api.ApiScheduleBody = undefined
-    return expect(instance.apiSchedulePost(body, {})).resolves.toBe(null)
+  test("apiScannerStatusUserIdGet", () => {
+    return expect(instance.apiScannerStatusUserIdGet({})).resolves.toBe(null)
   })
   test("apiTeamBuildingPost", () => {
     const body: api.ApiTeambuildingBody = undefined
@@ -65,15 +64,35 @@ describe("QRApi", () => {
   })
 })
 
+describe("TreasureQR_Api", () => {
+  let instance: api.TreasureQR_Api
+  beforeEach(function() {
+    instance = new api.TreasureQR_Api(config)
+  });
+
+  test("apiCreateQrPost", () => {
+    const body: api.ApiCreateqrBody = undefined
+    return expect(instance.apiCreateQrPost(body, {})).resolves.toBe(null)
+  })
+})
+
 describe("_Api", () => {
   let instance: api._Api
   beforeEach(function() {
     instance = new api._Api(config)
   });
 
+  test("apiBeaconPost", () => {
+    const body: api.ApiBeaconBody = undefined
+    return expect(instance.apiBeaconPost(body, {})).resolves.toBe(null)
+  })
   test("apiSaveHintPost", () => {
     const body: api.SaveHintBody = undefined
     return expect(instance.apiSaveHintPost(body, {})).resolves.toBe(null)
+  })
+  test("apiSchedulePost", () => {
+    const body: api.ApiScheduleBody = undefined
+    return expect(instance.apiSchedulePost(body, {})).resolves.toBe(null)
   })
 })
 

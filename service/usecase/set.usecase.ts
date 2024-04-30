@@ -1,5 +1,5 @@
 import { LinePush, getUserProfile } from "../api/app.api";
-import { SetGame, SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
+import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
 import { GetOneGameByUserId, GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
@@ -148,5 +148,5 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
 export const SaveHintService = async (teamId: string, content: string) => {
   const game = await GetOneGameByTeamId(teamId);
   console.log(game);
-  hint(game.owners[0].userId, content, game);
+  hint(game.owners[0].userInfo.userId, content, game);
 };

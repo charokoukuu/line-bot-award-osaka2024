@@ -97,11 +97,11 @@ paths:
               properties:
                 userId:
                   type: string
-                treasureId:
+                qrCode:
                   type: string
               required:
                 - userId
-                - treasureId
+                - qrCode
       responses:
         '200':
           description: QR code scanned successfully
@@ -166,10 +166,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+  /api/scannerStatus/{userId}:
+    get:
+      tags:
+        - 特定のユーザーのスキャナーステータス取得
+      summary: Get scanner status by user ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  isDisabledScan:
+                    type: boolean
+            
   /api/schedule:
     post:
       tags:
-        - スケジュール作成
+        - スケジュール作成(デバッグ用)
       summary: Create a new schedule
       requestBody:
         required: true
@@ -202,6 +220,29 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/create-qr:
+    post:
+      tags:
+        - Treasure用QRプリント(デバッグ用)
+      summary: Print QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  groupName:
+                    type: string
+                  ids:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - ids
+      responses:
+        '200':
+          description: Schedule created successfully
   /api/save/hint:
     post:
       tags:
@@ -221,6 +262,25 @@ paths:
                 required:
                   - teamId
                   - content
+      responses:
+        '201':
+          description: Hint created successfully
+  /api/beacon:
+    post:
+      tags:
+        - ビーコン(デバッグ用)
+      summary: Beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                required:
+                  - userId
       responses:
         '201':
           description: Hint created successfully
@@ -279,21 +339,32 @@ components:
           items:
             $ref: '#/components/schemas/User'
         owners:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+            type: array
+            items:
+              type: object
+              properties:
+                userInfo:
+                  $ref: '#/components/schemas/User'
+                isDisabledScan:
+                  type: boolean
+              required:
+                - userInfo
+                - isDisabledScan
         seekers:
           type: array
           items:
-            $ref: '#/components/schemas/User'
-        arrestedMembers:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        disabledScanMembers:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
+            type: object
+            properties:
+              userInfo:
+                $ref: '#/components/schemas/User'
+              myCode:
+                type: string
+              isArrested:
+                type: boolean
+            required:
+              - userInfo
+              - myCode
+              - isArrested
         hints:
           type: array
           items:
@@ -305,6 +376,8 @@ components:
                 type: string
               isPrinted:
                 type: boolean
+        rescueCode:
+            type: string
         treasures:
           type: array
           items:
@@ -314,6 +387,9 @@ components:
                 type: string
               isScanned:
                 type: boolean
+            required:
+              - id
+              - isScanned
         status:
           $ref: '#/components/schemas/Status'
       required:
@@ -323,6 +399,7 @@ components:
         - seekers
         - hints
         - treasures
+        - rescue
         - status
     Status:
       type: string

@@ -1,4 +1,5 @@
 import { app } from "..";
+import { BeaconController } from "../controller/debug.controller";
 import { CreateUserController, PrintQRController, SaveHintController, ScanController, SchedulerController, TeamBuildingController, TeamJoiningController, WebhookController } from "../controller/post.controller";
 import { PrintHintService } from "../usecase/print.usecase";
 
@@ -23,5 +24,6 @@ export const PostMethods = () => {
 
     //debug
     app.post("/api/save/hint", SaveHintController);
+    app.post("/api/beacon", BeaconController);
 
 }

@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
 import { LineReply, getUserProfile } from "../api/app.api";
-import { ScanService } from "../usecase/game.usecase";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
+import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
+import { BeaconService } from "../usecase/beacon.usecase";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -17,6 +18,9 @@ export const WebhookController = async (req: Request, res: Response) => {
     try {
         if (event.type === "message") {
             await WebhookService(userId, message);
+        }
+        if (event.type === "beacon") {
+            await BeaconService(userId);
         }
         res.sendStatus(200);
     } catch (err: any) {
@@ -77,7 +81,13 @@ export const ScanController = async (req: Request, res: Response) => {
     const scanData = req.body as ApiQrscanBody;
     const userId = req.body.userId as string;
     try {
-        await ScanService(userId, scanData.treasureId);
+        if (scanData.qrCode.includes(":seeker")) await ScanSeekerService(userId, scanData.qrCode);
+        else if (scanData.qrCode.includes(":treasure")) await ScanTreasureService(userId, scanData.qrCode);
+        else if (scanData.qrCode.includes(":rescue")) await ScanRescueService(userId, scanData.qrCode);
+        else {
+            res.sendStatus(500);
+            return;
+        }
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -86,10 +96,10 @@ export const ScanController = async (req: Request, res: Response) => {
 }
 
 export const PrintQRController = async (req: Request, res: Response) => {
-    const id = req.body.id as string;
-    const qrList = req.body.qrList as string[];
+    const ids = req.body.ids as string[];
+    const groupName = req.body.groupName as string;
     try {
-        await PrintQRService(id, qrList)
+        await PrintQRService(groupName, ids)
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
