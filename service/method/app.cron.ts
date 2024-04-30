@@ -4,7 +4,7 @@ import { DeleteSchedule } from "../repository/delete.repository";
 import { GetAllSchedule, GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
 import schedule from 'node-schedule';
 import { SetGame } from "../repository/set.repository";
-import { ChangeOwnerScannerValid, PrintHintJob } from "../usecase/cron.usecase";
+import { ChangeOwnerScannerValid, PrintHintJob, TimeLimitService } from "../usecase/cron.usecase";
 import { PrintHintService } from "../usecase/print.usecase";
 import { Schedule } from "../api/generate";
 
@@ -22,6 +22,7 @@ export const CronMethods = async (scheduleProps?: Schedule) => {
                 })
                 if (scheduleItem.enableOwner) ChangeOwnerScannerValid(scheduleItem)
                 if (scheduleItem.hintId) PrintHintJob(scheduleItem)
+                if (scheduleItem.messages[0].text == "制限時間です！") TimeLimitService(scheduleItem)
                 await DeleteSchedule(scheduleItem.id)
             });
         });
@@ -34,6 +35,7 @@ export const CronMethods = async (scheduleProps?: Schedule) => {
             })
             if (scheduleProps.enableOwner) ChangeOwnerScannerValid(scheduleProps)
             if (scheduleProps.hintId) PrintHintJob(scheduleProps)
+            if (scheduleProps.messages[0].text == "制限時間です！") TimeLimitService(scheduleProps)
             await DeleteSchedule(scheduleProps.id)
         });
     }

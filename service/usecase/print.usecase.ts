@@ -1,5 +1,5 @@
 import { LinePush } from "../api/app.api";
-import { User } from "../api/generate";
+import { Game, User } from "../api/generate";
 import { POS_HINT_ENDPOINT, POS_QR_ENDPOINT } from "../config/app.config";
 import { encodePNGToBase64, hintImageGenerator, qrImageGenerator } from "../helper/print";
 import { gameAction } from "../helper/util";
@@ -27,7 +27,7 @@ export const PrintQRService = async (teamName: string, ids: string[]) => {
     }));
 };
 
-export const PrintHintService = async (id: string, text: string, users: User[]) => {
+export const PrintHintService = async (id: string, text: string, users: User[], game?: Game) => {
   await hintImageGenerator(id, text);
   const base64 = encodePNGToBase64(id, "hint") as string
   console.log("request");
@@ -41,9 +41,14 @@ export const PrintHintService = async (id: string, text: string, users: User[]) 
       base64: base64,
     }),
   });
-
-  await gameAction(users, async (user) => {
-    await LinePush(user.userId, [hintPublishMessage()]);
-  });
+  if (game) {
+    await gameAction(users, async (user) => {
+      await LinePush(user.userId, [hintPublishMessage(`ヒントが出現！(${game.hints.filter((hint) => hint.isPrinted).length + 1}/${game.hints.length})`)]);
+    });
+  } else {
+    await gameAction(users, async (user) => {
+      await LinePush(user.userId, [hintPublishMessage("ヒントが出現！")]);
+    });
+  }
   console.log(res);
 };
