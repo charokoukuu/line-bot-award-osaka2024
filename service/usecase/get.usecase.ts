@@ -11,6 +11,17 @@ export const GetAllGamesService = async () => {
 export const GetOneGameService = async (teamId: string) => {
   return await GetOneGameByTeamId(teamId);
 };
+export const GetOneSeekerService = async (userId: string) => {
+  const user = await GetOneUserByUserId(userId);
+  const game = await GetOneGameByTeamId(user.teamId ?? "");
+  console.log(game);
+  const myCode = game.seekers.find((owner) => owner.userInfo.userId === userId)?.myCode;
+
+  return {
+    userId: userId,
+    myCode: myCode,
+  };
+};
 export const GetOneScannerStatusService = async (userId: string) => {
   const user = await GetOneUserByUserId(userId);
   const game = await GetOneGameByTeamId(user.teamId ?? "");
