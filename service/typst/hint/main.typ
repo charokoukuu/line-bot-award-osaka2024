@@ -6,10 +6,11 @@
   margin: 0mm,
   background: 
   pad(
-    top: 8mm,
+    top: 9mm,
     image(
       "./img/hint.png",
-      width: 55mm
+      width: 55mm,
+      height: 96mm,
     )
   )
 )
