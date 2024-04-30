@@ -42,14 +42,17 @@ export default function Host() {
   return (
     <main className="m-4">
       <h1 className="text-center text-3xl font-semibold">チーム作成</h1>
-      <form className="grid grid-flow-row gap-5 mt-2" onSubmit={onSubmit}>
+      <form
+        className="grid grid-flow-row gap-5 mt-2 w-full"
+        onSubmit={onSubmit}
+      >
         <div>
           <h2 className="text-xl">プレイヤー</h2>
           <div className="flex justify-center items-end gap-2">
-            <MaterialSymbol icon="groups" size={100} />
+            <MaterialSymbol icon="groups" size={90} />
             <select
               typeof="number"
-              className="text-3xl mb-3"
+              className="text-3xl mb-3 bg-gray-200 rounded-md"
               value={players}
               defaultValue={1}
               onChange={(e) => {
@@ -71,10 +74,10 @@ export default function Host() {
           <div>
             <h2 className="text-xl">オーナー</h2>
             <div className="flex justify-center items-end gap-2">
-              <MaterialSymbol icon="person" size={100} />
+              <MaterialSymbol icon="person" size={90} />
               <select
                 typeof="number"
-                className="text-3xl mb-3"
+                className="text-3xl mb-3 bg-gray-200 rounded-md"
                 value={owners}
                 onChange={(e) => {
                   const selectedValue = parseInt(e.target.value, 10);
@@ -93,10 +96,10 @@ export default function Host() {
           <div>
             <h2 className="text-xl">シーカー</h2>
             <div className="flex justify-center items-end gap-2">
-              <MaterialSymbol icon="group" size={100} />
+              <MaterialSymbol icon="group" size={90} />
               <select
                 typeof="number"
-                className="text-3xl mb-3"
+                className="text-3xl mb-3 bg-gray-200 rounded-md"
                 value={seekers}
                 onChange={(e) => {
                   const selectedValue = parseInt(e.target.value, 10);
@@ -116,7 +119,7 @@ export default function Host() {
         <div>
           <h2 className="text-xl">チーム名</h2>
           <div className="flex justify-center items-end gap-2">
-            <MaterialSymbol icon="account_circle" size={100} />
+            <MaterialSymbol icon="account_circle" size={90} />
             <div>
               {formatError.teamName && (
                 <div className="text-red-500 pl-1 pt-1 text-xs">
@@ -139,7 +142,7 @@ export default function Host() {
         <div>
           <h2 className="text-xl">あいことば</h2>
           <div className="flex justify-center items-end gap-2">
-            <MaterialSymbol icon="lock" size={100} />
+            <MaterialSymbol icon="lock" size={90} />
             <div>
               {formatError.keyword && (
                 <div className="text-red-500 pl-1 pt-1 text-xs">
