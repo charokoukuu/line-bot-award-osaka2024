@@ -1,11 +1,15 @@
+import { LinePush } from "../api/app.api";
+import { User } from "../api/generate";
 import { POS_HINT_ENDPOINT, POS_QR_ENDPOINT } from "../config/app.config";
 import { encodePNGToBase64, hintImageGenerator, qrImageGenerator } from "../helper/print";
+import { gameAction } from "../helper/util";
+import { hintPublishMessage } from "../messages/hintPublishMessage";
 
 
-export const PrintQRService = async (groupName: string, ids: string[]) => {
+export const PrintQRService = async (teamName: string, ids: string[]) => {
   await Promise.all(
     ids.map(async (id) => {
-      await qrImageGenerator(groupName, id);
+      qrImageGenerator(teamName, id);
       const base64 = encodePNGToBase64("1", "qr") as string;
       console.log(id);
       await fetch(POS_QR_ENDPOINT, {
@@ -23,7 +27,7 @@ export const PrintQRService = async (groupName: string, ids: string[]) => {
     }));
 };
 
-export const PrintHintService = async (id: string, text: string) => {
+export const PrintHintService = async (id: string, text: string, users: User[]) => {
   await hintImageGenerator(id, text);
   const base64 = encodePNGToBase64(id, "hint") as string
   console.log("request");
@@ -36,6 +40,10 @@ export const PrintHintService = async (id: string, text: string) => {
       id: id,
       base64: base64,
     }),
+  });
+
+  await gameAction(users, async (user) => {
+    await LinePush(user.userId, [hintPublishMessage()]);
   });
   console.log(res);
 };

@@ -20,7 +20,7 @@ export const PrintHintJob = async (scheduleItem: Schedule) => {
     const game = await GetOneGameByTeamId(scheduleItem.teamId ?? "");
     const hint = game.hints.find(hint => hint.id === scheduleItem.hintId);
     if (!hint || !hint.id || !hint.content) return;
-    await PrintHintService(hint.id, hint.content);
+    await PrintHintService(hint.id, hint.content, game.allUsers);
     hint.isPrinted = true;
     await SetGame(game);
 }

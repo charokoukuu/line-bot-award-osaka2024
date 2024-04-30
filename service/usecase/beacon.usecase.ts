@@ -29,7 +29,6 @@ export const BeaconService = async (userId: string) => {
                 }
             ],
             timeAfterMinutes: 0.5,
-            hintId: "string",
             enableOwner: user
         });
 

@@ -5,6 +5,7 @@ import { LineReply, getUserProfile } from "../api/app.api";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
 import { BeaconService } from "../usecase/beacon.usecase";
+import { EXAMPLE_USER_ID } from "../config/secret.config";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -109,9 +110,13 @@ export const PrintQRController = async (req: Request, res: Response) => {
 
 export const PrintHintController = async (req: Request, res: Response) => {
     const id = req.body.id as string;
-    const text = req.body.text as string;
+    const content = req.body.content as string;
     try {
-        await PrintHintService(id, text)
+        await PrintHintService(id, content, [{
+            userId: EXAMPLE_USER_ID,
+            name: "example",
+            teamId: "example"
+        }])
         res.sendStatus(200);
     } catch (err) {
         console.error(err);

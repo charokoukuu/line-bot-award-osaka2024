@@ -93,6 +93,25 @@ export interface ApiBeaconBody {
 /**
  * 
  * @export
+ * @interface ApiCreatehintBody
+ */
+export interface ApiCreatehintBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiCreatehintBody
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiCreatehintBody
+     */
+    content: string;
+}
+/**
+ * 
+ * @export
  * @interface ApiCreateqrBody
  */
 export interface ApiCreateqrBody {
@@ -1398,6 +1417,38 @@ export const _ApiFetchParamCreator = function (configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Print hint
+         * @param {ApiCreatehintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateHintPost(body: ApiCreatehintBody, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body', 'Required parameter body was null or undefined when calling apiCreateHintPost.');
+            }
+            const localVarPath = `/api/create-hint`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ApiCreatehintBody" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Create a new hint
          * @param {SaveHintBody} body 
          * @param {*} [options] Override http request option.
@@ -1490,6 +1541,25 @@ export const _ApiFp = function (configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Print hint
+         * @param {ApiCreatehintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateHintPost(body: ApiCreatehintBody, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = _ApiFetchParamCreator(configuration).apiCreateHintPost(body, options);
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Create a new hint
          * @param {SaveHintBody} body 
          * @param {*} [options] Override http request option.
@@ -1547,6 +1617,16 @@ export const _ApiFactory = function (configuration?: Configuration, fetch?: Fetc
         },
         /**
          * 
+         * @summary Print hint
+         * @param {ApiCreatehintBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCreateHintPost(body: ApiCreatehintBody, options?: any) {
+            return _ApiFp(configuration).apiCreateHintPost(body, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Create a new hint
          * @param {SaveHintBody} body 
          * @param {*} [options] Override http request option.
@@ -1585,6 +1665,18 @@ export class _Api extends BaseAPI {
      */
     public apiBeaconPost(body: ApiBeaconBody, options?: any) {
         return _ApiFp(this.configuration).apiBeaconPost(body, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Print hint
+     * @param {ApiCreatehintBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof _Api
+     */
+    public apiCreateHintPost(body: ApiCreatehintBody, options?: any) {
+        return _ApiFp(this.configuration).apiCreateHintPost(body, options)(this.fetch, this.basePath);
     }
 
     /**
