@@ -1,4 +1,4 @@
-export const arrestedMessage = (member: string) => {
+export const arrestedMessage = (member: string, isEnd: boolean) => {
     const contents: any = {
         "type": "bubble",
         "hero": {
@@ -55,7 +55,7 @@ export const arrestedMessage = (member: string) => {
     }
 
     contents.body.contents[0].text = `${member}が拘束された！`
-    contents.body.contents[1].text = `${member}が拘束されました。シーカーは監獄へ行き救助してください。`
+    contents.body.contents[1].text = `${member}が拘束されました。${!isEnd ? "シーカーは監獄へ行き救助してください。" : ""}`
     return {
         "type": "flex",
         "altText": "プレイヤーが拘束されました",
