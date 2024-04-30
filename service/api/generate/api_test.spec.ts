@@ -86,6 +86,10 @@ describe("_Api", () => {
     const body: api.ApiBeaconBody = undefined
     return expect(instance.apiBeaconPost(body, {})).resolves.toBe(null)
   })
+  test("apiCreateHintPost", () => {
+    const body: api.ApiCreatehintBody = undefined
+    return expect(instance.apiCreateHintPost(body, {})).resolves.toBe(null)
+  })
   test("apiSaveHintPost", () => {
     const body: api.SaveHintBody = undefined
     return expect(instance.apiSaveHintPost(body, {})).resolves.toBe(null)

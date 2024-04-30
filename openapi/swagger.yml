@@ -243,6 +243,28 @@ paths:
       responses:
         '200':
           description: Schedule created successfully
+  /api/create-hint:
+    post:
+      tags:
+        - ヒントプリント(デバッグ用)
+      summary: Print hint
+      requestBody:
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  content:
+                      type: string
+                required:
+                  - id
+                  - content
+      responses:
+        '200':
+          description: Hint created successfully
   /api/save/hint:
     post:
       tags:

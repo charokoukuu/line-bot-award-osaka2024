@@ -64,7 +64,7 @@ export const ScheduleService = async (scheduleItem: ApiScheduleBody) => {
     enableOwner: scheduleItem.enableOwner,
   };
   await SetSchedule(newSchedule);
-  await CronMethods();
+  await CronMethods(newSchedule);
 };
 
 
