@@ -4,6 +4,7 @@ import { gameAction } from "../helper/util";
 import { arrestedMessage } from "../messages/arrestedMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
 import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
+import { rescueMessage } from "../messages/rescueMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { GetOneGameByTeamId, GetOneGameByUserId, GetOneUserByUserId } from "../repository/get.repository";
 import { SetGame, SetUser } from "../repository/set.repository";
@@ -76,10 +77,7 @@ export const ScanRescueService = async (userId: string, rescueCode: string) => {
         await SetGame(game);
         await gameAction(game.allUsers, async (user) => {
             await LinePush(user.userId, [
-                {
-                    type: "text",
-                    text: `${userName}により全てのシーカーが解放されました！`,
-                }
+                rescueMessage(userName)
             ]);
         });
     }
