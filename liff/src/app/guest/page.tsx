@@ -5,7 +5,7 @@ import { TeamList } from "./ui/TeamList";
 
 const teamData = fetch("https://node-learn.run-ticket.com/api/teams", {
   method: "GET",
-  cache: "no-store",
+  cache: "no-cache",
   headers: {
     "Content-Type": "application/json",
   },
