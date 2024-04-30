@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { MaterialSymbol } from "react-material-symbols";
 import { clsx } from "clsx";
 import "react-material-symbols/rounded";
-import { Team } from "@/type";
+import { CreateTeam } from "@/type";
 import { useLiff } from "@/components/LiffProvider";
+import { teamCreate } from "./actions";
 
 export default function Host() {
   const { liff } = useLiff();
@@ -14,31 +15,8 @@ export default function Host() {
     handleSubmit,
     setValue,
     formState: { errors: formatError, isValid, isSubmitting },
-  } = useForm<Team>();
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    fetch("https://node-learn.run-ticket.com/api/team-building", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        console.log(res);
-        if (res.ok) {
-          console.log("success");
-        } else {
-          console.error("error");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        console.log("done");
-      });
-  });
+  } = useForm<CreateTeam>();
+
   const [players, setPlayers] = useState<number>(1);
   const [owners, setOwners] = useState<number>(1);
   const [seekers, setSeekers] = useState<number>(0);
@@ -54,6 +32,13 @@ export default function Host() {
     console.log("set value", players, owners, seekers);
   }, [owners, players, seekers, setValue]);
 
+  if (!liff) {
+    return <div>loading...</div>;
+  }
+  const onSubmit = handleSubmit((data) => {
+    teamCreate(data);
+    liff.closeWindow();
+  });
   return (
     <main className="m-4">
       <h1 className="text-center text-3xl font-semibold">チーム作成</h1>
