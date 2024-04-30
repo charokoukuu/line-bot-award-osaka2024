@@ -1,15 +1,10 @@
 const fs = require("fs");
 const { exec, execSync } = require("child_process");
 import { writeFileSync } from "fs";
-import { writeFile } from "fs/promises";
 
-export const hintImageGenerator = (id: string, hint: string): Promise<void> => {
+export const hintImageGenerator = (id: string, base64String: string): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const json = JSON.stringify({
-      text: hint,
-    });
-
-    writeFile("typst/hint/hint.json", json, "utf8")
+    decodeBase64ToPNG(base64String, `typst/hint/img/hint.png`)
       .then(() => {
         exec(
           `cd typst/hint && pwd && typst compile main.typ ${id}.png`,
@@ -38,7 +33,7 @@ export const qrImageGenerator = async (groupName: string, id: string): Promise<v
     qr: [id],
   });
 
-  writeFileSync("typst/qr/qr.json", json, "utf8")
+  writeFileSync("typst/qr/qr.json", json, "utf8");
   await execSync(`cd typst/qr && typst compile main.typ 1.png`);
 };
 
@@ -60,15 +55,23 @@ export const encodePNGToBase64 = (
 export const decodeBase64ToPNG = (
   base64String: string,
   outputPath: string
-): boolean => {
-  try {
-    const base64Data = base64String.replace(/^data:image\/png;base64,/, "");
-    const buffer = Buffer.from(base64Data, "base64");
-    fs.writeFileSync(outputPath, buffer);
-    console.log("PNG image decoded successfully.");
-    return true;
-  } catch (error) {
-    console.error("Error decoding Base64 to PNG:", error);
-    return false;
-  }
+): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    try {
+      const base64Data = base64String.replace(/^data:image\/png;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+      fs.writeFile(outputPath, buffer, (error: any) => {
+        if (error) {
+          console.error("Error decoding Base64 to PNG:", error);
+          reject(false);
+        } else {
+          console.log("PNG image decoded successfully.");
+          resolve(true);
+        }
+      });
+    } catch (error) {
+      console.error("Error decoding Base64 to PNG:", error);
+      reject(false);
+    }
+  });
 };
