@@ -13,6 +13,8 @@ import { PrintQRService } from "./print.usecase";
 import { ownerMessage } from "../messages/ownerMessage";
 import { seekerMessage } from "../messages/seekerMessage";
 import { ScheduleService } from "./set.usecase";
+import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
+import { playedGameMessage } from "../messages/playedGameMessage";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -47,6 +49,20 @@ export const play = async (teamId: string) => {
     status: Status.Prepare,
   }
 
+  await gameAction(newGame.allUsers, async (user) => {
+    await LinePush(user.userId, [
+      playedGameMessage(),
+    ]);
+  })
+  await gameAction(seekers, async (user) => {
+    await LinePush(user.userId, [
+      seekerMessage(),
+      {
+        type: "text",
+        text: "指示があるまで、指定された場所で待機してください",
+      },
+    ]);
+  })
   await gameAction(owners, async (user) => {
     await LinePush(user.userId, [
       ownerMessage(),
@@ -69,19 +85,6 @@ export const play = async (teamId: string) => {
     ]);
   })
 
-  await gameAction(seekers, async (user) => {
-    await LinePush(user.userId, [
-      {
-        type: "text",
-        text: "役割が決定しました！",
-      },
-      seekerMessage(),
-      {
-        type: "text",
-        text: "オーナーが宝を隠している間、指定された場所で待機してください",
-      },
-    ]);
-  })
 };
 
 export const hint = async (userId: string, hint: string, game: Game) => {
@@ -109,28 +112,52 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     ]);
   })
   if (game.hints.length === game.team.treasureCount) {
-
+    const timeLimit = 1;
     await game.hints.forEach(async (hint, index) => {
       await ScheduleService(
         {
           teamId: game.team.teamId ?? "",
           users: game.allUsers,
           messages: [],
-          timeAfterMinutes: (5 / (game.hints.length + 1)) * (index + 1),
+          timeAfterMinutes: (timeLimit / (game.hints.length + 1)) * (index + 1),
           hintId: hint.id,
         });
     })
-
+    await ScheduleService(
+      {
+        teamId: game.team.teamId ?? "",
+        users: game.allUsers,
+        messages: [
+          {
+            type: "text",
+            text: "制限時間です！",
+          },
+          ownerVictoryMessage(game.owners.map((owner) => owner.userInfo.name)),
+        ],
+        timeAfterMinutes: timeLimit,
+      });
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [
         {
           type: "text",
-          text: "全てのヒントが入力されました。ゲームを開始します",
-        },
+          text: "全てのヒントが入力されました",
+        }
       ]);
     })
 
     game.status = Status.Chat;
+    await gameAction(game.seekers.map(seeker => seeker.userInfo), async (user) => {
+      await LinePush(user.userId, [{
+        type: "text",
+        text: "時間内に全ての宝を見つけだそう！",
+      }]);
+    });
+    await gameAction(game.owners.map(owner => owner.userInfo), async (user) => {
+      await LinePush(user.userId, [{
+        type: "text",
+        text: "シーカーを全員捕まえよう！",
+      }]);
+    });
     await gameAction(game.allUsers, async (user) => {
       await LinePush(user.userId, [chatMessage()]);
     });

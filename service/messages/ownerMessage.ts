@@ -3,7 +3,7 @@ export const ownerMessage = () => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://www.silhouette-illust.com/wp-content/uploads/2016/06/2889-600x600.jpg",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-04-30%2022.57.55%20-%20An%20illustration-style%20image%20of%20the%20'Owner'%20character%20from%20the%20game%20'BoTreasure'%2C%20in%20the%20same%20style%20as%20the%20image%20with%20ID%20'UHQjN02gwHee4MQ1'.%20The%20Owner%20.webp?alt=media&token=0ea9d761-c664-4ad4-984f-5356a7dc18da",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover",
