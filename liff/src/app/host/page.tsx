@@ -22,18 +22,18 @@ export default function Host() {
   const [seekers, setSeekers] = useState<number>(0);
 
   useEffect(() => {
+    const userId = profile?.userId ?? "";
     setValue("playerCount", players);
     setValue("ownerCount", owners);
     setValue("treasureCount", seekers);
-    console.log("set value", players, owners, seekers);
-  }, [owners, players, seekers, setValue]);
+    setValue("userId", userId);
+    console.log("set value", players, owners, seekers, userId);
+  }, [owners, players, profile?.userId, seekers, setValue]);
 
   if (!liff) {
     return <div>loading...</div>;
   }
   const onSubmit = handleSubmit(async (data) => {
-    const userId = profile?.userId ?? "";
-    setValue("userId", userId);
     teamCreate(data);
     liff.closeWindow();
   });
