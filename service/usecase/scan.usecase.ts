@@ -1,7 +1,9 @@
 import { LinePush } from "../api/app.api";
 import { Status } from "../api/generate";
 import { gameAction } from "../helper/util";
+import { arrestedMessage } from "../messages/arrestedMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
+import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { GetOneGameByTeamId, GetOneGameByUserId, GetOneUserByUserId } from "../repository/get.repository";
 import { SetGame, SetUser } from "../repository/set.repository";
@@ -40,15 +42,26 @@ export const ScanSeekerService = async (userId: string, seekerId: string) => {
     const scanUser = await GetOneUserByUserId(userId);
     if (!scanUser.teamId) return
     const game = await GetOneGameByTeamId(scanUser.teamId);
-    const arrestedSeeker = game.seekers.filter((seeker) => seeker.userInfo.userId === seekerId)[0];
-    gameAction(game.allUsers, async (userItem) => {
-        LinePush(userItem.userId, [{
-            type: "text",
-            text: `${arrestedSeeker.userInfo.name}が${scanUser.name}に逮捕されました！`,
-        }])
-    })
+    const arrestedSeeker = game.seekers.filter((seeker) => seeker.myCode === seekerId)[0];
     arrestedSeeker.isArrested = true;
+    await gameAction(game.allUsers, async (userItem) => {
+        await LinePush(userItem.userId, [arrestedMessage(arrestedSeeker.userInfo.name, game.seekers.filter((seeker) => seeker.isArrested).length == game.seekers.length)])
+    })
     await SetGame(game);
+    if (game.seekers.filter((seeker) => seeker.isArrested).length == game.seekers.length) {
+        await gameAction(game.allUsers, async (user) => {
+            await LinePush(user.userId, [
+                ownerVictoryMessage(game.owners.map((owner) => owner.userInfo.name)),
+            ]);
+            game.status = Status.End;
+            await SetGame(game);
+            await gameAction(game.allUsers, async (user) => {
+                user.teamId = "";
+                await SetUser(user);
+            });
+        });
+    }
+
 }
 
 export const ScanRescueService = async (userId: string, rescueCode: string) => {
