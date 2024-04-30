@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { CreateUserService, SaveHintService, ScheduleService, TeamBuildingService, TeamJoiningService, WebhookService } from "../usecase/set.usecase";
 import { PrintQRService, PrintHintService } from "../usecase/print.usecase";
-import { LineReply, getUserProfile } from "../api/app.api";
+import { LineReply, getContents, getUserProfile } from "../api/app.api";
 import { ApiQrscanBody, ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, User } from "../api/generate";
 import { ScanRescueService, ScanSeekerService, ScanTreasureService } from "../usecase/scan.usecase";
 import { BeaconService } from "../usecase/beacon.usecase";
 import { EXAMPLE_USER_ID } from "../config/secret.config";
+import { blobToBase64 } from "../helper/util";
 
 export const WebhookController = async (req: Request, res: Response) => {
     const event = req.body.events[0];
@@ -15,10 +16,11 @@ export const WebhookController = async (req: Request, res: Response) => {
 
 
     try {
+        console.log(event.message);
         if (event.type === "message") {
             const message = event.message.text;
             console.log(user.displayName, userId, message);
-            await WebhookService(userId, message);
+            await WebhookService(userId, message, event);
         }
         if (event.type === "beacon") {
             await BeaconService(userId);

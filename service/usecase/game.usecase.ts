@@ -100,7 +100,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
   }
   game.hints.push({
     id: randomUUID(),
-    content: hint,
+    content: `data:image/png;base64,${hint}`,
     isPrinted: false,
   });
   await gameAction(game.allUsers, async (user) => {
