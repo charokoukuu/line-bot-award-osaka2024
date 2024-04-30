@@ -1,7 +1,6 @@
 const fs = require("fs");
-const { exec, execSync } = require("child_process");
+const { execSync } = require("child_process");
 import { writeFileSync } from "fs";
-import { writeFile } from "fs/promises";
 
 export const hintImageGenerator = (id: string, hint: string) => {
   decodeBase64ToPNG(hint, `typst/hint/img/hint.png`)
