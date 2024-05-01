@@ -3,6 +3,8 @@ import { JoinTeam } from "@/type";
 import "react-material-symbols/rounded";
 import { TeamList } from "./ui/TeamList";
 
+export const fetchCache = "force-no-store";
+
 const teamData = fetch("https://node-learn.run-ticket.com/api/teams", {
   method: "GET",
   cache: "no-store",
