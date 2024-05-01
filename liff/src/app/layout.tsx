@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { LiffProvider } from "@/components/LiffProvider";
 import { Noto_Sans_JP } from "next/font/google";
 import clsx from "clsx";
 
@@ -22,11 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={clsx(noto.className, "font-sans")}>
-      <body>
-        <LiffProvider liffId={process.env.NEXT_PUBLIC_LIFF_ID || ""}>
-          {children}
-        </LiffProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
