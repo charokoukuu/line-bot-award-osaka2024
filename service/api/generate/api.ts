@@ -228,6 +228,12 @@ export interface ApiTeambuildingBody {
     treasureCount: number;
     /**
      * 
+     * @type {number}
+     * @memberof ApiTeambuildingBody
+     */
+    timeLimit: number;
+    /**
+     * 
      * @type {string}
      * @memberof ApiTeambuildingBody
      */
@@ -555,6 +561,12 @@ export interface Team {
      * @memberof Team
      */
     treasureCount: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Team
+     */
+    timeLimit: number;
     /**
      * 
      * @type {string}

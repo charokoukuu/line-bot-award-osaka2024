@@ -20,6 +20,7 @@ export const TeamSchema = new Schema<Team>({
     playerCount: { type: Number, required: true },
     ownerCount: { type: Number, required: true },
     treasureCount: { type: Number, required: true },
+    timeLimit: { type: Number, required: true },
     keyword: { type: String, required: true }
 });
 

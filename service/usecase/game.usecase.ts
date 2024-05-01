@@ -98,7 +98,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     ]);
   })
   if (game.hints.length === game.team.treasureCount) {
-    const timeLimit = 1;
+    const timeLimit = game.team.timeLimit;
     await game.hints.forEach(async (hint, index) => {
       await ScheduleService(
         {
