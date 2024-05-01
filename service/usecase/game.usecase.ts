@@ -80,9 +80,20 @@ export const play = async (teamId: string) => {
   gameAction(owners, async (user) => {
     await LinePush(user.userId, [
       {
-        type: "text",
-        text: "宝を隠し，隠した場所のヒントとなる写真を撮影してください",
-      },
+        "type": "text",
+        "text": "宝を隠し，隠した場所のヒントとなる写真を撮影してください",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "Camera"
+              }
+            }
+          ]
+        }
+      }
     ]);
   })
 
@@ -131,7 +142,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       await LinePush(user.userId, [
         {
           type: "text",
-          text: "全てのヒントが入力されました",
+          text: "全ての宝が隠されました",
         }
       ]);
     })
@@ -150,7 +161,37 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       }]);
     });
     await gameAction(game.allUsers, async (user) => {
-      await LinePush(user.userId, [chatMessage()]);
+      await LinePush(user.userId, [chatMessage(), {
+        type: "text",
+        text: "以下からアクションを選択できます",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "message",
+                "label": "救助",
+                "text": "救助してください"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "Camera"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "location",
+                "label": "Send location"
+              }
+            }
+          ]
+        }
+
+      }]);
     });
   }
   await SetGame(game);
