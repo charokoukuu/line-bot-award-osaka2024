@@ -135,7 +135,8 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
     teamId: data.teamId,
   });
   console.log(beforeUserTeamId);
-  if (beforeUserTeamId != "" && userSetInfo.upsertedCount == 0) {
+  const game = await GetOneGameByTeamId(data.teamId);
+  if (beforeUserTeamId === team.teamId) {
     console.log("すでにチームに参加しています");
     await LinePush(data.userId, [
       {
