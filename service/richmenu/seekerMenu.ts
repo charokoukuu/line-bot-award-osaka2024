@@ -17,7 +17,7 @@ export const seekerMenu = () => {
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.google.co.jp/"
+                    "uri": "https://liff.line.me/2004773510-8ZxA60yk"
                 }
             },
             {
@@ -29,7 +29,7 @@ export const seekerMenu = () => {
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.google.co.jp/"
+                    "uri": "https://liff.line.me/2004773510-XqgpPEYj"
                 }
             },
             {
@@ -41,7 +41,7 @@ export const seekerMenu = () => {
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.google.co.jp/"
+                    "uri": "https://liff.line.me/2004773510-AaMZNW1K"
                 }
             }
         ]

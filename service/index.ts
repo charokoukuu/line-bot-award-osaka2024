@@ -4,10 +4,10 @@ import { MONGODB_URI } from "./config/app.config";
 import { CronMethods, GetMethods, PostMethods } from "./method";
 import { DeleteMethods } from "./method/app.delete";
 import { createRichMenu, linkRichMenuToUser, uploadRichMenuImage } from "./helper/richmenu";
-import { EXAMPLE_USER_ID } from "./config/secret.config";
+import { EXAMPLE_USER_ID, menuListIds } from "./config/secret.config";
 import { seekerMenu } from "./richmenu/seekerMenu";
 import { ownerMenu } from "./richmenu/ownerMenu";
-import { menuListIds } from "./richmenu/menuListIds";
+import { homeMenu } from "./richmenu/homeMenu";
 export const app = express();
 const cors = require('cors')
 app.use(cors());
@@ -20,12 +20,10 @@ app.use(express.urlencoded({
 }));
 
 
-// メイン関数
-const richMenuId = await createRichMenu(seekerMenu());
-if (richMenuId) {
-  // await uploadRichMenuImage(richMenuId, 'images/richmenu/seeker.png');
-  // await linkRichMenuToUser(EXAMPLE_USER_ID, richMenuId); // リッチメニューをリンクするユーザーIDを指定
-}
+// const richMenuId = await createRichMenu(seekerMenu());
+// if (richMenuId) {
+//   await uploadRichMenuImage(richMenuId, 'images/richmenu/seeker.png');
+// }
 await linkRichMenuToUser("all", menuListIds.home);
 
 GetMethods();

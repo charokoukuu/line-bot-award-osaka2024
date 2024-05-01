@@ -17,7 +17,7 @@ export const homeMenu = () => {
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.google.co.jp/"
+                    "uri": "https://liff.line.me/2004773510-Eyk64eNQ"
                 }
             },
             {
@@ -29,7 +29,7 @@ export const homeMenu = () => {
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.google.co.jp/"
+                    "uri": "https://liff.line.me/2004773510-MWW9Djyb"
                 }
             }
         ]
