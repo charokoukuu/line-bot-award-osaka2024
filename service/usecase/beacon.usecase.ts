@@ -8,6 +8,7 @@ import { ScheduleService } from "./set.usecase";
 export const BeaconService = async (userId: string) => {
     console.log("ビーコン検知");
     const user = (await GetOneUserByUserId(userId));
+    if (!user) return;
     const game = await GetOneGameByTeamId(user.teamId ?? "");
     if (!game) return;
     game.owners.forEach(async owner => {
