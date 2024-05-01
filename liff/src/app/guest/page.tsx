@@ -1,35 +1,26 @@
+"use client";
 import "react-material-symbols/rounded";
 import { JoinTeam } from "@/type";
 import "react-material-symbols/rounded";
 import { TeamList } from "./ui/TeamList";
+import { useEffect, useState } from "react";
 
-export const fetchCache = "force-no-store";
+export default function Guest() {
+  const [teams, setTeams] = useState<JoinTeam[] | null>(null);
+  useEffect(() => {
+    fetch("https://node-learn.run-ticket.com/api/teams", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTeams(data);
+        console.log(data);
+      });
+  }, []);
 
-const teamData = fetch("https://node-learn.run-ticket.com/api/teams", {
-  method: "GET",
-  cache: "no-store",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-  .then((res) => {
-    if (res.ok) {
-      console.log("success");
-    } else {
-      console.error("error");
-    }
-    return res.json();
-  })
-  .catch((error) => {
-    console.error(error);
-  })
-  .finally(() => {
-    console.log("done");
-  });
-
-export default async function Guest() {
-  const teams = (await teamData) as JoinTeam[];
-  console.log(teams);
   if (!teams) {
     return (
       <div className="w-full h-dvh flex justify-center items-center">
