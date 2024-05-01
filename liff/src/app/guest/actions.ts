@@ -2,8 +2,8 @@
 
 export async function teamJoin(userId: string, teamId: string) {
   const req = {
-    "userId": userId,
-    "teamId": teamId,
+    userId,
+    teamId,
   };
   console.log(req);
   const res = await fetch("https://node-learn.run-ticket.com/api/team-joining", {
@@ -11,7 +11,7 @@ export async function teamJoin(userId: string, teamId: string) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ req }),
+    body: JSON.stringify(req),
   }).then((res) => {
     console.log(res);
     if (res.status === 200) {
