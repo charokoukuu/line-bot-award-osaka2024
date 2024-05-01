@@ -2,37 +2,45 @@
 import { useLiff } from "@/components/LiffProvider";
 import { useEffect, useState } from "react";
 export default function Scan() {
-  const [keyword, setKeyword] = useState("");
   const [isSaned, setIsSaned] = useState(false);
   const { liff, profile } = useLiff();
   useEffect(() => {
-    if (!isSaned && keyword === "" && liff && profile) {
+    if (!isSaned && liff && profile) {
       const userId = profile.userId;
       liff?.scanCodeV2().then(async (result) => {
         console.log(result.value);
-        setKeyword(result.value ?? "");
         fetch(
-          `https://local-line.run-ticket.com/qr-scan?id=${userId}&content=${result.value}`,
+          // `https://local-line.run-ticket.com/qr-scan?id=${userId}&content=${result.value}`,
+          "https://node-learn.run-ticket.com/api/qr-scan",
           {
-            method: "GET",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId,
+              qrCode: result.value,
+            }),
           }
-        ).finally(() => {
-          setIsSaned(true);
-        });
+        )
+          .then((res) => {
+            console.log(res);
+          })
+          .finally(() => {
+            setIsSaned(true);
+            liff.closeWindow();
+          });
       });
     }
-  }, [isSaned, keyword, liff, profile]);
+  }, [isSaned, liff, profile]);
+
   return (
     <main className="m-4">
-      <h1 className="text-center text-3xl font-semibold">スキャン</h1>
+      {/* <h1 className="text-center text-3xl font-semibold">スキャン</h1> */}
       <div className="flex flex-col w-full h-full justify-center items-center">
         {isSaned ? (
           <>
             <p className="text-center text-2xl">スキャンが完了しました</p>
-            <div className="flex flex-col justify-center items-left gap-2">
-              <h2 className="text-xl">あいことば</h2>
-              <p className="text-center text-2xl">{keyword}</p>
-            </div>
           </>
         ) : (
           <p className="text-center text-2xl">スキャン中...</p>
