@@ -84,16 +84,6 @@ export const play = async (teamId: string) => {
 };
 
 export const hint = async (userId: string, hint: string, game: Game) => {
-  if (game.seekers.find((seeker) => seeker.userInfo.userId === userId)) {
-    await LinePush(userId, [
-      {
-        type: "text",
-        text: "準備中です。しばらくお待ちください",
-      },
-    ]);
-    await publishLoadingMessage(userId, 20);
-    return;
-  }
   game.hints.push({
     id: randomUUID(),
     content: `data:image/png;base64,${hint}`,

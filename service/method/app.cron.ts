@@ -35,7 +35,7 @@ export const CronMethods = async (scheduleProps?: Schedule) => {
             })
             if (scheduleProps.enableOwner) ChangeOwnerScannerValid(scheduleProps)
             if (scheduleProps.hintId) PrintHintJob(scheduleProps)
-            if (scheduleProps.messages[0].text == "制限時間です！") TimeLimitService(scheduleProps)
+            if (scheduleProps.messages[0].text == "タイムアップ！") TimeLimitService(scheduleProps)
             await DeleteSchedule(scheduleProps.id)
         });
     }

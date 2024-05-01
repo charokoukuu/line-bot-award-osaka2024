@@ -3,7 +3,7 @@ export const hintPublishMessage = (message: string) => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-23%2019.47.36%20-%20An%20intriguing%20illustration%20depicting%20a%20mysterious%20clue%20in%20the%20game%20'BoTreasure'.%20The%20scene%20features%20an%20ancient%2C%20weathered%20scroll%20partially%20unrolled%20on.webp?alt=media&token=d5ee4ca5-2641-4735-b417-76a4f586c95a",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-05-01%2012.28.38%20-%20An%20illustration-style%20image%20depicting%20a%20hint%20for%20the%20game%20'BoTreasure'%2C%20in%20a%20style%20similar%20to%20the%20image%20with%20ID%20'NoXiElftLnV0jWcU'.%20The%20scene%20features.webp?alt=media&token=df3de751-47a6-4e3c-83e1-ba17450c0687",
             "size": "full",
             "aspectRatio": "1:1",
             "aspectMode": "cover",
