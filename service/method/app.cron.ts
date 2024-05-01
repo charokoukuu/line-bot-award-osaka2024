@@ -1,11 +1,9 @@
 import { LinePush } from "../api/app.api";
 import { gameAction } from "../helper/util";
 import { DeleteSchedule } from "../repository/delete.repository";
-import { GetAllSchedule, GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
+import { GetAllSchedule } from "../repository/get.repository";
 import schedule from 'node-schedule';
-import { SetGame } from "../repository/set.repository";
 import { ChangeOwnerScannerValid, PrintHintJob, TimeLimitService } from "../usecase/cron.usecase";
-import { PrintHintService } from "../usecase/print.usecase";
 import { Schedule } from "../api/generate";
 
 const cron = require('node-cron');

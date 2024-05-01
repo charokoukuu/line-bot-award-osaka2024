@@ -7,7 +7,7 @@ import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { rescueMessage } from "../messages/rescueMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
-import { SetGame, SetUser } from "../repository/set.repository";
+import { SetGame } from "../repository/set.repository";
 
 export const ScanTreasureService = async (userId: string, treasureId: string) => {
     const user = await GetOneUserByUserId(userId);

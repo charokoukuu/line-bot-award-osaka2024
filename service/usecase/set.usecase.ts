@@ -103,6 +103,7 @@ export const TeamBuildingService = async (data: ApiTeambuildingBody) => {
     playerCount: data.playerCount,
     ownerCount: data.ownerCount,
     treasureCount: data.treasureCount,
+    timeLimit: data.timeLimit,
     keyword: data.keyword,
   });
 
