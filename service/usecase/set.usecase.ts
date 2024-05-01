@@ -146,6 +146,13 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
     return;
   }
 
+  await LinePush(data.userId, [
+    {
+      type: "text",
+      text: `${team.name}に参加しました`,
+    },
+  ]);
+
   await LinePush(team.hostId, [
     {
       type: "text",
