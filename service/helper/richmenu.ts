@@ -1,48 +1,15 @@
 import { readFileSync } from 'fs';
 import { TOKEN } from '../config/secret.config';
 
-const LINE_API_BASE_URL = 'https://api.line.me/v2/bot';
+const LINE_ME_BASE_URL = 'https://api.line.me/v2/bot';
+const LINE_API_BASE_URL = 'https://api-data.line.me/v2/bot';
 
-export async function createRichMenu() {
-    const richMenu = {
-        "size": {
-            "width": 2500,
-            "height": 843
-        },
-        "selected": true,
-        "name": "homeRichMenu",
-        "chatBarText": "home",
-        "areas": [
-            {
-                "bounds": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 1250,
-                    "height": 843
-                },
-                "action": {
-                    "type": "uri",
-                    "uri": "https://www.google.co.jp/"
-                }
-            },
-            {
-                "bounds": {
-                    "x": 1250,
-                    "y": 0,
-                    "width": 1250,
-                    "height": 843
-                },
-                "action": {
-                    "type": "uri",
-                    "uri": "https://www.google.co.jp/"
-                }
-            }
-        ]
-    }
+
+export async function createRichMenu(richMenu: object) {
 
     try {
         const response = await fetch(
-            `${LINE_API_BASE_URL}/richmenu`,
+            `${LINE_ME_BASE_URL}/richmenu`,
             {
                 method: 'POST',
                 headers: {
@@ -84,7 +51,7 @@ export async function uploadRichMenuImage(richMenuId: string, imagePath: string)
             console.log('Rich menu image uploaded successfully.');
         } else {
             // console.error('Error uploading rich menu image:', await response.text());
-            console.log('Error uploading rich menu image:', await response);
+            console.log('Error uploading rich menu image:', await response.text());
         }
     } catch (error) {
         console.error('Error uploading rich menu image:', error);
@@ -95,7 +62,7 @@ export async function uploadRichMenuImage(richMenuId: string, imagePath: string)
 export async function linkRichMenuToUser(userId: string, richMenuId: string) {
     try {
         const response = await fetch(
-            `${LINE_API_BASE_URL}/user/${userId}/richmenu/${richMenuId}`,
+            `${LINE_ME_BASE_URL}/user/${userId}/richmenu/${richMenuId}`,
             {
                 method: 'POST',
                 headers: {
@@ -113,5 +80,4 @@ export async function linkRichMenuToUser(userId: string, richMenuId: string) {
         console.error('Error linking rich menu to user:', error);
     }
 }
-
 

@@ -15,6 +15,8 @@ import { seekerMessage } from "../messages/seekerMessage";
 import { ScheduleService } from "./set.usecase";
 import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { playedGameMessage } from "../messages/playedGameMessage";
+import { linkRichMenuToUser } from "../helper/richmenu";
+import { menuListIds } from "../richmenu/menuListIds";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -55,6 +57,7 @@ export const play = async (teamId: string) => {
     ]);
   })
   await gameAction(seekers, async (user) => {
+    await linkRichMenuToUser(user.userId, menuListIds.seeker);
     await LinePush(user.userId, [
       seekerMessage(),
       {
@@ -64,6 +67,7 @@ export const play = async (teamId: string) => {
     ]);
   })
   await gameAction(owners, async (user) => {
+    await linkRichMenuToUser(user.userId, menuListIds.owner);
     await LinePush(user.userId, [
       ownerMessage(),
     ]);
