@@ -3,8 +3,6 @@ import { useLiff } from "@/components/LiffProvider";
 import { useEffect, useState } from "react";
 export default function Scan() {
   const [isSaned, setIsSaned] = useState(false);
-  const [isFetchScannerStatus, setIsFetchScannerStatus] = useState(false);
-  const [userId, setUserId] = useState("");
   const [scannerStatus, setScannerStatus] = useState<{
     userId: string;
     isDisabledScan: boolean;
@@ -14,10 +12,7 @@ export default function Scan() {
   useEffect(() => {
     if (!profile || !liff) return;
     const userId = profile.userId;
-    setUserId(userId);
-
-    console.log("scan useEffect");
-    if (scannerStatus?.isDisabledScan || isFetchScannerStatus) return;
+    if (scannerStatus) return;
     fetch(`https://node-learn.run-ticket.com/api/scannerStatus/${userId}`, {
       method: "GET",
       headers: {
@@ -28,15 +23,13 @@ export default function Scan() {
       .then((data) => {
         console.log(data);
         setScannerStatus(data);
-      })
-      .finally(() => {
-        setIsFetchScannerStatus(true);
       });
-    console.log("scan useEffect status");
-  }, [liff, profile, scannerStatus?.isDisabledScan, isFetchScannerStatus]);
+  }, [liff, profile, scannerStatus]);
 
   useEffect(() => {
-    if (isSaned || !liff || !userId) return;
+    if (!profile || !liff) return;
+    const userId = profile.userId;
+    if (isSaned || scannerStatus) return;
     liff?.scanCodeV2().then(async (result) => {
       console.log(result.value);
       fetch("https://node-learn.run-ticket.com/api/qr-scan", {
@@ -57,13 +50,12 @@ export default function Scan() {
           liff.closeWindow();
         });
     });
-  }, [isSaned, liff, userId]);
+  }, [isSaned, liff, profile, scannerStatus]);
 
   return (
     <main className="m-4">
-      {/* <h1 className="text-center text-3xl font-semibold">スキャン</h1> */}
       <div className="flex flex-col w-full h-full justify-center items-center gap-5">
-        {scannerStatus?.isDisabledScan ? (
+        {scannerStatus && scannerStatus.isDisabledScan ? (
           <p className="text-center text-xl">スキャンが無効化されています</p>
         ) : (
           <>
