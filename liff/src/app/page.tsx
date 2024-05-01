@@ -30,6 +30,11 @@ export default function Home() {
           QRコード読み取り
         </button>
       </a>
+      <a href="/myqr">
+        <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+          QRコード表示
+        </button>
+      </a>
     </main>
   );
 }
