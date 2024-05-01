@@ -11,6 +11,7 @@ export const BeaconService = async (userId: string) => {
     if (!user) return;
     const game = await GetOneGameByTeamId(user.teamId ?? "");
     if (!game) return;
+    if (game.owners.filter(owner => owner.userInfo.userId === userId).length === 0) return;
     game.owners.forEach(async owner => {
         if (owner.userInfo.userId === userId) {
             owner.isDisabledScan = true;
