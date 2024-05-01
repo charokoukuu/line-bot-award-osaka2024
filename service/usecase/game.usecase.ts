@@ -70,6 +70,7 @@ export const play = async (teamId: string) => {
     await publishLoadingMessage(user.userId, 60);
   })
   await PrintQRService(team.name, newGame.treasures.map(treasure => treasure.id));
+  await PrintQRService("解放用QR", [newGame.rescueCode ?? ""]);
   await SetGame(newGame);
 
   gameAction(owners, async (user) => {
