@@ -1,10 +1,10 @@
 import { LinePush } from "../api/app.api";
 import { Schedule, Status } from "../api/generate";
+import { menuListIds } from "../config/secret.config";
 import { linkRichMenuToUser } from "../helper/richmenu";
 import { gameAction } from "../helper/util";
 import { GetOneGameByTeamId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
-import { menuListIds } from "../richmenu/menuListIds";
 import { PrintHintService } from "./print.usecase";
 
 export const ChangeOwnerScannerValid = async (scheduleItem: Schedule) => {

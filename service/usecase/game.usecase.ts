@@ -16,7 +16,7 @@ import { ScheduleService } from "./set.usecase";
 import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { playedGameMessage } from "../messages/playedGameMessage";
 import { linkRichMenuToUser } from "../helper/richmenu";
-import { menuListIds } from "../richmenu/menuListIds";
+import { menuListIds } from "../config/secret.config";
 
 export const play = async (teamId: string) => {
   console.log("game");

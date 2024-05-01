@@ -7,6 +7,8 @@ import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
 import { blobToBase64 } from "../helper/util";
+import { linkRichMenuToUser } from "../helper/richmenu";
+import { menuListIds } from "../config/secret.config";
 
 export const WebhookService = async (userId: string, message: string, event: any) => {
 
@@ -14,12 +16,26 @@ export const WebhookService = async (userId: string, message: string, event: any
   const game = await GetOneGameByTeamId(user.teamId ?? "");
 
   if (!user || !user.teamId) {
+    await LinePush(userId, [
+      {
+        type: "text",
+        text: "チームに所属していません。チームを作成するか、チームに参加してください",
+      },
+    ]);
+    await linkRichMenuToUser(userId, menuListIds.home);
     throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
   }
   if (!game && user.teamId) {
     const users = await GetUsersByTeamId(user.teamId);
     const team = await GetOneTeamByTeamId(user.teamId);
     if (users.length < team.playerCount) {
+      await linkRichMenuToUser(userId, menuListIds.home);
+      await LinePush(userId, [
+        {
+          type: "text",
+          text: "チームメンバーが全員揃うまでお待ちください",
+        },
+      ]);
       throw new Error("チーム人数が足りません。チームメンバーが全員揃うまでお待ちください。");
     } else {
       if (message == "プレイする") {

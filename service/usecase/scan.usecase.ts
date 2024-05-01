@@ -1,5 +1,6 @@
 import { LinePush } from "../api/app.api";
 import { Status } from "../api/generate";
+import { menuListIds } from "../config/secret.config";
 import { linkRichMenuToUser } from "../helper/richmenu";
 import { gameAction } from "../helper/util";
 import { arrestedMessage } from "../messages/arrestedMessage";
@@ -9,7 +10,6 @@ import { rescueMessage } from "../messages/rescueMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
-import { menuListIds } from "../richmenu/menuListIds";
 
 export const ScanTreasureService = async (userId: string, treasureId: string) => {
     const user = await GetOneUserByUserId(userId);
