@@ -4,6 +4,7 @@ export type CreateTeam = {
   playerCount: number,
   ownerCount: number,
   treasureCount: number,
+  timeLimit: number,
   keyword: string,
 };
 

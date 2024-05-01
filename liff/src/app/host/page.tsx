@@ -15,7 +15,12 @@ export default function Host() {
     handleSubmit,
     setValue,
     formState: { errors: formatError, isValid, isSubmitting },
-  } = useForm<CreateTeam>();
+  } = useForm<CreateTeam>({
+    defaultValues: {
+      timeLimit: 1,
+      treasureCount: 1,
+    },
+  });
 
   const [players, setPlayers] = useState<number>(1);
   const [owners, setOwners] = useState<number>(1);
@@ -25,7 +30,6 @@ export default function Host() {
     const userId = profile?.userId ?? "";
     setValue("playerCount", players);
     setValue("ownerCount", owners);
-    setValue("treasureCount", seekers);
     setValue("userId", userId);
     console.log("set value", players, owners, seekers, userId);
   }, [owners, players, profile?.userId, seekers, setValue]);
@@ -106,6 +110,46 @@ export default function Host() {
                 }}
               >
                 {[...Array(players - 1)].map((_, i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-flow-col w-full justify-between">
+          <div>
+            <h2 className="text-xl">トレジャー</h2>
+            <div className="flex justify-center items-end gap-2">
+              <MaterialSymbol icon="monetization_on" size={90} />
+              <select
+                typeof="number"
+                className="text-3xl mb-3 bg-gray-200 rounded-md"
+                onChange={(e) => {
+                  setValue("treasureCount", parseInt(e.target.value, 10));
+                }}
+              >
+                {[...Array(10)].map((_, i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-xl">タイム(分)</h2>
+            <div className="flex justify-center items-end gap-2">
+              <MaterialSymbol icon="schedule" size={90} />
+              <select
+                typeof="number"
+                className="text-3xl mb-3 bg-gray-200 rounded-md"
+                onChange={(e) => {
+                  setValue("timeLimit", parseInt(e.target.value, 10));
+                }}
+              >
+                {[...Array(20)].map((_, i) => (
                   <option key={i} value={i + 1}>
                     {i + 1}
                   </option>
