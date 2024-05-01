@@ -66,10 +66,6 @@ export const play = async (teamId: string) => {
   await gameAction(owners, async (user) => {
     await LinePush(user.userId, [
       ownerMessage(),
-      {
-        type: "text",
-        text: "宝が出ます！少々お待ちください",
-      },
     ]);
     await publishLoadingMessage(user.userId, 60);
   })
@@ -80,7 +76,7 @@ export const play = async (teamId: string) => {
     await LinePush(user.userId, [
       {
         type: "text",
-        text: "宝を隠し，隠した場所のヒントを入力してください",
+        text: "宝を隠し，隠した場所のヒントとなる写真を撮影してください",
       },
     ]);
   })
@@ -92,7 +88,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     await LinePush(userId, [
       {
         type: "text",
-        text: "オーナーがヒントを入力中です。しばらくお待ちください",
+        text: "準備中です。しばらくお待ちください",
       },
     ]);
     await publishLoadingMessage(userId, 20);
@@ -107,7 +103,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     await LinePush(user.userId, [
       {
         type: "text",
-        text: `ヒントが入力されました${game.hints.length}/${game.team.treasureCount}`,
+        text: `宝が隠されました${game.hints.length}/${game.team.treasureCount}`,
       },
     ]);
   })
@@ -130,7 +126,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         messages: [
           {
             type: "text",
-            text: "制限時間です！",
+            text: "タイムアップ！",
           },
           ownerVictoryMessage(game.owners.map((owner) => owner.userInfo.name)),
         ],
