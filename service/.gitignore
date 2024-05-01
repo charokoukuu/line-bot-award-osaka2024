@@ -176,3 +176,7 @@ dist
 ServiceAccount.json
 
 config/secret.config.ts
+
+typst/hint/*.png
+typst/qr/*.png
+typst/qr/*.json

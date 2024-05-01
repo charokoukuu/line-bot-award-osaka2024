@@ -1,16 +1,17 @@
-import { LinePush, getUserProfile } from "../api/app.api";
+import { LinePush, getContents, getUserProfile, publishLoadingMessage } from "../api/app.api";
 import { SetSchedule, SetTeam, SetUser } from "../repository/set.repository";
 import { ApiScheduleBody, ApiTeambuildingBody, ApiTeamjoiningBody, Schedule, Status, User } from "../api/generate";
-import { GetOneGameByUserId, GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
+import { GetOneUserByUserId, GetUsersByTeamId, GetOneGameByTeamId, GetOneTeamByTeamId } from "../repository/get.repository";
 import { hint, chat, play } from "./game.usecase";
 import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
+import { blobToBase64 } from "../helper/util";
 
-export const WebhookService = async (userId: string, message: string) => {
+export const WebhookService = async (userId: string, message: string, event: any) => {
 
-  const game = await GetOneGameByUserId(userId);
   const user = await GetOneUserByUserId(userId);
+  const game = await GetOneGameByTeamId(user.teamId ?? "");
 
   if (!user || !user.teamId) {
     throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
@@ -32,7 +33,23 @@ export const WebhookService = async (userId: string, message: string) => {
   switch (game.status) {
     case Status.Prepare:
       console.log("prepare");
-      hint(userId, message, game);
+      if (event.message.type === "image") {
+        const contentData = await getContents(event.message.id);
+        const base64 = await blobToBase64(await contentData.blob());
+        console.log(base64);
+        hint(userId, base64, game);
+      }
+      if (game.seekers.find((seeker) => seeker.userInfo.userId === userId)) {
+        await LinePush(userId, [
+          {
+            type: "text",
+            text: "準備中です。しばらくお待ちください",
+          },
+        ]);
+        await publishLoadingMessage(userId, 20);
+        return;
+      }
+
       break;
     case Status.Chat:
       console.log("chat");

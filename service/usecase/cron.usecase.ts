@@ -1,4 +1,6 @@
-import { Schedule } from "../api/generate";
+import { LinePush } from "../api/app.api";
+import { Schedule, Status } from "../api/generate";
+import { gameAction } from "../helper/util";
 import { GetOneGameByTeamId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
 import { PrintHintService } from "./print.usecase";
@@ -20,7 +22,13 @@ export const PrintHintJob = async (scheduleItem: Schedule) => {
     const game = await GetOneGameByTeamId(scheduleItem.teamId ?? "");
     const hint = game.hints.find(hint => hint.id === scheduleItem.hintId);
     if (!hint || !hint.id || !hint.content) return;
-    await PrintHintService(hint.id, hint.content, game.allUsers);
+    await PrintHintService(hint.id, hint.content, game.allUsers, game);
     hint.isPrinted = true;
+    await SetGame(game);
+}
+
+export const TimeLimitService = async (scheduleItem: Schedule) => {
+    const game = await GetOneGameByTeamId(scheduleItem.teamId ?? "");
+    game.status = Status.End;
     await SetGame(game);
 }

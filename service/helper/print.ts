@@ -1,15 +1,9 @@
 const fs = require("fs");
-const { exec, execSync } = require("child_process");
+const { execSync } = require("child_process");
 import { writeFileSync } from "fs";
-import { writeFile } from "fs/promises";
 
-export const hintImageGenerator = (id: string, hint: string) => {
-
-  const json = JSON.stringify({
-    text: hint,
-  });
-
-  writeFileSync("typst/hint/hint.json", json, "utf8")
+export const hintImageGenerator = (id: string, base64String: string) => {
+  decodeBase64ToImage(base64String, `typst/hint/img/hint.jpg`)
   execSync(
     `cd typst/hint && pwd && typst compile main.typ ${id}.png`)
 };
@@ -39,7 +33,7 @@ export const encodePNGToBase64 = (
   }
 };
 
-export const decodeBase64ToPNG = (
+export const decodeBase64ToImage = (
   base64String: string,
   outputPath: string
 ): boolean => {

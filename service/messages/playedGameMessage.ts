@@ -13,7 +13,7 @@ export const playedGameMessage = () => {
             "contents": [
                 {
                     "type": "text",
-                    "text": "ゲームが開始されました",
+                    "text": "ゲームが開始されました！",
                     "weight": "bold",
                     "size": "xl",
                     "align": "center",

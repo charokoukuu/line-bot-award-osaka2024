@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import {
+  GET_CONTENTS_ENDPOINT,
   LINE_LOADING_ENDPOINT,
   LINE_PROFILE_ENDPOINT,
   LINE_PUSH_ENDPOINT,
@@ -65,4 +66,12 @@ export const getUserProfile = async (userId: string): Promise<UserProfile> => {
     headers: headers,
   });
   return response.json() as Promise<UserProfile>;
+}
+
+export const getContents = async (messageId: string) => {
+  const response = await fetch(GET_CONTENTS_ENDPOINT(messageId), {
+    method: "GET",
+    headers: headers,
+  });
+  return response;
 }

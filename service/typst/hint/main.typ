@@ -8,7 +8,7 @@
   pad(
     top: 9mm,
     image(
-      "./img/hint.png",
+      "./img/hint.jpg",
       width: 55mm,
       height: 96mm,
     )

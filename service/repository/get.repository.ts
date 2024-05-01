@@ -26,13 +26,14 @@ export const GetAllTeams = async (): Promise<Team[]> => {
 }
 
 export const GetAllGames = async (): Promise<Game[]> => {
-  const getGames = await GameModel.find();
+  const getGames = await GameModel.find({ status: { $ne: "end" } });
   return getGames as Game[];
 }
 
 export const GetOneGameByTeamId = async (teamId: string): Promise<Game> => {
   const getGames = await GameModel.findOne({
-    "team.teamId": teamId
+    "team.teamId": teamId,
+    status: { $ne: "end" }
   });
   return getGames as Game;
 
@@ -43,15 +44,6 @@ export const GetOneGameByTeam = async (team: Team): Promise<Game> => {
   return getGame as Game;
 };
 
-export const GetOneGameByUserId = async (userId: string): Promise<Game> => {
-  const getGame = await GameModel.findOne({ "allUsers.userId": userId, status: { $ne: "end" } });
-  return getGame as Game;
-};
-
-export const GetOneGameByTreasureId = async (id: string): Promise<Game> => {
-  const getGame = await GameModel.findOne({ "treasures.id": id });
-  return getGame as Game;
-};
 
 export const GetOneScheduleByDate = async (date: string): Promise<Schedule> => {
   const getSchedule = await ScheduleModel.findOne({ date: date });

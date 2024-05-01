@@ -3,7 +3,7 @@ export const seekerMessage = () => {
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://thumb.ac-illust.com/93/9312ca5b8ed97986c87c15d6dcb2f827_t.jpeg",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-04-30%2023.11.59%20-%20An%20illustration-style%20image%20of%20the%20'Owner'%20character%20from%20the%20game%20'BoTreasure'%2C%20in%20the%20same%20style%20as%20the%20image%20with%20ID%20'UHQjN02gwHee4MQ1'.%20The%20Owner%20.webp?alt=media&token=5d534652-59c6-4dbb-867f-e4dd20b0cdf1",
             "size": "full",
             "aspectRatio": "1:1",
             "aspectMode": "cover",
