@@ -28,5 +28,12 @@ const teamData = fetch("https://node-learn.run-ticket.com/api/teams", {
 export default async function Guest() {
   const teams = (await teamData) as JoinTeam[];
   console.log(teams);
+  if (!teams) {
+    return (
+      <div className="w-full h-dvh flex justify-center items-center">
+        現在募集しているチームはありません。
+      </div>
+    );
+  }
   return <TeamList teams={teams} />;
 }
