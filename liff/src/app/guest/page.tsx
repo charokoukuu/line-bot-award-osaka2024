@@ -24,7 +24,13 @@ export default function Guest() {
   if (!teams) {
     return (
       <div className="w-full h-dvh flex justify-center items-center">
-        現在募集しているチームはありません。
+        Now Loading...
+      </div>
+    );
+  } else if (teams.length === 0) {
+    return (
+      <div className="w-full h-dvh flex justify-center items-center">
+        現在、募集しているチームはありません
       </div>
     );
   }
