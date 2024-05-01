@@ -44,15 +44,6 @@ export const GetOneGameByTeam = async (team: Team): Promise<Game> => {
   return getGame as Game;
 };
 
-export const GetOneGameByUserId = async (userId: string): Promise<Game> => {
-  const getGame = await GameModel.findOne({ "allUsers.userId": userId, status: { $ne: "end" } });
-  return getGame as Game;
-};
-
-export const GetOneGameByTreasureId = async (id: string): Promise<Game> => {
-  const getGame = await GameModel.findOne({ "treasures.id": id, status: { $ne: "end" } });
-  return getGame as Game;
-};
 
 export const GetOneScheduleByDate = async (date: string): Promise<Schedule> => {
   const getSchedule = await ScheduleModel.findOne({ date: date });

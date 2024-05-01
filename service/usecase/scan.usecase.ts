@@ -6,12 +6,12 @@ import { findTreasureMessage } from "../messages/findTreasureMessage";
 import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { rescueMessage } from "../messages/rescueMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
-import { GetOneGameByTeamId, GetOneGameByUserId, GetOneUserByUserId } from "../repository/get.repository";
+import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
 import { SetGame, SetUser } from "../repository/set.repository";
 
 export const ScanTreasureService = async (userId: string, treasureId: string) => {
     const user = await GetOneUserByUserId(userId);
-    const game = await GetOneGameByUserId(userId);
+    const game = await GetOneGameByTeamId(user.teamId ?? "");
     const userName = user.name;
     game.treasures.filter((treasure) => treasure.id === treasureId)[0].isScanned = true;
     const result: any = await SetGame(game);
@@ -31,10 +31,6 @@ export const ScanTreasureService = async (userId: string, treasureId: string) =>
             ]);
             game.status = Status.End;
             await SetGame(game);
-            await gameAction(game.allUsers, async (user) => {
-                user.teamId = "";
-                await SetUser(user);
-            });
         });
     }
 }
@@ -56,10 +52,6 @@ export const ScanSeekerService = async (userId: string, seekerId: string) => {
             ]);
             game.status = Status.End;
             await SetGame(game);
-            await gameAction(game.allUsers, async (user) => {
-                user.teamId = "";
-                await SetUser(user);
-            });
         });
     }
 
