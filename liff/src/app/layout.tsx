@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Noto_Sans_JP } from "next/font/google";
 import clsx from "clsx";
 
