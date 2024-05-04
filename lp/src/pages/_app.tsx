@@ -3,6 +3,9 @@ import type { AppProps } from "next/app";
 import { Header } from "../component/Header";
 import Footer from "../component/Footer";
 import Head from "next/head";
+import "@/styles/Slides.css";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
