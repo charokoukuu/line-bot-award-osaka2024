@@ -29,7 +29,7 @@ export default function Scan() {
   useEffect(() => {
     if (!profile || !liff) return;
     const userId = profile.userId;
-    if (isSaned || scannerStatus) return;
+    if (isSaned || !scannerStatus || scannerStatus.isDisabledScan) return;
     liff?.scanCodeV2().then(async (result) => {
       console.log(result.value);
       fetch("https://node-learn.run-ticket.com/api/qr-scan", {
