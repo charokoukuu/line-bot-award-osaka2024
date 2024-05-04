@@ -72,7 +72,7 @@ export const ScanRescueService = async (userId: string, rescueCode: string) => {
             seeker.isArrested = false;
         })
         await SetGame(game);
-        await gameAction(game.allUsers, async (user) => {
+        await gameAction(game.seekers.map((users) => users.userInfo), async (user) => {
             await LinePush(user.userId, [
                 rescueMessage(userName)
             ]);
