@@ -13,7 +13,6 @@ import { menuListIds } from "../config/secret.config";
 export const WebhookService = async (userId: string, message: string, event: any) => {
 
   const user = await GetOneUserByUserId(userId);
-  const game = await GetOneGameByTeamId(user.teamId ?? "");
 
   if (!user || !user.teamId) {
     await LinePush(userId, [
@@ -25,6 +24,7 @@ export const WebhookService = async (userId: string, message: string, event: any
     await linkRichMenuToUser(userId, menuListIds.home);
     throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
   }
+  const game = await GetOneGameByTeamId(user.teamId ?? "");
   if (!game && user.teamId) {
     const users = await GetUsersByTeamId(user.teamId);
     const team = await GetOneTeamByTeamId(user.teamId);
