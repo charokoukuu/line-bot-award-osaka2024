@@ -1,7 +1,7 @@
 import { LinePush } from "../api/app.api";
 import { gameAction } from "../helper/util";
 import { DeleteSchedule } from "../repository/delete.repository";
-import { GetAllSchedule } from "../repository/get.repository";
+import { GetAllSchedule, GetOneGameByTeamId } from "../repository/get.repository";
 import schedule from 'node-schedule';
 import { ChangeOwnerScannerValid, PrintHintJob, TimeLimitService } from "../usecase/cron.usecase";
 import { Schedule } from "../api/generate";
@@ -28,6 +28,10 @@ export const CronMethods = async (scheduleProps?: Schedule) => {
         const scheduledDate = new Date(scheduleProps.date);
         schedule.scheduleJob(scheduledDate, async () => {
             console.log("schedule");
+            if (scheduleProps.messages[0].text == "タイムアップ！") {
+                const game = await GetOneGameByTeamId(scheduleProps.teamId ?? "");
+                if (game.status == "end") return;
+            }
             await gameAction(scheduleProps.users, async (user) => {
                 LinePush(user.userId, scheduleProps.messages)
             })
