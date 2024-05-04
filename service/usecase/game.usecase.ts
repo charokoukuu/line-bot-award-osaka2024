@@ -160,10 +160,37 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         text: "シーカーを全員捕まえよう！",
       }]);
     });
-    await gameAction(game.allUsers, async (user) => {
+
+
+    await gameAction(game.owners.map((users) => users.userInfo), async (user) => {
       await LinePush(user.userId, [chatMessage(), {
         type: "text",
-        text: "以下からアクションを選択できます",
+        text: "フリーワードを送るか以下からアクションを選択してください",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "写真を撮る"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "location",
+                "label": "現在地を送る"
+              }
+            }
+          ]
+        }
+
+      }]);
+    });
+    await gameAction(game.seekers.map((users) => users.userInfo), async (user) => {
+      await LinePush(user.userId, [chatMessage(), {
+        type: "text",
+        text: "フリーワードを送るか以下からアクションを選択してください",
         "quickReply": {
           "items": [
             {
@@ -177,15 +204,23 @@ export const hint = async (userId: string, hint: string, game: Game) => {
             {
               "type": "action",
               "action": {
+                "type": "message",
+                "label": "ヒントGET！",
+                "text": "ヒントを手に入れました！"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
                 "type": "camera",
-                "label": "Camera"
+                "label": "写真を撮る"
               }
             },
             {
               "type": "action",
               "action": {
                 "type": "location",
-                "label": "Send location"
+                "label": "現在地を送る"
               }
             }
           ]
@@ -202,11 +237,64 @@ export const chat = async (message: string, game: Game, user: User) => {
   const publishUsers = isSeeker ? game.seekers : game
     .owners;
   const otherUsers = publishUsers.filter((publishUser) => publishUser.userInfo.userId !== user.userId).map((publishUser) => publishUser.userInfo);
+
+
+  const items = isSeeker ? [
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "救助",
+        "text": "救助してください"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "ヒントGET！",
+        "text": "ヒントを手に入れました！"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "camera",
+        "label": "写真を撮る"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "location",
+        "label": "現在地を送る"
+      }
+    }
+  ] : [
+    {
+      "type": "action",
+      "action": {
+        "type": "camera",
+        "label": "写真を撮る"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "location",
+        "label": "現在地を送る"
+      }
+    }
+  ]
   gameAction(otherUsers, async (otherUser) => {
     await LinePush(otherUser.userId, [
       {
         type: "text",
         text: `(${user.name})${message}`,
+        "quickReply": {
+          "items": items
+        }
+
       },
     ]);
 
