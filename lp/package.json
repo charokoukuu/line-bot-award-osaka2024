@@ -29,11 +29,13 @@
     "qs": "^6.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-markdown": "^9.0.1",
     "slick-carousel": "^1.8.1",
     "swiper": "9.0.5",
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
     "@types/qs": "^6.9.7",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
