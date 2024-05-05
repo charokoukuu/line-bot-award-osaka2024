@@ -30,7 +30,7 @@ export const Header = () => {
               <div className="mx-auto text-3xl">
                 <Link href="/">
                   <img
-                    src="/runticket.png"
+                    src="botreasure.svg"
                     alt="RunTicket"
                     className="absolute left-1/2 top-1/2 w-48 -translate-x-1/2 -translate-y-1/2 transform"
                   />
@@ -43,7 +43,11 @@ export const Header = () => {
             <ul className="mx-4 flex h-14 items-center justify-start gap-4 text-xs">
               <li className="text-3xl">
                 <Link href="/">
-                  <img src="/runticket.png" alt="RunTicket" className="w-32" />
+                  <img
+                    src="botreasure.svg"
+                    alt="RunTicket"
+                    className="bg-blur-md h-14 rounded-xl"
+                  />
                 </Link>
               </li>
               {navigationItem.map((item, index) => (
