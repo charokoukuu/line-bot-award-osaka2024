@@ -87,7 +87,7 @@ export default function Home() {
             </TextAnimation>
           </section>
           <div className="m-4 text-center">
-            <LinkButton>体験する！</LinkButton>
+            <LinkButton href="">体験する！</LinkButton>
           </div>
           <div
             className="scrollBarHidden scrollbar-none scrollbar-none flex items-end gap-16 overflow-x-scroll whitespace-nowrap sm:overflow-x-auto"
@@ -383,7 +383,7 @@ export default function Home() {
           </div>
         </Grid>
         <div className="flex items-center justify-center py-12">
-          <LinkButton>Get Started</LinkButton>
+          <LinkButton href="">Get Started</LinkButton>
         </div>
       </main>
     </>
