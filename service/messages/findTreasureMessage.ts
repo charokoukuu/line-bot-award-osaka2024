@@ -3,7 +3,7 @@ export const findTreasureMessage = (name: string, restTreasureCount: number) => 
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2FDALL%C2%B7E%202024-04-23%2019.49.34%20-%20A%20detailed%20and%20vivid%20illustration%20of%20a%20treasure%20chest%20in%20a%20magical%20setting%2C%20suitable%20for%20the%20game%20'BoTreasure'.%20The%20chest%20is%20ornately%20designed%20with%20in.webp?alt=media&token=f8af1707-79c8-4de5-8068-9236b5363a98",
+            "url": "https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/background%2Fv2%2FDALL%C2%B7E%202024-05-01%2022.59.33%20-%20An%20illustration-style%20image%20of%20a%20treasure%20chest%20for%20the%20game%20'BoTreasure'%2C%20in%20a%20style%20similar%20to%20the%20image%20with%20ID%20'NoXiElftLnV0jWcU'.%20The%20scene%20shows.webp?alt=media&token=78fdf70c-f1d5-4b0d-8484-73b71a11ff00",
             "size": "full",
             "aspectRatio": "1:1",
             "aspectMode": "cover",

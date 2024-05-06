@@ -1,5 +1,7 @@
 import { LinePush } from "../api/app.api";
 import { Schedule, Status } from "../api/generate";
+import { menuListIds } from "../config/secret.config";
+import { linkRichMenuToUser } from "../helper/richmenu";
 import { gameAction } from "../helper/util";
 import { GetOneGameByTeamId } from "../repository/get.repository";
 import { SetGame } from "../repository/set.repository";
@@ -31,4 +33,7 @@ export const TimeLimitService = async (scheduleItem: Schedule) => {
     const game = await GetOneGameByTeamId(scheduleItem.teamId ?? "");
     game.status = Status.End;
     await SetGame(game);
+    await gameAction(game.allUsers, async (user) => {
+        await linkRichMenuToUser(user.userId, menuListIds.home);
+    });
 }

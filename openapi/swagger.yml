@@ -34,6 +34,9 @@ paths:
                 treasureCount:
                   type: integer
                   format: int32
+                timeLimit:
+                  type: integer
+                  format: int32
                 keyword:
                   type: string
               required:
@@ -42,6 +45,7 @@ paths:
                 - playerCount
                 - ownerCount
                 - treasureCount
+                - timeLimit
                 - keyword
       responses:
         '201':
@@ -350,16 +354,14 @@ components:
           type: string
         playerCount:
           type: integer
-          nullable: true
         ownerCount:
           type: integer
-          nullable: true
         treasureCount:
           type: integer
-          nullable: true
+        timeLimit:
+          type: integer
         keyword:
           type: string
-          nullable: true
       required:
         - teamId
         - hostId
@@ -367,6 +369,7 @@ components:
         - playerCount
         - ownerCount
         - treasureCount
+        - timeLimit
         - keyword
     Game:
       type: object

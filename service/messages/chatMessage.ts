@@ -40,7 +40,8 @@ export const chatMessage = () => {
                     "contents": []
                 }
             ]
-        }
+        },
+
     }
 
     return {

@@ -1,4 +1,5 @@
 import { LinePush } from "../api/app.api";
+import { Status } from "../api/generate";
 import { gameAction } from "../helper/util";
 import { disableScannerMessage } from "../messages/disableScannerMessage";
 import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
@@ -8,7 +9,11 @@ import { ScheduleService } from "./set.usecase";
 export const BeaconService = async (userId: string) => {
     console.log("ビーコン検知");
     const user = (await GetOneUserByUserId(userId));
+    if (!user) return;
     const game = await GetOneGameByTeamId(user.teamId ?? "");
+    if (!game) return;
+    if (game.status !== Status.Chat) return;
+    if (game.owners.filter(owner => owner.userInfo.userId === userId).length === 0) return;
     game.owners.forEach(async owner => {
         if (owner.userInfo.userId === userId) {
             owner.isDisabledScan = true;

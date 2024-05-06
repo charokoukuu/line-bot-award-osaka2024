@@ -1,5 +1,7 @@
 import { LinePush } from "../api/app.api";
 import { Status } from "../api/generate";
+import { menuListIds } from "../config/secret.config";
+import { linkRichMenuToUser } from "../helper/richmenu";
 import { gameAction } from "../helper/util";
 import { arrestedMessage } from "../messages/arrestedMessage";
 import { findTreasureMessage } from "../messages/findTreasureMessage";
@@ -7,7 +9,7 @@ import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { rescueMessage } from "../messages/rescueMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
-import { SetGame, SetUser } from "../repository/set.repository";
+import { SetGame } from "../repository/set.repository";
 
 export const ScanTreasureService = async (userId: string, treasureId: string) => {
     const user = await GetOneUserByUserId(userId);
@@ -31,6 +33,7 @@ export const ScanTreasureService = async (userId: string, treasureId: string) =>
             ]);
             game.status = Status.End;
             await SetGame(game);
+            await linkRichMenuToUser(user.userId, menuListIds.home);
         });
     }
 }
@@ -52,6 +55,8 @@ export const ScanSeekerService = async (userId: string, seekerId: string) => {
             ]);
             game.status = Status.End;
             await SetGame(game);
+            await linkRichMenuToUser(user.userId, menuListIds.home);
+
         });
     }
 

@@ -15,6 +15,8 @@ import { seekerMessage } from "../messages/seekerMessage";
 import { ScheduleService } from "./set.usecase";
 import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { playedGameMessage } from "../messages/playedGameMessage";
+import { linkRichMenuToUser } from "../helper/richmenu";
+import { menuListIds } from "../config/secret.config";
 
 export const play = async (teamId: string) => {
   console.log("game");
@@ -55,6 +57,7 @@ export const play = async (teamId: string) => {
     ]);
   })
   await gameAction(seekers, async (user) => {
+    await linkRichMenuToUser(user.userId, menuListIds.seeker);
     await LinePush(user.userId, [
       seekerMessage(),
       {
@@ -64,20 +67,33 @@ export const play = async (teamId: string) => {
     ]);
   })
   await gameAction(owners, async (user) => {
+    await linkRichMenuToUser(user.userId, menuListIds.owner);
     await LinePush(user.userId, [
       ownerMessage(),
     ]);
     await publishLoadingMessage(user.userId, 60);
   })
   await PrintQRService(team.name, newGame.treasures.map(treasure => treasure.id));
+  await PrintQRService("解放用QR", [newGame.rescueCode ?? ""]);
   await SetGame(newGame);
 
   gameAction(owners, async (user) => {
     await LinePush(user.userId, [
       {
-        type: "text",
-        text: "宝を隠し，隠した場所のヒントとなる写真を撮影してください",
-      },
+        "type": "text",
+        "text": "宝を隠し，隠した場所のヒントとなる写真を撮影してください",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "Camera"
+              }
+            }
+          ]
+        }
+      }
     ]);
   })
 
@@ -98,7 +114,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
     ]);
   })
   if (game.hints.length === game.team.treasureCount) {
-    const timeLimit = 1;
+    const timeLimit = game.team.timeLimit;
     await game.hints.forEach(async (hint, index) => {
       await ScheduleService(
         {
@@ -126,7 +142,7 @@ export const hint = async (userId: string, hint: string, game: Game) => {
       await LinePush(user.userId, [
         {
           type: "text",
-          text: "全てのヒントが入力されました",
+          text: "全ての宝が隠されました",
         }
       ]);
     })
@@ -144,8 +160,73 @@ export const hint = async (userId: string, hint: string, game: Game) => {
         text: "シーカーを全員捕まえよう！",
       }]);
     });
-    await gameAction(game.allUsers, async (user) => {
-      await LinePush(user.userId, [chatMessage()]);
+
+
+    await gameAction(game.owners.map((users) => users.userInfo), async (user) => {
+      await LinePush(user.userId, [chatMessage(), {
+        type: "text",
+        text: "フリーワードを送るか以下からアクションを選択してください",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "写真を撮る"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "location",
+                "label": "現在地を送る"
+              }
+            }
+          ]
+        }
+
+      }]);
+    });
+    await gameAction(game.seekers.map((users) => users.userInfo), async (user) => {
+      await LinePush(user.userId, [chatMessage(), {
+        type: "text",
+        text: "フリーワードを送るか以下からアクションを選択してください",
+        "quickReply": {
+          "items": [
+            {
+              "type": "action",
+              "action": {
+                "type": "message",
+                "label": "救助",
+                "text": "救助してください"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "message",
+                "label": "ヒントGET！",
+                "text": "ヒントを手に入れました！"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "camera",
+                "label": "写真を撮る"
+              }
+            },
+            {
+              "type": "action",
+              "action": {
+                "type": "location",
+                "label": "現在地を送る"
+              }
+            }
+          ]
+        }
+
+      }]);
     });
   }
   await SetGame(game);
@@ -156,11 +237,64 @@ export const chat = async (message: string, game: Game, user: User) => {
   const publishUsers = isSeeker ? game.seekers : game
     .owners;
   const otherUsers = publishUsers.filter((publishUser) => publishUser.userInfo.userId !== user.userId).map((publishUser) => publishUser.userInfo);
+
+
+  const items = isSeeker ? [
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "救助",
+        "text": "救助してください"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "ヒントGET！",
+        "text": "ヒントを手に入れました！"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "camera",
+        "label": "写真を撮る"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "location",
+        "label": "現在地を送る"
+      }
+    }
+  ] : [
+    {
+      "type": "action",
+      "action": {
+        "type": "camera",
+        "label": "写真を撮る"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "location",
+        "label": "現在地を送る"
+      }
+    }
+  ]
   gameAction(otherUsers, async (otherUser) => {
     await LinePush(otherUser.userId, [
       {
         type: "text",
         text: `(${user.name})${message}`,
+        "quickReply": {
+          "items": items
+        }
+
       },
     ]);
 

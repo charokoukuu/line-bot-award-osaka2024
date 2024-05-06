@@ -1,11 +1,9 @@
 import { LinePush } from "../api/app.api";
 import { gameAction } from "../helper/util";
 import { DeleteSchedule } from "../repository/delete.repository";
-import { GetAllSchedule, GetOneGameByTeamId, GetOneUserByUserId } from "../repository/get.repository";
+import { GetAllSchedule, GetOneGameByTeamId } from "../repository/get.repository";
 import schedule from 'node-schedule';
-import { SetGame } from "../repository/set.repository";
 import { ChangeOwnerScannerValid, PrintHintJob, TimeLimitService } from "../usecase/cron.usecase";
-import { PrintHintService } from "../usecase/print.usecase";
 import { Schedule } from "../api/generate";
 
 const cron = require('node-cron');
@@ -30,11 +28,25 @@ export const CronMethods = async (scheduleProps?: Schedule) => {
         const scheduledDate = new Date(scheduleProps.date);
         schedule.scheduleJob(scheduledDate, async () => {
             console.log("schedule");
+            if (scheduleProps.messages && scheduleProps.messages[0]) {
+                if (scheduleProps.messages[0].text == "タイムアップ！") {
+                    console.log("タイム");
+                    const game = await GetOneGameByTeamId(scheduleProps.teamId ?? "");
+                    if (game.status == "end") return;
+                }
+            }
+            console.log("ヒント");
             await gameAction(scheduleProps.users, async (user) => {
                 LinePush(user.userId, scheduleProps.messages)
             })
-            if (scheduleProps.enableOwner) ChangeOwnerScannerValid(scheduleProps)
-            if (scheduleProps.hintId) PrintHintJob(scheduleProps)
+            if (scheduleProps.enableOwner) {
+                ChangeOwnerScannerValid(scheduleProps)
+                return
+            }
+            if (scheduleProps.hintId) {
+                PrintHintJob(scheduleProps)
+                return
+            }
             if (scheduleProps.messages[0].text == "タイムアップ！") TimeLimitService(scheduleProps)
             await DeleteSchedule(scheduleProps.id)
         });

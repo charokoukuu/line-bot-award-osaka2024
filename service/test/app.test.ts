@@ -8,10 +8,13 @@ import { ownerVictoryMessage } from "../messages/ownerVictoryMessage";
 import { playGameMessage } from "../messages/playGameMessage";
 import { seekerVictoryMessage } from "../messages/seekerVictoryMessage";
 import { EXAMPLE_USER_ID } from "../config/secret.config";
+import { text } from "stream/consumers";
 export const test = async (req: Request, res: Response) => {
   const users = [EXAMPLE_USER_ID]
   users.forEach(async (userId) => {
-    await LinePush(userId, [playGameMessage(["太郎", "一郎", "二郎", "三郎"], "はやぶさ", 3)])
+    await LinePush(userId, [
+      chatMessage(),
+    ])
     // await LinePush(userId, [chatMessage()])
     // await LinePush(userId, [hintPublishMessage()])
     // await LinePush(userId, [findTreasureMessage("なるき", 3)])

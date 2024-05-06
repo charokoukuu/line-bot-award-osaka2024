@@ -7,19 +7,35 @@ import { randomUUID } from "crypto";
 import { CronMethods } from "../method";
 import { playGameMessage } from "../messages/playGameMessage";
 import { blobToBase64 } from "../helper/util";
+import { linkRichMenuToUser } from "../helper/richmenu";
+import { menuListIds } from "../config/secret.config";
 
 export const WebhookService = async (userId: string, message: string, event: any) => {
 
   const user = await GetOneUserByUserId(userId);
-  const game = await GetOneGameByTeamId(user.teamId ?? "");
 
   if (!user || !user.teamId) {
+    await LinePush(userId, [
+      {
+        type: "text",
+        text: "チームに所属していません。チームを作成するか、チームに参加してください",
+      },
+    ]);
+    await linkRichMenuToUser(userId, menuListIds.home);
     throw new Error("チームに所属していません。チームを作成するか、チームに参加してください");
   }
+  const game = await GetOneGameByTeamId(user.teamId ?? "");
   if (!game && user.teamId) {
     const users = await GetUsersByTeamId(user.teamId);
     const team = await GetOneTeamByTeamId(user.teamId);
     if (users.length < team.playerCount) {
+      await linkRichMenuToUser(userId, menuListIds.home);
+      await LinePush(userId, [
+        {
+          type: "text",
+          text: "チームメンバーが全員揃うまでお待ちください",
+        },
+      ]);
       throw new Error("チーム人数が足りません。チームメンバーが全員揃うまでお待ちください。");
     } else {
       if (message == "プレイする") {
@@ -103,6 +119,7 @@ export const TeamBuildingService = async (data: ApiTeambuildingBody) => {
     playerCount: data.playerCount,
     ownerCount: data.ownerCount,
     treasureCount: data.treasureCount,
+    timeLimit: data.timeLimit,
     keyword: data.keyword,
   });
 
@@ -134,7 +151,8 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
     teamId: data.teamId,
   });
   console.log(beforeUserTeamId);
-  if (beforeUserTeamId != "" && userSetInfo.upsertedCount == 0) {
+  const game = await GetOneGameByTeamId(data.teamId);
+  if (beforeUserTeamId === team.teamId) {
     console.log("すでにチームに参加しています");
     await LinePush(data.userId, [
       {
@@ -144,6 +162,13 @@ export const TeamJoiningService = async (data: ApiTeamjoiningBody) => {
     ]);
     return;
   }
+
+  await LinePush(data.userId, [
+    {
+      type: "text",
+      text: `${team.name}に参加しました`,
+    },
+  ]);
 
   await LinePush(team.hostId, [
     {
