@@ -1,12 +1,12 @@
 import { Divider, Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { LinkButton } from "../component/LinkButton";
-import { PayCardList } from "../component/PayCardList";
 import useIntersectionObServer from "../hooks/useIntersectionObServer";
 import { useEffect, useRef } from "react";
 import TextAnimation from "../component/TextAnimation";
-import AnimatedBox from "../component/AnimatedBox";
 import Slide from "../component/Slide";
+import classNames from "classnames";
+import Link from "next/link";
 
 const slides = [
   {
@@ -77,6 +77,8 @@ export default function Home() {
     };
   }, []);
 
+  // #eed3a8
+  // #f2dcb5
   return (
     <>
       <main>
@@ -96,7 +98,7 @@ export default function Home() {
                 100 - intersectionRatio
               }%,rgb(37, 47, 255) ${200 - intersectionRatio}%)`,
             }}
-            className="heading w-full"
+            className="heading w-ful mx-auto"
           >
             <TextAnimation section="catchphrase" className="text-start">
               全てのゲームを過去にする。
@@ -143,13 +145,17 @@ export default function Home() {
             オーナーとシーカーに分かれ参加者が宝を巡って競い合う！
           </section>
         </div>
-        <div className="flex w-full flex-row items-center justify-center gap-0">
-          <Slide slides={slides} className="" />
+        <div className="mx-auto max-w-5xl">
+          <Slide
+            slides={slides}
+            className={classNames("!grid", {
+              "grid-cols-1": isMobile,
+              "grid-cols-2": !isMobile,
+            })}
+          />
         </div>
         <Divider className="bg-gray-600" />
-        {/* ここに大きいセクションで「BOTREASUREをさらに面白くする４つのシステム」 */}
         <div className="border-none bg-white text-center">
-          {/* 文字大きくしたい */}
           <Grid
             container
             direction={isMobile ? "column" : "row"}
@@ -158,16 +164,6 @@ export default function Home() {
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
             ref={qr}
           >
-            <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-              <div className="mx-auto grid">
-                <img
-                  src="gif/print-hint.gif"
-                  alt="print hint"
-                  className="mx-auto w-80 rounded-xl"
-                />
-                {/* スライドで作ってたヒントのメリットデメリットの出してる画像 */}
-              </div>
-            </AnimatedBox>
             <div className="mx-auto grid">
               <h1
                 className="heading my-3 text-center text-3xl"
@@ -183,25 +179,28 @@ export default function Home() {
                 <br />
                 ヒントが出てくるぞ！
               </h1>
-              <section id="hint" className="max-w-[320px]">
-                <TextAnimation section="hint">
-                  ヒントか出ることによってプリンターに人が集まる！
-                  オーナーは一網打尽のチャンス！シーカーはヒントを入手し宝を手に入れろ！
-                </TextAnimation>
+              <section id="hint" className="mx-auto max-w-[320px] text-center">
+                ヒントか出ることによってプリンターに人が集まる！
+                オーナーは一網打尽のチャンス！シーカーはヒントを入手し宝を手に入れろ！
               </section>
             </div>
+            <div className="mx-auto grid">
+              <img
+                src="gif/print-hint.gif"
+                alt="print hint"
+                className="mx-auto w-80 rounded-xl"
+              />
+              {/* スライドで作ってたヒントのメリットデメリットの出してる画像 */}
+            </div>
           </Grid>
-          <div className="h-30 flex w-full items-center justify-center border-none bg-white">
-            <PayCardList />
-            {/* ヒント画像 */}
-          </div>
+          {/* <div className="h-30 flex w-full items-center justify-center border-none bg-white">
+            todo:ヒント画像
+          </div> */}
         </div>
 
         <Divider className="bg-gray-600" />
 
         <div className="border-none bg-white text-center">
-          チャットモード
-          {/* 文字大きくしたい */}
           <Grid
             container
             direction={isMobile ? "column" : "row"}
@@ -210,6 +209,13 @@ export default function Home() {
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
             ref={qr}
           >
+            <div className="mx-auto grid">
+              <img
+                src="mock/chat-mode.png"
+                alt="chat mode"
+                className="mx-auto w-80"
+              />
+            </div>
             <div className="mx-auto grid">
               <h1
                 className="heading my-3 text-center text-3xl"
@@ -221,30 +227,20 @@ export default function Home() {
                   }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
                 }}
               >
-                LINEアプリから味方同士で
+                味方同士で
                 <br />
                 チャットが可能！
               </h1>
-              <section id="chat" className="max-w-[320px]">
-                <TextAnimation section="chat">
-                  チャットを駆使し、味方と情報を共有し連携しよう！
-                </TextAnimation>
+              <section id="chat" className="mx-auto max-w-[320px]">
+                チャットを駆使し、味方と情報を共有し連携しよう！
               </section>
             </div>
-            <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-              <div className="mx-auto grid">
-                <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-                {/* ここはチャットで連携や情報共有をしている様子*/}
-              </div>
-            </AnimatedBox>
           </Grid>
         </div>
 
         <Divider className="bg-gray-600" />
 
         <div className="border-none bg-white text-center">
-          解放システム
-          {/* 文字大きくしたい */}
           <Grid
             container
             direction={isMobile ? "column" : "row"}
@@ -253,12 +249,6 @@ export default function Home() {
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
             ref={qr}
           >
-            <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-              <div className="mx-auto grid">
-                <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-                {/*解放用QRを読み取っている様子と救助した後に解放されている様子*/}
-              </div>
-            </AnimatedBox>
             <div className="mx-auto grid">
               <h1
                 className="heading my-3 text-center text-3xl"
@@ -274,17 +264,23 @@ export default function Home() {
                 <br />
                 救助しよう！
               </h1>
-              <section id="rescure" className="max-w-[320px]">
-                <TextAnimation section="rescure">
-                  オーナーに捕まると檻に入れられる。しかし、生存しているシーカーが檻にあるQRコードを読み取ることで、檻が解放される！
-                </TextAnimation>
+              <section
+                id="rescue"
+                className="mx-auto max-w-[320px] text-center"
+              >
+                オーナーに捕まると檻に入れられる。しかし、生存しているシーカーが檻にあるQRコードを読み取ることで、檻が解放される！
               </section>
+            </div>
+            <div className="mx-auto grid">
+              <img
+                src="mock/rescue-scan.png"
+                alt="qr image"
+                className="mx-auto w-80"
+              />
             </div>
           </Grid>
           <Divider className="bg-gray-600" />
           <div className="border-none bg-white text-center">
-            接近検知システム
-            {/* 文字大きくしたい */}
             <Grid
               container
               direction={isMobile ? "column" : "row"}
@@ -293,6 +289,13 @@ export default function Home() {
               className="mx-auto max-w-5xl gap-10 p-5 text-black"
               ref={qr}
             >
+              <div className="mx-auto grid">
+                <img
+                  src="mock/disabled-scan.png"
+                  alt="qr image"
+                  className="mx-auto w-80"
+                />
+              </div>
               <div className="mx-auto grid">
                 <h1
                   className="heading my-3 text-center text-3xl"
@@ -310,19 +313,11 @@ export default function Home() {
                   <br />
                   スキャナが無効化！
                 </h1>
-                <section id="scan" className="max-w-[320px]">
-                  <TextAnimation section="scan">
-                    オーナーがプリンターから動かなくて、ヒントが取れない・・・
-                    そんな時には、プリンターに接近検知システムがあり、オーナーがプリンターに近づくとスキャナが無効化される！
-                  </TextAnimation>
+                <section id="scan" className="mx-auto max-w-[320px]">
+                  オーナーがプリンターから動かなくて、ヒントが取れない・・・
+                  そんな時には、プリンターにLINEビーコンを搭載した接近検知システムがあり、オーナーがプリンターに近づくとスキャナが無効化される！
                 </section>
               </div>
-              <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-                <div className="mx-auto grid">
-                  <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-                  {/* プリンターに接近しすぎてスキャンが無効化されいる様子*/}
-                </div>
-              </AnimatedBox>
             </Grid>
           </div>
         </div>
@@ -346,360 +341,22 @@ export default function Home() {
                 }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
               }}
             >
-              BoTreasure ゲームルールブック
+              BOTREASURE ゲームルールブック
             </h1>
-            <section id="game-description" className="max-w-[320px]">
-              <TextAnimation section="game-description">
-                BoTreasureは、オーナーとシーカーに分かれた参加者が宝を巡って競い合うゲームです。オーナーは宝を隠し、シーカーはそれを見つけ出します。双方が戦略と連携を駆使して勝利を目指します。
-              </TextAnimation>
+            <section id="game-description" className="mx-auto max-w-lg">
+              <p>
+                BOTREASUREの詳しい
+                <span>
+                  <Link href="/rule" className="text-blue-400 underline">
+                    ルール
+                  </Link>
+                </span>
+                はこちらをご覧ください。
+              </p>
             </section>
           </div>
         </Grid>
         <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              必要なもの
-            </h1>
-            <section id="essential" className="max-w-[320px]">
-              <TextAnimation section="essential">
-                専用サーマルプリンター、宝用QRコードケース、解放用QRコードケース
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              チーム作成/参加
-            </h1>
-            <section id="join-event" className="max-w-[320px]">
-              <TextAnimation section="join-event">
-                ホストの手順 「チーム作成」を選択してチームを作成。
-                プレイ人数とオーナーの人数を選択し、合言葉を設定。
-                チーム作成が完了すると、その情報が表示され、参加者を待ちます。
-                全員が集まったら、ゲームを開始するかどうかを確認し、「プレイする」を選択。
-                <br />
-                ゲストの手順
-                「チーム参加」を選択し、合言葉を入力して部屋に参加します。
-                参加が成功すると、その通知が表示されます。
-              </TextAnimation>
-            </section>
-          </div>
-          <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-            <div className="mx-auto grid">
-              <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-              {/* LINEでのチーム作成している様子やチーム参加している様子 */}
-            </div>
-          </AnimatedBox>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-            <div className="mx-auto grid">
-              <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-              {/* 宝を隠しているところや、qrコードで宝をスキャンしている様子 */}
-            </div>
-          </AnimatedBox>
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              ゲーム開始前の準備
-            </h1>
-            <section id="game-progress" className="max-w-[320px]">
-              <TextAnimation section="game-progress">
-                「プレイする」が押された後、ランダムで役割が割り振られます。
-                <br />
-                オーナーの準備
-                サーマルプリンターから指定した枚数の宝とシーカー解放に使用するQRコードが発券されます。
-                そのQRコードをケースに入れます。
-                オーナーは宝を隠し、その場所のヒントとなる写真を撮影します。
-                撮影が終了したら準備完了です。
-                <br />
-                シーカーの役割
-                シーカーはオーナーが宝を隠している間、指定された場所で待機します。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <AnimatedBox isVisible={observerQr.intersectionRatio > 50}>
-            <div className="mx-auto grid">
-              <img src="qr.png" alt="qr image" className="mx-auto w-80" />
-              {/* 宝を隠しているところや、qrコードで宝をスキャンしている様子 */}
-            </div>
-          </AnimatedBox>
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              ゲーム開始
-            </h1>
-            <section id="game-progress" className="max-w-[320px]">
-              <TextAnimation section="game-progress">
-                ゲームが開始されたら、オーナーは宝を取られないように、シーカーを捕まえてください。
-                <br />
-                シーカーは、オーナーから逃げつつ宝を見つけてQRコードをスキャンしてください。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              確保イベント
-            </h1>
-            <section id="arrest-event" className="max-w-[320px]">
-              <TextAnimation section="arrest-event">
-                シーカーが捕まった場合、オーナーはシーカーのマイコードをスキャンします。この際、全体チャットに報告されます。
-                捕まったシーカーは檻入れられます。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              勝利条件
-            </h1>
-            <section id="report-event" className="max-w-[320px]">
-              <TextAnimation section="report-event">
-                オーナーの勝利：ゲーム終了時に全ての宝が見つからない場合、またはシーカーのマイコードを全てスキャンした場合。
-                <br />
-                シーカーの勝利：時間内に全ての宝を見つけ出した場合。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              チャットモード
-            </h1>
-            <section id="chat-mode" className="max-w-[320px]">
-              <TextAnimation section="chat-mode">
-                ゲームプレイ中はトーク画面がチャットモードに切り替わります。チャットモードでは、味方同士で会話することができ、オーナーはオーナー同士、シーカーはシーカー同士でのみ会話が送信されます。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              ヒントシステム
-            </h1>
-            <section id="hint-timing" className="max-w-[320px]">
-              <TextAnimation section="hint-timing">
-                ゲーム開始からランダムな時間にプリンターからヒントが出されます。
-                これによりシーカーがプリンターに集まり、オーナーは確保のチャンスが上がります。
-                シーカーはヒントを入手できることによって宝を見つけやすくなります。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              接近検知について
-            </h1>
-            <section id="proximity-detection" className="max-w-[320px]">
-              <TextAnimation section="proximity-detection">
-                BLEビーコンを用いて、オーナーが発券機に近づきすぎた場合はペナルティとし、オーナーのマイコードスキャンアプリが一定時間制限されます。これにより、プリンターの真横でオーナーが待機するのを防ぎます。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
-        >
-          <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              解放イベント
-            </h1>
-            <section id="releaset-event" className="max-w-[320px]">
-              <TextAnimation section="release-event">
-                檻に設置された解放用のQRコードをシーカーが読み取ると「解放されました」と全体チャットに表示され、捕まったシーカー全員が解放されます。
-              </TextAnimation>
-            </section>
-          </div>
-        </Grid>
-
-        <Divider className="bg-gray-600" />
-
         <Grid
           container
           justifyContent="center"
@@ -720,20 +377,16 @@ export default function Home() {
             >
               あなたの冒険を始めよう
             </h1>
-            <section id="beta" className="max-w-[320px]">
-              <TextAnimation section="beta">
-                LINEにBOTREASUREを友達追加。
-                <br />
-                さあ、今すぐBoTreasureを始めよう。
-              </TextAnimation>
+            <section id="beta" className="mx-auto max-w-[320px] text-center">
+              LINEにBOTREASUREを友達追加。
+              <br />
+              さあ、今すぐBOTREASUREを始めよう。
             </section>
           </div>
         </Grid>
-        <AnimatedBox isVisible={observerBeta.intersectionRatio > 50}>
-          <div className="flex items-center justify-center py-12">
-            <LinkButton>Get Started</LinkButton>
-          </div>
-        </AnimatedBox>
+        <div className="flex items-center justify-center py-12">
+          <LinkButton>Get Started</LinkButton>
+        </div>
       </main>
     </>
   );

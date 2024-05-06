@@ -10,14 +10,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  background-color: #151e34;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 @font-face {
   font-family: "thin";
@@ -59,7 +51,6 @@ a {
   font-size: 2rem;
   font-weight: bold;
   -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
 }

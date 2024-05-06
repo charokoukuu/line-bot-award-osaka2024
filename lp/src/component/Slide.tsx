@@ -40,30 +40,26 @@ export default function Slide(props: {
       {slides.map((slide, index) => {
         return (
           <SwiperSlide key={index} className={className}>
-            <div className="flex items-center justify-center gap-40 ">
-              <div className="my-5 ml-auto flex w-64 justify-center">
-                <img src={slide.image} alt={slide.title} />
-              </div>
-              <div className="mr-auto">
-                <p
-                  className="heading my-3 text-center text-3xl text-white"
-                  style={{
-                    backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                      0 - observerPay.intersectionRatio
-                    }%,rgb(124, 192, 226) ${
-                      100 - observerPay.intersectionRatio
-                    }%,rgb(37, 47, 255) ${
-                      200 - observerPay.intersectionRatio
-                    }%)`,
-                  }}
-                >
-                  <span className="text-4xl font-bold text-white">
-                    {index + 1}.{" "}
-                  </span>
-                  {slide.title}
-                </p>
-                <p className="text-white">{slide.disc}</p>
-              </div>
+            <div className="mx-auto my-5">
+              <img src={slide.image} alt={slide.title} className="h-96" />
+            </div>
+            <div className="mb-8 flex flex-col items-center justify-center">
+              <p
+                className="heading my-3 text-center text-3xl text-white"
+                style={{
+                  backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
+                    0 - observerPay.intersectionRatio
+                  }%,rgb(124, 192, 226) ${
+                    100 - observerPay.intersectionRatio
+                  }%,rgb(37, 47, 255) ${200 - observerPay.intersectionRatio}%)`,
+                }}
+              >
+                <span className="text-4xl font-bold text-white">
+                  {index + 1}.{" "}
+                </span>
+                {slide.title}
+              </p>
+              <p className="text-center text-white">{slide.disc}</p>
             </div>
           </SwiperSlide>
         );

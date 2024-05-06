@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
           content="学内モバイルオーダー「RunTicket」でスピーディーな注文をしてみませんか？PayPay・クレジット決済・Apple Payなど、様々な支払い方法に対応しています。"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/PulluP-mini-logo.svg" />
         <meta name="theme-color" content="#000000" />
         <meta property="og:title" content="RunTicket LP" />
         <meta

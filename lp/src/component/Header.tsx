@@ -11,7 +11,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
-      <header className="bg-[#006C9B] text-xl text-white shadow-md">
+      <header className="bg-[#eed3a8] text-xl font-bold text-zinc-900 shadow-md">
         {isMobile ? (
           <div>
             <div className="relative h-14 items-center px-4">
