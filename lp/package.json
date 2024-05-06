@@ -1,12 +1,11 @@
 {
-  "name": "run-ticket-site",
+  "name": "bot-reasure",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "deploy:rtk-site:prod": "firebase use prod && npm run build && firebase deploy --only hosting:run-ticket-site",
-    "deploy:rtk-site:dev": "firebase use dev && npm run build && firebase deploy --only hosting:run-ticket-site",
+    "deploy": "firebase deploy --only hosting",
     "start": "next start",
     "lint": "next lint"
   },
