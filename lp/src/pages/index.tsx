@@ -8,24 +8,6 @@ import Slide from "../component/Slide";
 import classNames from "classnames";
 import Link from "next/link";
 
-const slides = [
-  {
-    title: "オーナーが宝を隠す",
-    image: "pic/hide-qr.png",
-    disc: "オーナーは宝を隠し、シーカーを捕まえろ！",
-  },
-  {
-    title: "シーカーが宝を探す",
-    image: "mock/scanning.png",
-    disc: "シーカーはオーナーから逃げつつ宝を見つけ出せ！",
-  },
-  {
-    title: "勝利を目指せ",
-    image: "mock/win-owner.png",
-    disc: "双方が戦略と連携を駆使して勝利を目指せ！",
-  },
-];
-
 export default function Home() {
   const targetRef = useRef(null);
   const threshold = [new Array(100).fill(0).map((_, i) => i / 100)].flat();
@@ -147,7 +129,23 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-5xl">
           <Slide
-            slides={slides}
+            slides={[
+              {
+                title: "オーナーが宝を隠す",
+                image: "pic/hide-qr.png",
+                disc: "オーナーは宝を隠し、シーカーを捕まえろ！",
+              },
+              {
+                title: "シーカーが宝を探す",
+                image: "mock/scanning.png",
+                disc: "シーカーはオーナーから逃げつつ宝を見つけ出せ！",
+              },
+              {
+                title: "勝利を目指せ",
+                image: "mock/win-owner.png",
+                disc: "双方が戦略と連携を駆使して勝利を目指せ！",
+              },
+            ]}
             className={classNames("!grid", {
               "grid-cols-1": isMobile,
               "grid-cols-2": !isMobile,
@@ -203,19 +201,12 @@ export default function Home() {
         <div className="border-none bg-white text-center">
           <Grid
             container
-            direction={isMobile ? "column" : "row"}
+            direction={isMobile ? "column" : "row-reverse"}
             justifyContent="center"
             alignItems="center"
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
             ref={qr}
           >
-            <div className="mx-auto grid">
-              <img
-                src="mock/chat-mode.png"
-                alt="chat mode"
-                className="mx-auto w-80"
-              />
-            </div>
             <div className="mx-auto grid">
               <h1
                 className="heading my-3 text-center text-3xl"
@@ -234,6 +225,13 @@ export default function Home() {
               <section id="chat" className="mx-auto max-w-[320px]">
                 チャットを駆使し、味方と情報を共有し連携しよう！
               </section>
+            </div>
+            <div className="mx-auto grid">
+              <img
+                src="mock/chat-mode.png"
+                alt="chat mode"
+                className="mx-auto w-80"
+              />
             </div>
           </Grid>
         </div>
@@ -283,19 +281,12 @@ export default function Home() {
           <div className="border-none bg-white text-center">
             <Grid
               container
-              direction={isMobile ? "column" : "row"}
+              direction={isMobile ? "column" : "row-reverse"}
               justifyContent="center"
               alignItems="center"
               className="mx-auto max-w-5xl gap-10 p-5 text-black"
               ref={qr}
             >
-              <div className="mx-auto grid">
-                <img
-                  src="mock/disabled-scan.png"
-                  alt="qr image"
-                  className="mx-auto w-80"
-                />
-              </div>
               <div className="mx-auto grid">
                 <h1
                   className="heading my-3 text-center text-3xl"
@@ -317,6 +308,13 @@ export default function Home() {
                   オーナーがプリンターから動かなくて、ヒントが取れない・・・
                   そんな時には、プリンターにLINEビーコンを搭載した接近検知システムがあり、オーナーがプリンターに近づくとスキャナが無効化される！
                 </section>
+              </div>
+              <div className="mx-auto grid">
+                <img
+                  src="mock/disabled-scan.png"
+                  alt="qr image"
+                  className="mx-auto w-80"
+                />
               </div>
             </Grid>
           </div>
