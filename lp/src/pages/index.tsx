@@ -29,7 +29,7 @@ export default function Home() {
           <div className="flex w-full items-center justify-center object-cover">
             <iframe
               className="h-[300px] w-full sm:h-[500px]"
-              src="https://www.youtube.com/embed/E0NgJ-HGQCA?si=W54-rCnFJDX-3O4C" // ここを変更
+              src="https://www.youtube.com/embed/DxHofK10rSc?si=g3Fv37YNgEwLc0-1C"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
@@ -37,8 +37,11 @@ export default function Home() {
             />
           </div>
 
-          <div className="m-4 text-center">
-            <LinkButton href="">体験する！</LinkButton>
+          <div className="flex w-full flex-col items-center justify-center">
+            <p className="text-center text-3xl font-bold text-white">
+              友達追加はこちらから！
+            </p>
+            <img src="pic/line-link.png" alt="qr image" className="m-4 w-32" />
           </div>
           <div
             className="scrollBarHidden scrollbar-none scrollbar-none flex items-end gap-16 overflow-x-scroll whitespace-nowrap sm:overflow-x-auto"
@@ -270,7 +273,12 @@ export default function Home() {
           </div>
         </Grid>
         <div className="flex items-center justify-center py-12">
-          <LinkButton href="">Get Started</LinkButton>
+          <div className="flex w-full flex-col items-center justify-center">
+            <p className="text-center text-3xl font-bold text-white">
+              友達追加はこちらから！
+            </p>
+            <img src="pic/line-link.png" alt="qr image" className="m-4 w-32" />
+          </div>
         </div>
       </main>
     </>
