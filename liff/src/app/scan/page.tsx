@@ -2,39 +2,71 @@
 import { useLiff } from "@/components/LiffProvider";
 import { useEffect, useState } from "react";
 export default function Scan() {
-  const [keyword, setKeyword] = useState("");
   const [isSaned, setIsSaned] = useState(false);
-  const { liff } = useLiff();
+  const [scannerStatus, setScannerStatus] = useState<{
+    userId: string;
+    isDisabledScan: boolean;
+  } | null>(null);
+  const { liff, profile } = useLiff();
+
   useEffect(() => {
-    if (!isSaned && keyword === "") {
-      liff?.scanCodeV2().then(async (result) => {
-        console.log(result.value);
-        setKeyword(result.value ?? "");
-        fetch(
-          `https://local-line.run-ticket.com/qr-scan?id=${liff.id}&content=${result.value}`,
-          {
-            method: "GET",
-          }
-        ).finally(() => {
-          setIsSaned(true);
-        });
+    if (!profile || !liff) return;
+    const userId = profile.userId;
+    if (scannerStatus) return;
+    fetch(`https://node-learn.run-ticket.com/api/scannerStatus/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setScannerStatus(data);
       });
-    }
-  }, [isSaned, keyword, liff]);
+  }, [liff, profile, scannerStatus]);
+
+  useEffect(() => {
+    if (!profile || !liff) return;
+    const userId = profile.userId;
+    if (isSaned || !scannerStatus || scannerStatus.isDisabledScan) return;
+    liff?.scanCodeV2().then(async (result) => {
+      console.log(result.value);
+      fetch("https://node-learn.run-ticket.com/api/qr-scan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          qrCode: result.value,
+        }),
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .finally(() => {
+          setIsSaned(true);
+          liff.closeWindow();
+        });
+    });
+  }, [isSaned, liff, profile, scannerStatus]);
+
   return (
     <main className="m-4">
-      <h1 className="text-center text-3xl font-semibold">スキャン</h1>
-      <div className="flex flex-col w-full h-full justify-center items-center">
-        {isSaned ? (
-          <>
-            <p className="text-center text-2xl">スキャンが完了しました</p>
-            <div className="flex flex-col justify-center items-left gap-2">
-              <h2 className="text-xl">あいことば</h2>
-              <p className="text-center text-2xl">{keyword}</p>
-            </div>
-          </>
+      <div className="flex flex-col w-full h-full justify-center items-center gap-5">
+        {scannerStatus && scannerStatus.isDisabledScan ? (
+          <p className="text-center text-xl">スキャンが無効化されています</p>
         ) : (
-          <p className="text-center text-2xl">スキャン中...</p>
+          <>
+            {isSaned ? (
+              <>
+                <p className="text-center text-2xl">スキャンが完了しました</p>
+              </>
+            ) : (
+              <p className="text-center text-2xl">スキャン中...</p>
+            )}
+          </>
         )}
       </div>
     </main>

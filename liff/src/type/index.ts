@@ -1,2 +1,2 @@
 export type { GroupsData } from './mock';
-export type { Team } from './host';
+export type { CreateTeam, JoinTeam } from './host';
