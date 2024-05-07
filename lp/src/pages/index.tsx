@@ -26,6 +26,17 @@ export default function Home() {
               </TextAnimation>
             </GradationText>
           </section>
+          <div className="flex w-full items-center justify-center object-cover">
+            <iframe
+              className="h-[300px] w-full sm:h-[500px]"
+              src="https://www.youtube.com/embed/E0NgJ-HGQCA?si=W54-rCnFJDX-3O4C" // ここを変更
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+
           <div className="m-4 text-center">
             <LinkButton href="">体験する！</LinkButton>
           </div>
