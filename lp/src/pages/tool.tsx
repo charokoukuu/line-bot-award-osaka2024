@@ -2,21 +2,23 @@ import ReactMarkdown from "react-markdown";
 
 const markdown = `
 # 技術スタック
-- TypeScript/Next.js
-- Vercel
-- Raspberry Pi
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next.js](https://nextjs.org/)
+- [Vercel](https://vercel.com/)
+- [Typst](https://typst.app/)
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Cloudflare Zero Trust](https://www.cloudflare.com/ja-jp/products/zero-trust/zero-trust-network-access/)
+- Raspberry Pi 4
 - Thermal Printer
-- Typst
 
 # システム構成
 
-![test](https://source.unsplash.com/random)
+![system](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fsystem.drawio.svg?alt=media&token=b7b7b681-4ed7-4916-a189-f739a478fa38)
 
 # シーケンス図
 
-![test](https://source.unsplash.com/random)
-
-
+![test](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fflow.svg?alt=media&token=9cd0d5d5-6808-42c1-a45c-5f69d9b1afc1)
 `;
 export default function Tool() {
   return (
