@@ -14,11 +14,12 @@ const markdown = `
 
 # システム構成
 
-![system](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fsystem.drawio.svg?alt=media&token=b7b7b681-4ed7-4916-a189-f739a478fa38)
+![system](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fsystem.drawio.svg?alt=media&token=e650f671-0539-45e1-ba2c-93ec76f119bb)
 
 # シーケンス図
 
-![test](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fflow.svg?alt=media&token=9cd0d5d5-6808-42c1-a45c-5f69d9b1afc1)
+![test](https://firebasestorage.googleapis.com/v0/b/line-bot-award-osaka2024.appspot.com/o/assets%2Fflow.svg?alt=media&token=d92272c1-485b-4ef7-925a-2d11b62fba2a)
+
 `;
 export default function Tool() {
   return (
