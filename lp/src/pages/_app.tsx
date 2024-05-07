@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>BOTREASURE LP</title>
         <meta
           name="description"
-          content="BOTREASUREは、オーナーとシーカーに分かれた参加者が宝を巡って競い合うゲームです。オーナーは宝を隠し、シーカーはそれを見つけ出します。双方が戦略と推理を駆使して勝利を目指します。さぁ今すぐ冒険を始めよう"
+          content="BOTREASUREは、オーナーとシーカーに分かれた参加者が宝を巡って競い合うゲームです。オーナーは宝を隠し、シーカーはそれを見つけ出します。双方が戦略と推理を駆使して勝利を目指します。さぁ今すぐ冒険を始めよう。"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/PulluP-mini-logo.svg" />
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:title" content="BOTREASURE LP" />
         <meta
           property="og:description"
-          content="BOTREASUREは、オーナーとシーカーに分かれた参加者が宝を巡って競い合うゲームです。オーナーは宝を隠し、シーカーはそれを見つけ出します。双方が戦略と推理を駆使して勝利を目指します。さぁ今すぐ冒険を始めよう"
+          content="BOTREASUREは、オーナーとシーカーに分かれた参加者が宝を巡って競い合うゲームです。オーナーは宝を隠し、シーカーはそれを見つけ出します。双方が戦略と推理を駆使して勝利を目指します。さぁ今すぐ冒険を始めよう。"
         />
         <meta property="og:url" content="https://botreasure.com" />
         <meta
