@@ -53,8 +53,8 @@ BOTREASUREは、オーナーとシーカーに分かれた参加者が宝を巡�
 
 ## **勝利条件**
 
-オーナーの勝利：ゲーム終了時に全ての宝が見つからない場合、またはシーカーのマイコードを全てスキャンした場合。
-シーカーの勝利：時間内に全ての宝を見つけ出した場合。
+オーナーの勝利：ゲーム終了時にすべての宝が見つからない場合、またはシーカーのマイコードをすべてスキャンした場合。
+シーカーの勝利：時間内にすべての宝を見つけ出した場合。
 
 ## **チャットモード**
 
@@ -77,7 +77,7 @@ BLEビーコンを用いて、オーナーが発券機に近づきすぎた場�
 檻に設置された解放用のQRコードをシーカーが読み取ると「解放されました」と全体チャットに表示され、捕まったシーカー全員が解放されます。
 `;
 
-export default function privacy() {
+export default function Rule() {
   return (
     <main className="prose mx-auto max-w-5xl bg-white p-4 prose-headings:my-6 prose-headings:font-semibold prose-headings:text-black prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg">
       <ReactMarkdown>{markdown}</ReactMarkdown>

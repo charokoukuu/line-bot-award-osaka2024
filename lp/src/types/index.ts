@@ -12,4 +12,8 @@ export const navigationItem: navigationItemProps[] = [
     name: "ゲームルール",
     path: "/rule",
   },
+  {
+    name: "ツール",
+    path: "/tool",
+  }
 ];

@@ -45,7 +45,7 @@ export const Header = () => {
                 <Link href="/">
                   <img
                     src="botreasure.svg"
-                    alt="RunTicket"
+                    alt="BOTREASURE"
                     className="bg-blur-md h-14 rounded-xl"
                   />
                 </Link>
