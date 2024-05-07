@@ -46,9 +46,12 @@ const TextAnimation = (props: Props): ReactElement => {
   };
 
   return (
-    <p ref={textRef} className={classNames("animation-text", props.className)}>
+    <div
+      ref={textRef}
+      className={classNames("animation-text", props.className)}
+    >
       {props.children}
-    </p>
+    </div>
   );
 };
 

@@ -1,66 +1,15 @@
 import { Divider, Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { LinkButton } from "../component/LinkButton";
-import useIntersectionObServer from "../hooks/useIntersectionObServer";
-import { useEffect, useRef } from "react";
 import TextAnimation from "../component/TextAnimation";
 import Slide from "../component/Slide";
 import classNames from "classnames";
 import Link from "next/link";
+import { GradationText } from "../component/GradiationText";
 
 export default function Home() {
-  const targetRef = useRef(null);
-  const threshold = [new Array(100).fill(0).map((_, i) => i / 100)].flat();
-  const pay = useRef(null);
-  const qr = useRef(null);
-  const beta = useRef(null);
-  const { intersectionRatio } = useIntersectionObServer({
-    target: targetRef,
-    rootMargin: "-300px 0px 0px 0px",
-    threshold: threshold,
-  });
-
-  const observerPay = useIntersectionObServer({
-    target: pay,
-    rootMargin: "0px",
-    threshold: [0.5],
-  });
-  const observerQr = useIntersectionObServer({
-    target: qr,
-    rootMargin: "0px",
-    threshold: [0.5],
-  });
-  const observerBeta = useIntersectionObServer({
-    target: beta,
-    rootMargin: "0px",
-    threshold: [0.5],
-  });
-
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let requestId: number | null = null;
-    let scrollSpeed = 0.8;
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const { scrollWidth, clientWidth } = containerRef.current;
-        containerRef.current.scrollLeft += scrollSpeed;
-        if (containerRef.current.scrollLeft >= scrollWidth - clientWidth) {
-          scrollSpeed = 0;
-        }
-      }
-      requestId = requestAnimationFrame(handleScroll);
-    };
-
-    handleScroll();
-    return () => {
-      if (requestId) cancelAnimationFrame(requestId);
-    };
-  }, []);
-
-  // #eed3a8
-  // #f2dcb5
   return (
     <>
       <main>
@@ -70,28 +19,18 @@ export default function Home() {
             alt="botreasure logo"
             className="my-3 w-full bg-white"
           />
-          <section
-            id="catchphrase"
-            ref={targetRef}
-            style={{
-              backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                0 - intersectionRatio
-              }%,rgb(124, 192, 226) ${
-                100 - intersectionRatio
-              }%,rgb(37, 47, 255) ${200 - intersectionRatio}%)`,
-            }}
-            className="heading w-ful mx-auto"
-          >
-            <TextAnimation section="catchphrase" className="text-start">
-              全てのゲームを過去にする。
-            </TextAnimation>
+          <section id="catchphrase" className="heading w-ful mx-auto">
+            <GradationText>
+              <TextAnimation section="catchphrase" className="text-start">
+                全てのゲームを過去にする。
+              </TextAnimation>
+            </GradationText>
           </section>
           <div className="m-4 text-center">
             <LinkButton href="">体験する！</LinkButton>
           </div>
           <div
             className="scrollBarHidden scrollbar-none scrollbar-none flex items-end gap-16 overflow-x-scroll whitespace-nowrap sm:overflow-x-auto"
-            ref={containerRef}
             style={{
               justifyContent: isMobile ? "flex-start" : "center",
             }}
@@ -111,18 +50,9 @@ export default function Home() {
 
         <Divider className="bg-gray-600" />
         <div className="flex flex-col items-center justify-center">
-          <h1
-            className="heading my-3 text-center text-3xl"
-            style={{
-              backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                0 - observerPay.intersectionRatio
-              }%,rgb(124, 192, 226) ${
-                100 - observerPay.intersectionRatio
-              }%,rgb(37, 47, 255) ${200 - observerPay.intersectionRatio}%)`,
-            }}
-          >
-            BOTREASUREとは
-          </h1>
+          <section className="heading my-3 text-center text-3xl">
+            <GradationText>BOTREASUREとは</GradationText>
+          </section>
           <section id="pay" className="max-w-[320px] text-white">
             オーナーとシーカーに分かれ参加者が宝を巡って競い合う！
           </section>
@@ -160,23 +90,15 @@ export default function Home() {
             justifyContent="center"
             alignItems="center"
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
-            ref={qr}
           >
             <div className="mx-auto grid">
-              <h1
-                className="heading my-3 text-center text-3xl"
-                style={{
-                  backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                    0 - observerQr.intersectionRatio
-                  }%,rgb(124, 192, 226) ${
-                    100 - observerQr.intersectionRatio
-                  }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-                }}
-              >
-                ランダムな時間でプリンターから
-                <br />
-                ヒントが出てくるぞ！
-              </h1>
+              <GradationText>
+                <h1 className="heading my-3 text-center text-3xl">
+                  ランダムな時間でプリンターから
+                  <br />
+                  ヒントが出てくるぞ！
+                </h1>
+              </GradationText>
               <section id="hint" className="mx-auto max-w-[320px] text-center">
                 ヒントか出ることによってプリンターに人が集まる！
                 オーナーは一網打尽のチャンス！シーカーはヒントを入手し宝を手に入れろ！
@@ -188,12 +110,8 @@ export default function Home() {
                 alt="print hint"
                 className="mx-auto w-80 rounded-xl"
               />
-              {/* スライドで作ってたヒントのメリットデメリットの出してる画像 */}
             </div>
           </Grid>
-          {/* <div className="h-30 flex w-full items-center justify-center border-none bg-white">
-            todo:ヒント画像
-          </div> */}
         </div>
 
         <Divider className="bg-gray-600" />
@@ -205,23 +123,15 @@ export default function Home() {
             justifyContent="center"
             alignItems="center"
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
-            ref={qr}
           >
             <div className="mx-auto grid">
-              <h1
-                className="heading my-3 text-center text-3xl"
-                style={{
-                  backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                    0 - observerQr.intersectionRatio
-                  }%,rgb(124, 192, 226) ${
-                    100 - observerQr.intersectionRatio
-                  }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-                }}
-              >
-                味方同士で
-                <br />
-                チャットが可能！
-              </h1>
+              <GradationText>
+                <h1 className="heading my-3 text-center text-3xl">
+                  味方同士で
+                  <br />
+                  チャットが可能！
+                </h1>
+              </GradationText>
               <section id="chat" className="mx-auto max-w-[320px]">
                 チャットを駆使し、味方と情報を共有し連携しよう！
               </section>
@@ -245,23 +155,15 @@ export default function Home() {
             justifyContent="center"
             alignItems="center"
             className="mx-auto max-w-5xl gap-10 p-5 text-black"
-            ref={qr}
           >
             <div className="mx-auto grid">
-              <h1
-                className="heading my-3 text-center text-3xl"
-                style={{
-                  backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                    0 - observerQr.intersectionRatio
-                  }%,rgb(124, 192, 226) ${
-                    100 - observerQr.intersectionRatio
-                  }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-                }}
-              >
-                捕まったシーカーを
-                <br />
-                救助しよう！
-              </h1>
+              <GradationText>
+                <h1 className="heading my-3 text-center text-3xl">
+                  捕まったシーカーを
+                  <br />
+                  救助しよう！
+                </h1>
+              </GradationText>
               <section
                 id="rescue"
                 className="mx-auto max-w-[320px] text-center"
@@ -285,25 +187,15 @@ export default function Home() {
               justifyContent="center"
               alignItems="center"
               className="mx-auto max-w-5xl gap-10 p-5 text-black"
-              ref={qr}
             >
               <div className="mx-auto grid">
-                <h1
-                  className="heading my-3 text-center text-3xl"
-                  style={{
-                    backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                      0 - observerQr.intersectionRatio
-                    }%,rgb(124, 192, 226) ${
-                      100 - observerQr.intersectionRatio
-                    }%,rgb(37, 47, 255) ${
-                      200 - observerQr.intersectionRatio
-                    }%)`,
-                  }}
-                >
-                  オーナーがプリンターに近づきすぎると
-                  <br />
-                  スキャナが無効化！
-                </h1>
+                <GradationText>
+                  <h1 className="heading my-3 text-center text-3xl">
+                    オーナーがプリンターに近づきすぎると
+                    <br />
+                    スキャナが無効化！
+                  </h1>
+                </GradationText>
                 <section id="scan" className="mx-auto max-w-[320px]">
                   オーナーがプリンターから動かなくて、ヒントが取れない・・・
                   そんな時には、プリンターにLINEビーコンを搭載した接近検知システムがあり、オーナーがプリンターに近づくとスキャナが無効化される！
@@ -326,21 +218,13 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
           className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={qr}
         >
           <div className="mx-auto grid">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerQr.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerQr.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerQr.intersectionRatio}%)`,
-              }}
-            >
-              BOTREASURE ゲームルールブック
-            </h1>
+            <GradationText>
+              <h1 className="heading my-3 text-center text-3xl">
+                BOTREASURE ゲームルールブック
+              </h1>
+            </GradationText>
             <section id="game-description" className="mx-auto max-w-lg">
               <p>
                 BOTREASUREの詳しい
@@ -360,21 +244,13 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
           className="mx-auto max-w-5xl gap-10 p-5 text-white"
-          ref={beta}
         >
           <div className="mx-auto">
-            <h1
-              className="heading my-3 text-center text-3xl"
-              style={{
-                backgroundImage: `linear-gradient(45deg,rgb(37, 47, 255) ${
-                  0 - observerBeta.intersectionRatio
-                }%,rgb(124, 192, 226) ${
-                  100 - observerBeta.intersectionRatio
-                }%,rgb(37, 47, 255) ${200 - observerBeta.intersectionRatio}%)`,
-              }}
-            >
-              あなたの冒険を始めよう
-            </h1>
+            <GradationText>
+              <h1 className="heading my-3 text-center text-3xl">
+                あなたの冒険を始めよう
+              </h1>
+            </GradationText>
             <section id="beta" className="mx-auto max-w-[320px] text-center">
               LINEにBOTREASUREを友達追加。
               <br />
