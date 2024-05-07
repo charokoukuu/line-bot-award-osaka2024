@@ -1,6 +1,5 @@
 import { Divider, Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { LinkButton } from "../component/LinkButton";
 import TextAnimation from "../component/TextAnimation";
 import Slide from "../component/Slide";
 import classNames from "classnames";
@@ -22,7 +21,7 @@ export default function Home() {
           <section id="catchphrase" className="heading w-ful mx-auto">
             <GradationText>
               <TextAnimation section="catchphrase" className="text-start">
-                全てのゲームを過去にする。
+                LINE BOTと宝探しを融合した新感覚ゲーム！
               </TextAnimation>
             </GradationText>
           </section>
