@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+
+@font-face {
+  font-family: "thin";
+  src: url(./font/NotoSansJP-Thin.otf);
+}
+
+.japanese_thin {
+  font-family: thin;
+}
+
+@font-face {
+  font-family: "japan_l";
+  src: url(./font/Koruri-Light.ttf);
+}
+
+.japanese_L {
+  font-family: japan_l;
+}
+
+@font-face {
+  font-family: "japan_b";
+  src: url(./font/Koruri-Bold.ttf);
+}
+
+@font-face {
+  font-family: "japan_r";
+  src: url(./font/Koruri-Regular.ttf);
+}
+
+.japanese_B {
+  font-family: japan_b;
+}
+
+.japanese_R {
+  font-family: japan_r;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.scrollBarHidden::-webkit-scrollbar {
+  display: none;
+}
