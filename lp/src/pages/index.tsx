@@ -181,7 +181,7 @@ export default function Home() {
                 id="rescue"
                 className="mx-auto max-w-[320px] text-center"
               >
-                オーナーに捕まると檻に入れられる。しかし、生存しているシーカーが檻にあるQRコードを読み取ることで、檻が解放される！
+                オーナーに捕まると檻に入れられる。しかし、生存しているシーカーが檻にある※QRコードを読み取ることで、檻が解放される！
               </section>
             </div>
             <div className="mx-auto grid">
@@ -224,34 +224,6 @@ export default function Home() {
             </Grid>
           </div>
         </div>
-
-        <Grid
-          container
-          direction={isMobile ? "column" : "row"}
-          justifyContent="center"
-          alignItems="center"
-          className="mx-auto max-w-5xl gap-10 p-5 text-white"
-        >
-          <div className="mx-auto grid">
-            <GradationText>
-              <h1 className="heading my-3 text-center text-3xl">
-                BOTREASURE ゲームルールブック
-              </h1>
-            </GradationText>
-            <section id="game-description" className="mx-auto max-w-lg">
-              <p>
-                BOTREASUREの詳しい
-                <span>
-                  <Link href="/rule" className="text-blue-400 underline">
-                    ルール
-                  </Link>
-                </span>
-                はこちらをご覧ください。
-              </p>
-            </section>
-          </div>
-        </Grid>
-        <Divider className="bg-gray-600" />
         <Grid
           container
           justifyContent="center"
@@ -265,9 +237,20 @@ export default function Home() {
               </h1>
             </GradationText>
             <section id="beta" className="mx-auto max-w-[320px] text-center">
-              LINEにBOTREASUREを友達追加。
+              LINEで簡単友達追加。
               <br />
               さあ、今すぐBOTREASUREを始めよう。
+              <section id="game-description" className="mx-auto max-w-lg">
+                <p>
+                  詳しくは
+                  <span>
+                    <Link href="/rule" className="text-blue-400 underline">
+                      ゲームルール
+                    </Link>
+                  </span>
+                  をご覧ください。
+                </p>
+              </section>
             </section>
           </div>
         </Grid>
@@ -277,6 +260,9 @@ export default function Home() {
               友達追加はこちらから！
             </p>
             <img src="pic/line-link.png" alt="qr image" className="m-4 w-32" />
+            <div className="text-white">
+              ※QRコードは株式会社デンソーウェーブの登録商標です。
+            </div>
           </div>
         </div>
       </main>
